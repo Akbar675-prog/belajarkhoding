@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Python (Backend Web)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .highlight {
+            background-color: #dbeafe;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .demo-box {
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px dashed #cbd5e1;
+        }
+        
+        .btn-demo {
+            padding: 8px 16px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-demo:hover {
+            background-color: #2563eb;
+        }
+        
+        .btn-nav {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-2px);
+        }
+        
+        .python-icon {
+            color: #3776ab;
+        }
+        
+        .tab-button {
+            padding: 8px 16px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #64748b;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-button.active {
+            color: #3b82f6;
+            border-bottom: 2px solid #3b82f6;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fab fa-python python-icon text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-blue-100 rounded-full mb-4">
+                <i class="fab fa-python python-icon text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Python (Backend Web)</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Bahasa pemrograman serbaguna yang juga digunakan dalam pengembangan backend web. 
+                Pelajari sintaks dasar, routing, dan framework seperti Flask atau Django.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is Python -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu Python untuk Backend Web?</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Python adalah bahasa pemrograman tingkat tinggi yang populer untuk pengembangan web backend karena sintaksnya yang mudah dibaca dan ekosistem yang kaya.
+                        </p>
+                        <p class="text-gray-600">
+                            Keunggulan Python untuk backend web:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li><strong>Sintaks sederhana</strong>: Mudah dipelajari dan dibaca</li>
+                            <li><strong>Ekosistem kuat</strong>: Banyak library dan framework</li>
+                            <li><strong>Multi-paradigma</strong>: Mendukung OOP dan functional programming</li>
+                            <li><strong>Komunitas besar</strong>: Dokumentasi lengkap dan dukungan luas</li>
+                            <li><strong>Skalabilitas</strong>: Cocok untuk proyek kecil hingga besar</li>
+                        </ul>
+                        <p class="text-gray-600">
+                            Framework populer Python untuk web:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li><strong>Flask</strong>: Microframework ringan untuk aplikasi kecil</li>
+                            <li><strong>Django</strong>: Framework full-featured untuk aplikasi kompleks</li>
+                            <li><strong>FastAPI</strong>: Framework modern untuk API cepat</li>
+                            <li><strong>Pyramid</strong>: Framework fleksibel untuk berbagai kebutuhan</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Installation -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Instalasi Python</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Untuk mulai menggunakan Python, Anda perlu menginstalnya terlebih dahulu di komputer Anda.
+                        </p>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <h3 class="font-medium text-blue-800 mb-2">Langkah-langkah instalasi:</h3>
+                            <ol class="list-decimal pl-5 text-gray-700 space-y-1">
+                                <li>Download Python dari <a href="https://www.python.org/downloads/" class="text-blue-600 hover:underline">python.org</a></li>
+                                <li>Jalankan installer dan centang "Add Python to PATH"</li>
+                                <li>Ikuti petunjuk instalasi sampai selesai</li>
+                                <li>Verifikasi instalasi dengan perintah <code class="bg-blue-100 px-1 rounded">python --version</code> di terminal</li>
+                            </ol>
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Menjalankan file Python:
+                        </p>
+                        <div class="code-block">
+                            <span class="text-gray-500"># Buat file dengan ekstensi .py, contoh: app.py</span><br>
+                            <span class="text-blue-500">print</span>(<span class="text-yellow-600">"Hello, World!"</span>)<br><br>
+                            
+                            <span class="text-gray-500"># Jalankan di terminal:</span><br>
+                            python app.py
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Tips untuk Pemula:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>Gunakan text editor seperti VS Code, PyCharm, atau Sublime Text</li>
+                                <li>Biasakan menggunakan virtual environment untuk mengisolasi proyek</li>
+                                <li>Pelajari pip (package manager Python) untuk menginstal library</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Basic Syntax -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Sintaks Dasar Python</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-600">1. Variabel dan Tipe Data</h3>
+                            <div class="code-block">
+                                <span class="text-gray-500"># Deklarasi variabel</span><br>
+                                nama = <span class="text-yellow-600">"Budi Santoso"</span>  <span class="text-gray-500"># String</span><br>
+                                umur = <span class="text-purple-500">25</span>           <span class="text-gray-500"># Integer</span><br>
+                                tinggi = <span class="text-purple-500">1.75</span>        <span class="text-gray-500"># Float</span><br>
+                                is_mahasiswa = <span class="text-purple-500">True</span>  <span class="text-gray-500"># Boolean</span><br>
+                                hobi = [<span class="text-yellow-600">"Membaca"</span>, <span class="text-yellow-600">"Bersepeda"</span>, <span class="text-yellow-600">"Memasak"</span>]  <span class="text-gray-500"># List</span><br><br>
+                                
+                                <span class="text-gray-500"># Menampilkan nilai</span><br>
+                                <span class="text-blue-500">print</span>(<span class="text-yellow-600">f"Nama: {nama}, Umur: {umur}"</span>)  <span class="text-gray-500"># f-string (Python 3.6+)</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-600">2. Fungsi</h3>
+                            <div class="code-block">
+                                <span class="text-gray-500"># Membuat fungsi</span><br>
+                                <span class="text-blue-500">def</span> sapa(nama):<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-yellow-600">f"Halo, {nama}!"</span><br><br>
+                                
+                                <span class="text-gray-500"># Memanggil fungsi</span><br>
+                                pesan = sapa(<span class="text-yellow-600">"Ani"</span>)<br>
+                                <span class="text-blue-500">print</span>(pesan)  <span class="text-gray-500"># Output: Halo, Ani!</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-600">3. Percabangan dan Perulangan</h3>
+                            <div class="code-block">
+                                <span class="text-gray-500"># Percabangan if-elif-else</span><br>
+                                nilai = <span class="text-purple-500">85</span><br>
+                                <span class="text-blue-500">if</span> nilai >= <span class="text-purple-500">80</span>:<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">print</span>(<span class="text-yellow-600">"Nilai A"</span>)<br>
+                                <span class="text-blue-500">elif</span> nilai >= <span class="text-purple-500">70</span>:<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">print</span>(<span class="text-yellow-600">"Nilai B"</span>)<br>
+                                <span class="text-blue-500">else</span>:<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">print</span>(<span class="text-yellow-600">"Nilai C"</span>)<br><br>
+                                
+                                <span class="text-gray-500"># Perulangan for</span><br>
+                                <span class="text-blue-500">for</span> i <span class="text-blue-500">in</span> <span class="text-blue-500">range</span>(<span class="text-purple-500">5</span>):  <span class="text-gray-500"># 0 sampai 4</span><br>
+                                &nbsp;&nbsp;<span class="text-blue-500">print</span>(i)<br><br>
+                                
+                                <span class="text-gray-500"># Perulangan while</span><br>
+                                x = <span class="text-purple-500">0</span><br>
+                                <span class="text-blue-500">while</span> x < <span class="text-purple-500">5</span>:<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">print</span>(x)<br>
+                                &nbsp;&nbsp;x += <span class="text-purple-500">1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Flask Introduction -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Pengenalan Flask</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Flask adalah microframework Python yang ringan untuk membangun aplikasi web. Cocok untuk pemula karena sederhana namun powerful.
+                        </p>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <h3 class="font-medium text-blue-800 mb-2">Instalasi Flask:</h3>
+                            <div class="code-block">
+                                <span class="text-gray-500"># Install menggunakan pip</span><br>
+                                pip install flask
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Struktur dasar proyek Flask:
+                        </p>
+                        <div class="code-block">
+                            proyek_flask/<br>
+                            ├── app.py          <span class="text-gray-500"># File utama aplikasi</span><br>
+                            ├── templates/     <span class="text-gray-500"># Folder untuk file HTML</span><br>
+                            │   └── index.html<br>
+                            └── static/        <span class="text-gray-500"># Folder untuk CSS/JS</span>
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Contoh aplikasi Flask minimal:
+                        </p>
+                        <div class="code-block">
+                            <span class="text-gray-500"># app.py</span><br>
+                            <span class="text-blue-500">from</span> flask <span class="text-blue-500">import</span> Flask<br><br>
+                            
+                            app = Flask(__name__)<br><br>
+                            
+                            <span class="text-blue-500">@app.route</span>(<span class="text-yellow-600">'/'</span>)<br>
+                            <span class="text-blue-500">def</span> home():<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-yellow-600">"Halo, Dunia!"</span><br><br>
+                            
+                            <span class="text-blue-500">if</span> __name__ == <span class="text-yellow-600">'__main__'</span>:<br>
+                            &nbsp;&nbsp;app.run(debug=<span class="text-purple-500">True</span>)
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Menjalankan Aplikasi:</h3>
+                            <div class="code-block">
+                                <span class="text-gray-500"># Jalankan di terminal:</span><br>
+                                python app.py<br><br>
+                                
+                                <span class="text-gray-500"># Atau secara khusus untuk Flask:</span><br>
+                                flask run
+                            </div>
+                            <p class="text-gray-600 mt-2">
+                                Aplikasi akan berjalan di <a href="http://localhost:5000" class="text-blue-600 hover:underline">http://localhost:5000</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Flask Routing -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Routing dengan Flask</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Routing adalah cara Flask memetakan URL ke fungsi yang akan menangani request tersebut.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-blue-500">from</span> flask <span class="text-blue-500">import</span> Flask<br><br>
+                            
+                            app = Flask(__name__)<br><br>
+                            
+                            <span class="text-gray-500"># Route dasar</span><br>
+                            <span class="text-blue-500">@app.route</span>(<span class="text-yellow-600">'/'</span>)<br>
+                            <span class="text-blue-500">def</span> index():<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-yellow-600">"Halaman Utama"</span><br><br>
+                            
+                            <span class="text-gray-500"># Route dengan parameter</span><br>
+                            <span class="text-blue-500">@app.route</span>(<span class="text-yellow-600">'/user/&lt;username&gt;'</span>)<br>
+                            <span class="text-blue-500">def</span> show_user(username):<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-yellow-600">f'User: {username}'</span><br><br>
+                            
+                            <span class="text-gray-500"># Route dengan method khusus</span><br>
+                            <span class="text-blue-500">@app.route</span>(<span class="text-yellow-600">'/login'</span>, methods=[<span class="text-yellow-600">'GET'</span>, <span class="text-yellow-600">'POST'</span>])<br>
+                            <span class="text-blue-500">def</span> login():<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">if</span> request.method == <span class="text-yellow-600">'POST'</span>:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-yellow-600">'Proses login'</span><br>
+                            &nbsp;&nbsp;<span class="text-blue-500">else</span>:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-yellow-600">'Form login'</span>
+                        </div>
+                        
+                        <div class="demo-box">
+                            <h3 class="text-lg font-medium mb-2">Contoh Form dengan Flask</h3>
+                            <div class="code-block">
+                                <span class="text-gray-500"># app.py</span><br>
+                                <span class="text-blue-500">from</span> flask <span class="text-blue-500">import</span> Flask, render_template, request<br><br>
+                                
+                                app = Flask(__name__)<br><br>
+                                
+                                <span class="text-blue-500">@app.route</span>(<span class="text-yellow-600">'/form'</span>, methods=[<span class="text-yellow-600">'GET'</span>, <span class="text-yellow-600">'POST'</span>])<br>
+                                <span class="text-blue-500">def</span> form():<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">if</span> request.method == <span class="text-yellow-600">'POST'</span>:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;nama = request.form[<span class="text-yellow-600">'nama'</span>]<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-yellow-600">f"Halo, {nama}!"</span><br>
+                                &nbsp;&nbsp;<span class="text-blue-500">return</span> render_template(<span class="text-yellow-600">'form.html'</span>)<br><br>
+                                
+                                <span class="text-gray-500"># templates/form.html</span><br>
+                                &lt;form method=<span class="text-yellow-600">"POST"</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;input type=<span class="text-yellow-600">"text"</span> name=<span class="text-yellow-600">"nama"</span> placeholder=<span class="text-yellow-600">"Nama Anda"</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;button type=<span class="text-yellow-600">"submit"</span>&gt;Kirim&lt;/button&gt;<br>
+                                &lt;/form&gt;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Django Introduction -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Pengenalan Django</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Django adalah framework Python full-featured yang mengikuti pola "batteries included" - menyediakan semua yang dibutuhkan untuk membangun aplikasi web yang kompleks.
+                        </p>
+                        
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-medium mb-2 text-blue-600">Keunggulan Django</h3>
+                                <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                    <li>Admin panel otomatis</li>
+                                    <li>ORM (Object-Relational Mapping) bawaan</li>
+                                    <li>Sistem autentikasi lengkap</li>
+                                    <li>Template engine yang powerful</li>
+                                    <li>Routing yang terorganisir</li>
+                                    <li>Keamanan bawaan (CSRF, XSS, SQL injection protection)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="flex-1">
+                                <h3 class="text-lg font-medium mb-2 text-blue-600">Instalasi Django</h3>
+                                <div class="code-block">
+                                    <span class="text-gray-500"># Install menggunakan pip</span><br>
+                                    pip install django<br><br>
+                                    
+                                    <span class="text-gray-500"># Membuat proyek baru</span><br>
+                                    django-admin startproject nama_proyek<br><br>
+                                    
+                                    <span class="text-gray-500"># Menjalankan server</span><br>
+                                    python manage.py runserver
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg mt-4">
+                            <h3 class="font-medium text-blue-800 mb-2">Perbandingan Flask vs Django</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-white">
+                                    <thead>
+                                        <tr>
+                                            <th class="py-2 px-4 border-b">Aspek</th>
+                                            <th class="py-2 px-4 border-b">Flask</th>
+                                            <th class="py-2 px-4 border-b">Django</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="py-2 px-4 border-b">Tipe</td>
+                                            <td class="py-2 px-4 border-b">Microframework</td>
+                                            <td class="py-2 px-4 border-b">Full-stack framework</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4 border-b">Kesulitan</td>
+                                            <td class="py-2 px-4 border-b">Mudah dipelajari</td>
+                                            <td class="py-2 px-4 border-b">Kurva belajar lebih curam</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4 border-b">Fleksibilitas</td>
+                                            <td class="py-2 px-4 border-b">Sangat fleksibel</td>
+                                            <td class="py-2 px-4 border-b">Struktur lebih ketat</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4 border-b">Penggunaan</td>
+                                            <td class="py-2 px-4 border-b">Aplikasi kecil/microservices</td>
+                                            <td class="py-2 px-4 border-b">Aplikasi besar/kompleks</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- API Basics -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Membuat API Sederhana</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Python sangat cocok untuk membuat API backend. Berikut contoh membuat API sederhana dengan Flask.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500"># app.py</span><br>
+                            <span class="text-blue-500">from</span> flask <span class="text-blue-500">import</span> Flask, jsonify<br><br>
+                            
+                            app = Flask(__name__)<br><br>
+                            
+                            <span class="text-gray-500"># Data dummy</span><br>
+                            books = [<br>
+                            &nbsp;&nbsp;{<span class="text-yellow-600">"id"</span>: <span class="text-purple-500">1</span>, <span class="text-yellow-600">"title"</span>: <span class="text-yellow-600">"Python for Beginners"</span>, <span class="text-yellow-600">"author"</span>: <span class="text-yellow-600">"John Doe"</span>},<br>
+                            &nbsp;&nbsp;{<span class="text-yellow-600">"id"</span>: <span class="text-purple-500">2</span>, <span class="text-yellow-600">"title"</span>: <span class="text-yellow-600">"Flask Web Development"</span>, <span class="text-yellow-600">"author"</span>: <span class="text-yellow-600">"Jane Smith"</span>}<br>
+                            ]<br><br>
+                            
+                            <span class="text-blue-500">@app.route</span>(<span class="text-yellow-600">'/api/books'</span>, methods=[<span class="text-yellow-600">'GET'</span>])<br>
+                            <span class="text-blue-500">def</span> get_books():<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">return</span> jsonify({<span class="text-yellow-600">"books"</span>: books})<br><br>
+                            
+                            <span class="text-blue-500">@app.route</span>(<span class="text-yellow-600">'/api/books/&lt;int:book_id&gt;'</span>, methods=[<span class="text-yellow-600">'GET'</span>])<br>
+                            <span class="text-blue-500">def</span> get_book(book_id):<br>
+                            &nbsp;&nbsp;book = <span class="text-blue-500">next</span>((b <span class="text-blue-500">for</span> b <span class="text-blue-500">in</span> books <span class="text-blue-500">if</span> b[<span class="text-yellow-600">'id'</span>] == book_id), <span class="text-purple-500">None</span>)<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">if</span> book <span class="text-blue-500">is</span> <span class="text-blue-500">None</span>:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">return</span> jsonify({<span class="text-yellow-600">"error"</span>: <span class="text-yellow-600">"Book not found"</span>}), <span class="text-purple-500">404</span><br>
+                            &nbsp;&nbsp;<span class="text-blue-500">return</span> jsonify({<span class="text-yellow-600">"book"</span>: book})<br><br>
+                            
+                            <span class="text-blue-500">if</span> __name__ == <span class="text-yellow-600">'__main__'</span>:<br>
+                            &nbsp;&nbsp;app.run(debug=<span class="text-purple-500">True</span>)
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Tips untuk API Python:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>Gunakan Flask-RESTful untuk API yang lebih terstruktur</li>
+                                <li>Pertimbangkan FastAPI untuk API yang membutuhkan performa tinggi</li>
+                                <li>Selalu gunakan status code HTTP yang tepat</li>
+                                <li>Validasi input dari client</li>
+                                <li>Dokumentasikan API dengan tools seperti Swagger</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12 max-w-4xl mx-auto">
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi/php'>
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke PHP
+            </a>
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+            <a class='btn-nav flex-1 px-6 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg shadow text-center' href='/learn/src/materi/nodejs'>
+                Lanjut ke Node.js <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                © 2023 Pemrograman Web
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

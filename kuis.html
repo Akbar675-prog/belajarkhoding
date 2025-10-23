@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Pemrograman Web - Dalam Pengembangan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .development-banner {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(234, 88, 12, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(234, 88, 12, 0); }
+        }
+        .option-card {
+            transition: all 0.2s ease;
+        }
+        .option-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-btn {
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <div class="container mx-auto px-4 py-8 max-w-3xl">
+        <!-- Development Banner -->
+        <div class="development-banner bg-orange-500 text-white rounded-xl p-4 mb-8 text-center shadow-lg">
+            <div class="flex items-center justify-center">
+                <i class="fas fa-tools text-2xl mr-3"></i>
+                <h2 class="text-xl font-bold">HALAMAN DALAM PENGEMBANGAN</h2>
+            </div>
+            <p class="mt-2 text-orange-100">Fitur kuis belum tersedia. Silakan kembali lagi nanti!</p>
+        </div>
+
+        <!-- Header Section -->
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-navy-800 mb-2">Kuis Pemrograman Web</h1>
+            <p class="text-gray-600">Uji pemahaman Anda tentang HTML, CSS, dan JavaScript</p>
+        </header>
+
+        <!-- Navigation Button -->
+        <div class="mb-8">
+            <a class='nav-btn inline-flex items-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-300' href='./Home.html'>
+                <i class="fas fa-arrow-left mr-2"></i>
+                Kembali ke Beranda
+            </a>
+        </div>
+
+        <!-- Coming Soon Content -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="p-6">
+                <div class="flex flex-col items-center text-center py-8">
+                    <i class="fas fa-laptop-code text-6xl text-blue-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Kuis Interaktif Sedang Dibangun</h3>
+                    <p class="text-gray-600 mb-6">Kami sedang menyiapkan pengalaman kuis yang menarik untuk menguji pengetahuan pemrograman web Anda.</p>
+                    
+                    <div class="w-full max-w-md bg-blue-50 rounded-lg p-4 mb-6">
+                        <h4 class="font-medium text-blue-800 mb-2">Fitur yang Akan Datang:</h4>
+                        <ul class="text-left list-disc list-inside text-blue-700 space-y-1">
+                            <li>Soal pilihan ganda interaktif</li>
+                            <li>Navigasi soal (Sebelum/Sesudah)</li>
+                            <li>Penilaian otomatis</li>
+                            <li>Penjelasan jawaban</li>
+                            <li>Tampilan skor akhir</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Placeholder Quiz Interface (Non-functional) -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 opacity-50">
+            <!-- Question Header -->
+            <div class="p-4 border-b border-gray-200 bg-blue-50">
+                <div class="flex justify-between items-center">
+                    <span class="text-sm font-medium text-blue-700">Contoh soal 1 dari 10</span>
+                    <span class="text-sm font-medium text-gray-600">HTML</span>
+                </div>
+            </div>
+            
+            <!-- Question Content -->
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-4">Apa fungsi dari tag &lt;div&gt; dalam HTML?</h3>
+                
+                <!-- Options -->
+                <div class="space-y-3 mb-6">
+                    <div class="option-card p-4 border border-gray-200 rounded-lg cursor-pointer">
+                        <div class="flex items-center">
+                            <div class="w-5 h-5 rounded-full border border-gray-300 mr-3"></div>
+                            <span>Untuk membuat teks tebal</span>
+                        </div>
+                    </div>
+                    <div class="option-card p-4 border border-gray-200 rounded-lg cursor-pointer">
+                        <div class="flex items-center">
+                            <div class="w-5 h-5 rounded-full border border-gray-300 mr-3"></div>
+                            <span>Sebagai container untuk mengelompokkan elemen</span>
+                        </div>
+                    </div>
+                    <div class="option-card p-4 border border-gray-200 rounded-lg cursor-pointer">
+                        <div class="flex items-center">
+                            <div class="w-5 h-5 rounded-full border border-gray-300 mr-3"></div>
+                            <span>Untuk membuat daftar bernomor</span>
+                        </div>
+                    </div>
+                    <div class="option-card p-4 border border-gray-200 rounded-lg cursor-pointer">
+                        <div class="flex items-center">
+                            <div class="w-5 h-5 rounded-full border border-gray-300 mr-3"></div>
+                            <span>Untuk menambahkan gambar ke halaman</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between">
+                    <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg disabled:opacity-50" disabled>
+                        <i class="fas fa-arrow-left mr-2"></i>Sebelumnya
+                    </button>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg disabled:opacity-50" disabled>
+                        Submit Jawaban
+                    </button>
+                    <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg disabled:opacity-50" disabled>
+                        Selanjutnya<i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Notice -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-info-circle text-blue-500 text-xl"></i>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-blue-800">Perkembangan Proyek</h3>
+                    <div class="mt-2 text-sm text-blue-700">
+                        <p>Tim kami sedang bekerja keras untuk menyelesaikan fitur kuis ini. Kami memperkirakan akan selesai dalam beberapa minggu ke depan.</p>
+                    </div>
+                    <div class="mt-3">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
+                        </div>
+                        <span class="text-xs text-blue-700">45% selesai</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Placeholder for future quiz functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Quiz page is under development');
+        });
+    </script>
+</body>
+</html>

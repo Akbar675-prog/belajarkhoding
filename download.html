@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemrograman Web - Platform Belajar Modern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+            color: var(--light);
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+        
+        .hero-img {
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(99, 102, 241, 0.3));
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: perspective(1000px) rotateX(0) rotateY(0) scale(1);
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+        
+        .card-hover:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn-download {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-download::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(30deg);
+            transition: all 0.6s ease;
+        }
+        
+        .btn-download:hover::after {
+            transform: translateX(100%) rotate(30deg);
+        }
+        
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.25);
+        }
+        
+        .glassy {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+        
+        .tech-icon {
+            transition: all 0.3s ease;
+            filter: grayscale(0.8);
+        }
+        
+        .tech-icon:hover {
+            transform: translateY(-5px);
+            filter: grayscale(0);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+        
+        .stats-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="py-4 px-4 sm:px-6 lg:px-8 sticky top-0 z-50 glassy">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center shadow-lg">
+                    <i class="bi bi-code-slash text-2xl text-white"></i>
+                </div>
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">Pemrograman<span class="font-light">Web</span></h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="nav-link text-lg font-medium hover:text-purple-300 transition">Beranda</a>
+                <a href="#fitur" class="nav-link text-lg font-medium hover:text-purple-300 transition">Fitur</a>
+                <a href="#teknologi" class="nav-link text-lg font-medium hover:text-purple-300 transition">Teknologi</a>
+                <a href="#testi" class="nav-link text-lg font-medium hover:text-purple-300 transition">Testimonial</a>
+                <a href="#kontak" class="nav-link text-lg font-medium hover:text-purple-300 transition">Kontak</a>
+            </nav>
+            
+            <div class="hidden md:block">
+                <a href="#download" class="btn-download bg-gradient-to-r from-purple-600 to-indigo-700 text-white py-3 px-6 rounded-xl font-semibold flex items-center justify-center">
+                    Download Sekarang
+                </a>
+            </div>
+            
+            <button class="md:hidden text-3xl text-purple-300" id="menuToggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu md:hidden glassy mt-3 rounded-xl" id="mobileMenu">
+            <div class="flex flex-col py-4 px-6 space-y-4">
+                <a href="#" class="nav-link text-lg font-medium hover:text-purple-300 transition">Beranda</a>
+                <a href="#fitur" class="nav-link text-lg font-medium hover:text-purple-300 transition">Fitur</a>
+                <a href="#teknologi" class="nav-link text-lg font-medium hover:text-purple-300 transition">Teknologi</a>
+                <a href="#testi" class="nav-link text-lg font-medium hover:text-purple-300 transition">Testimonial</a>
+                <a href="#kontak" class="nav-link text-lg font-medium hover:text-purple-300 transition">Kontak</a>
+                <a href="#download" class="btn-download bg-gradient-to-r from-purple-600 to-indigo-700 text-white py-3 px-6 rounded-xl font-semibold flex items-center justify-center mt-2">
+                    Download Sekarang
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="flex-grow">
+        <section class="py-16 px-4 sm:px-6 lg:px-8 relative">
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute -top-96 -left-96 w-[800px] h-[800px] bg-purple-900 rounded-full mix-blend-soft-light opacity-20 blur-3xl"></div>
+                <div class="absolute top-1/3 -right-64 w-[600px] h-[600px] bg-indigo-900 rounded-full mix-blend-soft-light opacity-30 blur-3xl"></div>
+            </div>
+            
+            <div class="container mx-auto flex flex-col lg:flex-row items-center relative z-10">
+                <div class="lg:w-1/2 mb-16 lg:mb-0">
+                    <div class="fade-in">
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
+                            <span class="gradient-text">Belajar Ngoding</span><br>
+                            <span class="text-white">Jadi Lebih Mudah!</span>
+                        </h1>
+                        <p class="text-xl text-gray-300 mb-8 max-w-xl">
+                            Aplikasi Pemrograman Web membantu Anda menguasai keterampilan pengembangan web dengan cara yang menyenangkan dan interaktif.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 fade-in delay-1">
+                        <a href="belajar.apk" download class="btn-download bg-gradient-to-br from-gray-900 to-gray-800 text-white py-4 px-8 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="bi bi-android2 text-2xl mr-3"></i>
+                            Download untuk Android
+                        </a>
+                        <a href="belajar.ipa" download class="btn-download bg-gradient-to-br from-gray-800 to-gray-900 text-white py-4 px-8 rounded-xl font-semibold flex items-center justify-center">
+                            <i class="bi bi-apple text-2xl mr-3"></i>
+                            Download untuk iOS
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 fade-in delay-2">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="flex -space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-gray-800"></div>
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 border-2 border-gray-800"></div>
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 border-2 border-gray-800"></div>
+                            </div>
+                            <div>
+                                <p class="text-gray-300">Bergabung dengan <span class="font-bold text-purple-300">25.000+</span> pengguna lainnya</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 fade-in delay-3">
+                    <div class="relative">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2282/2282188.png" alt="Programming Illustration" class="hero-img w-full max-w-lg mx-auto">
+                        <div class="absolute top-10 -right-10 w-24 h-24 rounded-full bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center shadow-xl pulse">
+                            <span class="text-white font-bold text-xl">100+</span>
+                        </div>
+                        <div class="absolute bottom-20 -left-10 w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center shadow-xl pulse">
+                            <span class="text-white font-bold">Pro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-down hidden md:block">
+                <div class="w-10 h-16 rounded-full border-2 border-purple-500 flex justify-center p-2">
+                    <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-12 px-4 sm:px-6 lg:px-8">
+            <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="stats-card glassy p-6 rounded-2xl text-center fade-in">
+                    <div class="text-3xl font-bold text-purple-400 mb-2">25K+</div>
+                    <div class="text-gray-300">Pengguna Aktif</div>
+                </div>
+                <div class="stats-card glassy p-6 rounded-2xl text-center fade-in delay-2">
+                    <div class="text-3xl font-bold text-purple-400 mb-2">98%</div>
+                    <div class="text-gray-300">Kepuasan Pengguna</div>
+                </div>
+                <div class="stats-card glassy p-6 rounded-2xl text-center fade-in delay-3">
+                    <div class="text-3xl font-bold text-purple-400 mb-2">24/7</div>
+                    <div class="text-gray-300">Dukungan</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="fitur" class="py-16 px-4 sm:px-6 lg:px-8">
+            <div class="container mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Fitur <span class="gradient-text">Unggulan</span></h2>
+                    <p class="text-xl text-gray-300">Kami menyediakan semua yang Anda butuhkan untuk menguasai pemrograman web dengan cara yang modern dan interaktif</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-hover glassy p-8 rounded-2xl fade-in">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-700 to-indigo-800 rounded-xl flex items-center justify-center mb-6 feature-card">
+                            <i class="bi bi-lightning text-3xl text-white feature-icon"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Pembelajaran Interaktif</h3>
+                        <p class="text-gray-300">Belajar dengan praktik langsung di editor kode yang terintegrasi dan mendapatkan umpan balik instan.</p>
+                    </div>
+                    
+                    <div class="card-hover glassy p-8 rounded-2xl fade-in delay-1">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-700 to-indigo-800 rounded-xl flex items-center justify-center mb-6 feature-card">
+                            <i class="bi bi-journal-code text-3xl text-white feature-icon"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Materi Lengkap</h3>
+                        <p class="text-gray-300">Dari HTML dasar hingga framework modern seperti React, Vue, dan Svelte dengan proyek nyata.</p>
+                    </div>
+                    
+                    <div class="card-hover glassy p-8 rounded-2xl fade-in">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-700 to-indigo-800 rounded-xl flex items-center justify-center mb-6 feature-card">
+                            <i class="bi bi-code-square text-3xl text-white feature-icon"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Kode Langsung</h3>
+                        <p class="text-gray-300">Editor kode langsung di aplikasi dengan fitur autocomplete dan debugging terintegrasi.</p>
+                    </div>
+                    
+                    <div class="card-hover glassy p-8 rounded-2xl fade-in delay-1">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-700 to-indigo-800 rounded-xl flex items-center justify-center mb-6 feature-card">
+                            <i class="bi bi-people text-3xl text-white feature-icon"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Komunitas</h3>
+                        <p class="text-gray-300">Bergabung dengan komunitas pengembang untuk berdiskusi dan berkolaborasi dalam proyek.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section id="teknologi" class="py-16 px-4 sm:px-6 lg:px-8">
+            <div class="container mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Teknologi yang <span class="gradient-text">Dipelajari</span></h2>
+                    <p class="text-xl text-gray-300">Kuasai teknologi terkini yang paling diminati di industri</p>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                    <div class="tech-icon glassy p-6 rounded-2xl flex flex-col items-center justify-center text-center fade-in">
+                        <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mb-3">
+                            <i class="bi bi-filetype-html text-4xl text-orange-500"></i>
+                        </div>
+                        <span class="font-medium">HTML5</span>
+                    </div>
+                    
+                    <div class="tech-icon glassy p-6 rounded-2xl flex flex-col items-center justify-center text-center fade-in delay-1">
+                        <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mb-3">
+                            <i class="bi bi-filetype-css text-4xl text-blue-500"></i>
+                        </div>
+                        <span class="font-medium">CSS3</span>
+                    </div>
+                    
+                    <div class="tech-icon glassy p-6 rounded-2xl flex flex-col items-center justify-center text-center fade-in delay-2">
+                        <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mb-3">
+                            <i class="bi bi-filetype-js text-4xl text-yellow-400"></i>
+                        </div>
+                        <span class="font-medium">JavaScript</span>
+                    </div>
+                    
+                    <div class="tech-icon glassy p-6 rounded-2xl flex flex-col items-center justify-center text-center fade-in">
+                        <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mb-3">
+                            <i class="bi bi-bootstrap text-4xl text-purple-600"></i>
+                        </div>
+                        <span class="font-medium">Bootstrap</span>
+                    </div>
+                    
+                    <div class="tech-icon glassy p-6 rounded-2xl flex flex-col items-center justify-center text-center fade-in delay-1">
+                        <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mb-3">
+                            <i class="bi bi-filetype-jsx text-4xl text-blue-400"></i>
+                        </div>
+                        <span class="font-medium">React JS</span>
+                    </div>
+                    
+                    <div class="tech-icon glassy p-6 rounded-2xl flex flex-col items-center justify-center text-center fade-in delay-2">
+                        <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mb-3">
+                            <i class="bi bi-filetype-Node text-4xl text-green-500"></i>
+                        </div>
+                        <span class="font-medium">Node JS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testi" class="py-16 px-4 sm:px-6 lg:px-8">
+            <div class="container mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Apa Kata <span class="gradient-text">Pengguna?</span></h2>
+                    <p class="text-xl text-gray-300">Dengarkan pengalaman mereka yang telah berhasil menjadi web developer</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="card-hover glassy p-8 rounded-2xl fade-in">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-600 to-indigo-700 mr-4"></div>
+                            <div>
+                                <h4 class="font-semibold text-xl">Andi Pratama</h4>
+                                <p class="text-gray-400">Web Developer</p>
+                            </div>
+                            <div class="ml-auto text-yellow-400">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 italic">"Aplikasi ini sangat membantu saya memahami konsep dasar pemrograman web. Materinya disusun dengan sangat baik dan mudah dipahami. Dalam 3 bulan saya sudah bisa membuat website profesional."</p>
+                    </div>
+                    
+                    <div class="card-hover glassy p-8 rounded-2xl fade-in delay-1">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 mr-4"></div>
+                            <div>
+                                <h4 class="font-semibold text-xl">Siti Rahayu</h4>
+                                <p class="text-gray-400">UI/UX Designer</p>
+                            </div>
+                            <div class="ml-auto text-yellow-400">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 italic">"Saya bisa belajar pemrograman web sambil bekerja. Aplikasinya ringan dan bisa digunakan offline. Proyek akhirnya sangat membantu portofolio saya. Sangat recommended!"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 px-4 sm:px-6 lg:px-8" id="download">
+            <div class="container mx-auto text-center glassy py-16 px-8 rounded-3xl max-w-4xl relative overflow-hidden">
+                <div class="absolute -top-32 -right-32 w-64 h-64 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+                <div class="absolute top-0 left-20 w-72 h-72 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+                <div class="absolute -bottom-8 left-20 w-56 h-56 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+                
+                <div class="relative z-10 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Siap Memulai Perjalanan <span class="gradient-text">Belajar Anda?</span></h2>
+                    <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">Download sekarang dan mulai belajar pemrograman web dengan cara yang menyenangkan!</p>
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="src/file/pemrograman-web.apk" download class="btn-download bg-gradient-to-r from-purple-600 to-indigo-700 text-white py-4 px-8 rounded-xl font-semibold flex items-center justify-center mx-auto sm:mx-0">
+                            <i class="bi bi-android2 text-2xl mr-3"></i>
+                            Download untuk Android
+                        </a>
+                        <a href="src/file/pemrograman-web.ipa" download class="btn-download bg-gradient-to-r from-gray-800 to-gray-900 text-white py-4 px-8 rounded-xl font-semibold flex items-center justify-center mx-auto sm:mx-0">
+                            <i class="bi bi-apple text-2xl mr-3"></i>
+                            Download untuk iOS
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 glassy">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center">
+                            <i class="bi bi-code-slash text-2xl text-white"></i>
+                        </div>
+                        <h2 class="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">PemrogramanWeb</h2>
+                    </div>
+                    <p class="text-gray-400 mb-6">Platform belajar pemrograman web terbaik untuk semua level. Mulai dari dasar hingga tingkat mahir.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://tiktok.com/@powered.by.tiktok" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="bi bi-twitter text-lg text-white"></i>
+                        </a>
+                        <a href="https://instagram.com/nauvalcoder" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="bi bi-instagram text-lg text-white"></i>
+                        </a>
+                        <a href="https://github.com/Akbar675-prog" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="bi bi-github text-lg text-white"></i>
+                        </a>
+                        </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-6 text-white">Tautan Cepat</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition">Beranda</a></li>
+                        <li><a href="#fitur" class="text-gray-400 hover:text-purple-400 transition">Fitur</a></li>
+                        <li><a href="#teknologi" class="text-gray-400 hover:text-purple-400 transition">Teknologi</a></li>
+                        <li><a href="#testi" class="text-gray-400 hover:text-purple-400 transition">Testimoni</a></li>
+                        <li><a href="#kontak" class="text-gray-400 hover:text-purple-400 transition">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-6 text-white">Sumber Belajar</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition">HTML & CSS</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition">JavaScript</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition">React JS</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition">Express JS</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition">Node JS</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 id="kontak" class="text-lg font-semibold mb-6 text-white">Kontak Kami</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="bi bi-geo-alt text-purple-500 mt-1"></i>
+                            <span class="text-gray-400">Jl. Perum Depkes, Kabupaten Bogor, Jawa Barat</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="bi bi-envelope text-purple-500 mt-1"></i>
+                            <span class="text-gray-400"><a href="Akbarnauval2809@gmail.com" class="__cf_email__" data-cfemail="5335213b3d37362524363113343e323a3f7d303c3e">Akbarnauval2809@gmail.com</a></span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="bi bi-telephone text-purple-500 mt-1"></i>
+                            <span class="text-gray-400">+62 882-1566-0319</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-500">&copy; 2025 Pemrograman Web - All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+            menuToggle.innerHTML = mobileMenu.classList.contains('open') ? 
+                '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+        });
+        
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.style.opacity = 1;
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Initial check
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+        });
+        
+        // Add blob animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes blob {
+                0% { transform: translate(0px, 0px) scale(1); }
+                33% { transform: translate(30px, -50px) scale(1.1); }
+                66% { transform: translate(-20px, 20px) scale(0.9); }
+                100% { transform: translate(0px, 0px) scale(1); }
+            }
+            
+            .animate-blob {
+                animation: blob 7s infinite;
+            }
+            
+            .animation-delay-2000 {
+                animation-delay: 2s;
+            }
+            
+            .animation-delay-4000 {
+                animation-delay: 4s;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

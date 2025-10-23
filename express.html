@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express.js</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #68d391;
+        }
+        
+        .highlight {
+            background-color: #d1fae5;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .express-icon {
+            color: #68d391;
+        }
+        
+        .btn-nav {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-2px);
+        }
+        
+        .tab-button {
+            padding: 8px 16px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #64748b;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-button.active {
+            color: #68d391;
+            border-bottom: 2px solid #68d391;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fab fa-node-js express-icon text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-green-100 rounded-full mb-4">
+                <i class="fab fa-node-js express-icon text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Express.js</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Framework minimalis untuk Node.js yang memudahkan pembuatan server dan API. 
+                Pelajari routing, middleware, dan struktur dasar proyek Express.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is Express -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu Express.js?</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Express.js adalah framework web untuk Node.js yang menyediakan fitur-fitur sederhana 
+                            namun powerful untuk membangun aplikasi web dan API. Express menggunakan pola middleware 
+                            yang memungkinkan ekstensi fungsi dengan mudah.
+                        </p>
+                        <p class="text-gray-600">
+                            Keunggulan Express.js dibanding Node.js biasa:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li><strong>Routing yang sederhana</strong>: Sistem routing yang mudah dipahami</li>
+                            <li><strong>Middleware</strong>: Fleksibilitas untuk menambahkan fungsi tambahan</li>
+                            <li><strong>Ringan dan cepat</strong>: Performa tinggi dengan overhead minimal</li>
+                            <li><strong>Ekosistem besar</strong>: Banyak middleware dan plugin tersedia</li>
+                            <li><strong>Kompatibilitas</strong>: Bisa digunakan dengan berbagai template engine</li>
+                            <li><strong>Komunitas aktif</strong>: Dokumentasi lengkap dan dukungan komunitas</li>
+                        </ul>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-blue-800 mb-2">Kapan menggunakan Express.js?</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>Membangun API RESTful</li>
+                                <li>Aplikasi web sederhana hingga menengah</li>
+                                <li>Microservices</li>
+                                <li>Prototyping cepat</li>
+                                <li>Sebagai dasar untuk framework lain (Nest.js, etc)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Installation -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Instalasi Express.js</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Untuk mulai menggunakan Express.js, Anda perlu menginstal Node.js terlebih dahulu, 
+                            kemudian membuat proyek Node.js dan menginstal Express.
+                        </p>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <h3 class="font-medium text-blue-800 mb-2">Langkah-langkah instalasi:</h3>
+                            <ol class="list-decimal pl-5 text-gray-700 space-y-1">
+                                <li>Download dan install Node.js dari <a href="https://nodejs.org" class="text-blue-600 hover:underline">nodejs.org</a></li>
+                                <li>Buka terminal/command prompt</li>
+                                <li>Buat folder proyek baru dan masuk ke folder tersebut:
+                                    <div class="code-block mt-2">
+                                        mkdir proyek-express<br>
+                                        cd proyek-express
+                                    </div>
+                                </li>
+                                <li>Inisialisasi proyek Node.js:
+                                    <div class="code-block mt-2">
+                                        npm init -y
+                                    </div>
+                                </li>
+                                <li>Instal Express:
+                                    <div class="code-block mt-2">
+                                        npm install express
+                                    </div>
+                                </li>
+                                <li>Buat file utama (biasanya index.js atau app.js):
+                                    <div class="code-block mt-2">
+                                        touch index.js
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Persyaratan Sistem:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>Node.js ≥ 14.x</li>
+                                <li>NPM atau Yarn</li>
+                                <li>Text editor atau IDE</li>
+                                <li>Terminal/command prompt</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Basic Server -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Server Express Dasar</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut contoh membuat server dasar dengan Express.js yang merespon di port 3000.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// index.js</span><br>
+                            const express = require('express');<br>
+                            const app = express();<br>
+                            const port = 3000;<br><br>
+                            
+                            <span class="text-gray-500">// Route dasar</span><br>
+                            app.get('/', (req, res) => {<br>
+                            &nbsp;&nbsp;res.send('Halaman Utama');<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// Jalankan server</span><br>
+                            app.listen(port, () => {<br>
+                            &nbsp;&nbsp;console.log(`Server berjalan di http://localhost:${port}`);<br>
+                            });
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-green-800 mb-2">Menjalankan Server:</h3>
+                            <div class="code-block">
+                                <span class="text-gray-500"># Jalankan server</span><br>
+                                node index.js<br><br>
+                                
+                                <span class="text-gray-500"># Dengan nodemon (auto restart saat perubahan)</span><br>
+                                npx nodemon index.js
+                            </div>
+                            <p class="text-gray-700 mt-2">
+                                <strong>Catatan:</strong> Untuk menggunakan nodemon, instal terlebih dahulu dengan:<br>
+                                <code>npm install -g nodemon</code> atau <code>npm install --save-dev nodemon</code>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Routing -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Routing di Express</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Express menyediakan metode routing untuk berbagai jenis HTTP request. 
+                            Berikut contoh routing dasar untuk GET, POST, PUT, dan DELETE.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// GET request</span><br>
+                            app.get('/produk', (req, res) => {<br>
+                            &nbsp;&nbsp;res.send('Daftar produk');<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// POST request</span><br>
+                            app.post('/produk', (req, res) => {<br>
+                            &nbsp;&nbsp;res.send('Produk baru ditambahkan');<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// PUT request</span><br>
+                            app.put('/produk/:id', (req, res) => {<br>
+                            &nbsp;&nbsp;res.send(`Produk ${req.params.id} diperbarui`);<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// DELETE request</span><br>
+                            app.delete('/produk/:id', (req, res) => {<br>
+                            &nbsp;&nbsp;res.send(`Produk ${req.params.id} dihapus`);<br>
+                            });
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-blue-800 mb-2">Parameter Request:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li><code>req.params</code> - Parameter dari URL (contoh: /produk/:id)</li>
+                                <li><code>req.query</code> - Query string (?nama=value&amp;harga=100)</li>
+                                <li><code>req.body</code> - Data yang dikirim dalam body request (perlu middleware)</li>
+                                <li><code>req.headers</code> - HTTP headers dari request</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Middleware -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Middleware</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Middleware adalah fungsi yang memiliki akses ke request object (req), response object (res), 
+                            dan fungsi next() dalam siklus request-response. Middleware dapat:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Menjalankan kode apa pun</li>
+                            <li>Mengubah request dan response objects</li>
+                            <li>Mengakhiri siklus request-response</li>
+                            <li>Memanggil middleware berikutnya dalam stack</li>
+                        </ul>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// Middleware bawaan untuk parsing JSON</span><br>
+                            app.use(express.json());<br><br>
+                            
+                            <span class="text-gray-500">// Middleware logger sederhana</span><br>
+                            app.use((req, res, next) => {<br>
+                            &nbsp;&nbsp;console.log(`${req.method} ${req.path}`);<br>
+                            &nbsp;&nbsp;next();<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// Middleware untuk route tertentu</span><br>
+                            app.use('/admin', (req, res, next) => {<br>
+                            &nbsp;&nbsp;console.log('Akses ke area admin');<br>
+                            &nbsp;&nbsp;next();<br>
+                            });
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Middleware Populer:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li><code>express.json()</code> - Parsing body JSON</li>
+                                <li><code>express.urlencoded()</code> - Parsing form data</li>
+                                <li><code>cors</code> - Mengatasi CORS</li>
+                                <li><code>helmet</code> - Keamanan HTTP headers</li>
+                                <li><code>morgan</code> - Logger HTTP request</li>
+                                <li><code>cookie-parser</code> - Parsing cookies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project Structure -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Struktur Folder Proyek</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut struktur folder yang umum digunakan dalam proyek Express.js:
+                        </p>
+                        
+                        <div class="code-block">
+                            nama-proyek/<br>
+                            ├── node_modules/      <span class="text-gray-500"># Dependencies</span><br>
+                            ├── controllers/       <span class="text-gray-500"># Logic aplikasi</span><br>
+                            ├── routes/            <span class="text-gray-500"># File routing</span><br>
+                            ├── middleware/        <span class="text-gray-500"># Custom middleware</span><br>
+                            ├── models/            <span class="text-gray-500"># Model database</span><br>
+                            ├── public/            <span class="text-gray-500"># File statis</span><br>
+                            │   ├── css/<br>
+                            │   ├── js/<br>
+                            │   └── images/<br>
+                            ├── views/             <span class="text-gray-500"># Template views</span><br>
+                            ├── .env               <span class="text-gray-500"># Environment variables</span><br>
+                            ├── package.json       <span class="text-gray-500"># Konfigurasi proyek</span><br>
+                            └── app.js             <span class="text-gray-500"># File utama</span>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-blue-800 mb-2">Best Practices:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>Pisahkan routing, controller, dan model</li>
+                                <li>Gunakan environment variables untuk konfigurasi sensitif</li>
+                                <li>Gunakan middleware untuk fungsi umum</li>
+                                <li>Gunakan template engine untuk views (EJS, Pug, Handlebars)</li>
+                                <li>Gunakan dotenv untuk mengelola environment variables</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Simple API Example -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Contoh API Sederhana</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut contoh implementasi API sederhana dengan Express.js untuk operasi CRUD.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// app.js</span><br>
+                            const express = require('express');<br>
+                            const app = express();<br>
+                            app.use(express.json());<br><br>
+                            
+                            <span class="text-gray-500">// Data sementara</span><br>
+                            let produk = [<br>
+                            &nbsp;&nbsp;{ id: 1, nama: 'Laptop', harga: 8000000 },<br>
+                            &nbsp;&nbsp;{ id: 2, nama: 'Smartphone', harga: 4000000 }<br>
+                            ];<br><br>
+                            
+                            <span class="text-gray-500">// GET semua produk</span><br>
+                            app.get('/api/produk', (req, res) => {<br>
+                            &nbsp;&nbsp;res.json(produk);<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// GET produk by id</span><br>
+                            app.get('/api/produk/:id', (req, res) => {<br>
+                            &nbsp;&nbsp;const produkItem = produk.find(p => p.id === parseInt(req.params.id));<br>
+                            &nbsp;&nbsp;if (!produkItem) return res.status(404).send('Produk tidak ditemukan');<br>
+                            &nbsp;&nbsp;res.json(produkItem);<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// POST tambah produk baru</span><br>
+                            app.post('/api/produk', (req, res) => {<br>
+                            &nbsp;&nbsp;const produkBaru = {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;id: produk.length + 1,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;nama: req.body.nama,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;harga: req.body.harga<br>
+                            &nbsp;&nbsp;};<br>
+                            &nbsp;&nbsp;produk.push(produkBaru);<br>
+                            &nbsp;&nbsp;res.status(201).json(produkBaru);<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// Jalankan server</span><br>
+                            const port = process.env.PORT || 3000;<br>
+                            app.listen(port, () => console.log(`Server berjalan di port ${port}`));
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-green-800 mb-2">Testing API:</h3>
+                            <p class="text-gray-700">
+                                Anda bisa menguji API menggunakan tools seperti:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>Postman</li>
+                                <li>Insomnia</li>
+                                <li>cURL</li>
+                                <li>Browser (untuk GET request saja)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12 max-w-4xl mx-auto">
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi/nodejs'>
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke Node.js
+            </a>
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+            <a class='btn-nav flex-1 px-6 py-3 bg-green-50 hover:bg-green-100 text-green-600 rounded-lg shadow text-center' href='/learn/src/materi/django'>
+                Lanjut ke Django <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                © 2023 Pemrograman Web
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

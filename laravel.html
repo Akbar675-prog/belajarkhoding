@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #ff2d20;
+        }
+        
+        .highlight {
+            background-color: #fee2e2;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .demo-box {
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px dashed #cbd5e1;
+        }
+        
+        .btn-demo {
+            padding: 8px 16px;
+            background-color: #ff2d20;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-demo:hover {
+            background-color: #e11d48;
+        }
+        
+        .btn-nav {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-2px);
+        }
+        
+        .laravel-icon {
+            color: #ff2d20;
+        }
+        
+        .tab-button {
+            padding: 8px 16px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #64748b;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-button.active {
+            color: #ff2d20;
+            border-bottom: 2px solid #ff2d20;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fab fa-laravel laravel-icon text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-red-100 rounded-full mb-4">
+                <i class="fab fa-laravel laravel-icon text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Laravel</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Framework PHP modern untuk membangun aplikasi web yang cepat dan elegan. 
+                Pelajari struktur Laravel, routing, controller, dan blade template.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is Laravel -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu Laravel?</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Laravel adalah framework PHP open-source yang menggunakan pola MVC (Model-View-Controller). 
+                            Laravel menyederhanakan pengembangan web dengan sintaks yang ekspresif dan alat bawaan yang powerful.
+                        </p>
+                        <p class="text-gray-600">
+                            Keunggulan Laravel dibanding PHP biasa:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li><strong>Routing yang elegan</strong>: Sistem routing yang mudah dipahami</li>
+                            <li><strong>Blade Templating</strong>: Template engine yang powerful</li>
+                            <li><strong>Eloquent ORM</strong>: Sistem database yang intuitif</li>
+                            <li><strong>Artisan CLI</strong>: Alat command line yang membantu pengembangan</li>
+                            <li><strong>Autentikasi bawaan</strong>: Sistem login/register siap pakai</li>
+                            <li><strong>Komunitas besar</strong>: Dokumentasi lengkap dan ekosistem package yang kaya</li>
+                        </ul>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-blue-800 mb-2">Kapan menggunakan Laravel?</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>Aplikasi web yang kompleks</li>
+                                <li>Proyek yang membutuhkan struktur kode yang rapi</li>
+                                <li>Aplikasi dengan autentikasi pengguna</li>
+                                <li>Proyek yang membutuhkan fitur database relasional</li>
+                                <li>Pengembangan API RESTful</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Installation -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Instalasi Laravel</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Untuk mulai menggunakan Laravel, Anda perlu menginstal Composer terlebih dahulu, 
+                            kemudian menggunakan Composer untuk menginstal Laravel.
+                        </p>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <h3 class="font-medium text-blue-800 mb-2">Langkah-langkah instalasi:</h3>
+                            <ol class="list-decimal pl-5 text-gray-700 space-y-1">
+                                <li>Download dan install Composer dari <a href="https://getcomposer.org" class="text-blue-600 hover:underline">getcomposer.org</a></li>
+                                <li>Buka terminal/command prompt</li>
+                                <li>Jalankan perintah berikut untuk menginstal Laravel:
+                                    <div class="code-block mt-2">
+                                        composer global require laravel/installer
+                                    </div>
+                                </li>
+                                <li>Buat proyek Laravel baru:
+                                    <div class="code-block mt-2">
+                                        laravel new nama-proyek
+                                    </div>
+                                    atau
+                                    <div class="code-block mt-2">
+                                        composer create-project laravel/laravel nama-proyek
+                                    </div>
+                                </li>
+                                <li>Masuk ke folder proyek:
+                                    <div class="code-block mt-2">
+                                        cd nama-proyek
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Persyaratan Sistem:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>PHP ≥ 8.1</li>
+                                <li>Composer terinstal</li>
+                                <li>Ekstensi PHP: BCMath, Ctype, Fileinfo, JSON, Mbstring, OpenSSL, PDO, Tokenizer, XML</li>
+                                <li>Database (MySQL, PostgreSQL, SQLite, atau SQL Server)</li>
+                                <li>Web server (Apache, Nginx) atau php artisan serve</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project Structure -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Struktur Folder Laravel</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Laravel memiliki struktur folder yang terorganisir dengan baik. Berikut adalah folder-folder penting:
+                        </p>
+                        
+                        <div class="code-block">
+                            nama-proyek/<br>
+                            ├── app/               <span class="text-gray-500"># Inti aplikasi (Models, Controllers, dll)</span><br>
+                            │   ├── Http/<br>
+                            │   │   ├── Controllers/<br>
+                            │   │   └── Middleware/<br>
+                            │   └── Models/<br>
+                            ├── bootstrap/        <span class="text-gray-500"># File bootstrap aplikasi</span><br>
+                            ├── config/           <span class="text-gray-500"># Konfigurasi aplikasi</span><br>
+                            ├── database/         <span class="text-gray-500"># Migrasi, seed, dan factory</span><br>
+                            ├── public/           <span class="text-gray-500"># File yang bisa diakses publik</span><br>
+                            ├── resources/       <span class="text-gray-500"># View, assets, dan bahasa</span><br>
+                            │   ├── js/<br>
+                            │   ├── css/<br>
+                            │   └── views/<br>
+                            ├── routes/          <span class="text-gray-500"># File routing</span><br>
+                            ├── storage/         <span class="text-gray-500"># File yang dihasilkan aplikasi</span><br>
+                            ├── tests/           <span class="text-gray-500"># File testing</span><br>
+                            ├── vendor/          <span class="text-gray-500"># Dependencies Composer</span><br>
+                            ├── .env             <span class="text-gray-500"># Environment variables</span><br>
+                            ├── artisan          <span class="text-gray-500"># CLI Laravel</span><br>
+                            └── composer.json    <span class="text-gray-500"># Konfigurasi Composer</span>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-blue-800 mb-2">File Penting:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li><code>.env</code> - Konfigurasi environment</li>
+                                <li><code>routes/web.php</code> - Routing untuk web</li>
+                                <li><code>resources/views/</code> - File view/template</li>
+                                <li><code>app/Http/Controllers/</code> - Controller aplikasi</li>
+                                <li><code>database/migrations/</code> - Migrasi database</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Basic Routing -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Routing Dasar</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Routing di Laravel didefinisikan di file <code>routes/web.php</code>. 
+                            Routing menghubungkan URL dengan fungsi atau controller.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// routes/web.php</span><br>
+                            <span class="text-gray-500">// Route dasar</span><br>
+                            Route::get('/', function () {<br>
+                            &nbsp;&nbsp;return 'Halaman Utama';<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// Route dengan parameter</span><br>
+                            Route::get('/user/{id}', function ($id) {<br>
+                            &nbsp;&nbsp;return 'User ID: ' . $id;<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// Route dengan parameter opsional</span><br>
+                            Route::get('/user/{name?}', function ($name = 'Guest') {<br>
+                            &nbsp;&nbsp;return 'Halo, ' . $name;<br>
+                            });<br><br>
+                            
+                            <span class="text-gray-500">// Route dengan controller</span><br>
+                            Route::get('/profile', 'ProfileController@index');
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Jenis-jenis Route:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li><code>Route::get()</code> - Menangani request GET</li>
+                                <li><code>Route::post()</code> - Menangani request POST</li>
+                                <li><code>Route::put()</code> - Menangani request PUT</li>
+                                <li><code>Route::patch()</code> - Menangani request PATCH</li>
+                                <li><code>Route::delete()</code> - Menangani request DELETE</li>
+                                <li><code>Route::any()</code> - Menangani semua jenis request</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Controllers & Views -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Controller dan View</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Controller bertanggung jawab untuk menangani logika aplikasi, 
+                            sedangkan View bertanggung jawab untuk menampilkan tampilan.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// Membuat controller baru</span><br>
+                            php artisan make:controller NamaController
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// app/Http/Controllers/UserController.php</span><br>
+                            &lt;?php<br><br>
+                            
+                            namespace App\Http\Controllers;<br><br>
+                            
+                            use Illuminate\Http\Request;<br><br>
+                            
+                            class UserController extends Controller<br>
+                            {<br>
+                            &nbsp;&nbsp;public function index()<br>
+                            &nbsp;&nbsp;{<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;$users = ['Budi', 'Ani', 'Citra'];<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;return view('users.index', compact('users'));<br>
+                            &nbsp;&nbsp;}<br>
+                            }
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// resources/views/users/index.blade.php</span><br>
+                            @extends('layouts.app')<br><br>
+                            
+                            @section('content')<br>
+                            &nbsp;&nbsp;&lt;h1&gt;Daftar Pengguna&lt;/h1&gt;<br>
+                            &nbsp;&nbsp;&lt;ul&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;@foreach($users as $user)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;{{ $user }}&lt;/li&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;@endforeach<br>
+                            &nbsp;&nbsp;&lt;/ul&gt;<br>
+                            @endsection
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// routes/web.php</span><br>
+                            Route::get('/users', 'UserController@index');
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blade Templates -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Blade Templating</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Blade adalah template engine Laravel yang menyediakan sintaks yang mudah digunakan 
+                            untuk membuat tampilan yang dinamis.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// resources/views/layouts/app.blade.php</span><br>
+                            &lt;!DOCTYPE html&gt;<br>
+                            &lt;html&gt;<br>
+                            &lt;head&gt;<br>
+                            &nbsp;&nbsp;&lt;title&gt;Aplikasi Saya&lt;/title&gt;<br>
+                            &lt;/head&gt;<br>
+                            &lt;body&gt;<br>
+                            &nbsp;&nbsp;@yield('content')<br>
+                            &lt;/body&gt;<br>
+                            &lt;/html&gt;
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// resources/views/home.blade.php</span><br>
+                            @extends('layouts.app')<br><br>
+                            
+                            @section('content')<br>
+                            &nbsp;&nbsp;&lt;h1&gt;{{ $title }}&lt;/h1&gt;<br>
+                            &nbsp;&nbsp;&lt;p&gt;Selamat datang di aplikasi kami!&lt;/p&gt;<br>
+                            @endsection
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-blue-800 mb-2">Fitur Blade:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li><code>@extends</code> - Menggunakan layout</li>
+                                <li><code>@section</code> - Mendefinisikan section</li>
+                                <li><code>@yield</code> - Menampilkan section</li>
+                                <li><code>{{ $variable }}</code> - Menampilkan data (auto escape)</li>
+                                <li><code>{!! $html !!}</code> - Menampilkan HTML (tanpa escape)</li>
+                                <li><code>@if, @else, @endif</code> - Percabangan</li>
+                                <li><code>@foreach, @endforeach</code> - Perulangan</li>
+                                <li><code>@include</code> - Menyertakan view lain</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Running Server -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Menjalankan Server</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Laravel menyediakan server development bawaan yang bisa digunakan untuk pengembangan lokal.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500"># Jalankan server development</span><br>
+                            php artisan serve<br><br>
+                            
+                            <span class="text-gray-500"># Dengan port tertentu</span><br>
+                            php artisan serve --port=8000<br><br>
+                            
+                            <span class="text-gray-500"># Dengan host tertentu</span><br>
+                            php artisan serve --host=0.0.0.0
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Perintah Artisan Berguna:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li><code>php artisan make:controller</code> - Membuat controller baru</li>
+                                <li><code>php artisan make:model</code> - Membuat model baru</li>
+                                <li><code>php artisan make:migration</code> - Membuat migrasi database</li>
+                                <li><code>php artisan migrate</code> - Menjalankan migrasi</li>
+                                <li><code>php artisan route:list</code> - Melihat daftar route</li>
+                                <li><code>php artisan tinker</code> - Interaktif shell Laravel</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Database & Models -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Database dan Model</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Laravel menggunakan Eloquent ORM untuk berinteraksi dengan database. 
+                            Eloquent menyediakan sintaks yang mudah untuk operasi database.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500"># Membuat migrasi baru</span><br>
+                            php artisan make:migration create_users_table
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// database/migrations/xxxx_create_users_table.php</span><br>
+                            public function up()<br>
+                            {<br>
+                            &nbsp;&nbsp;Schema::create('users', function (Blueprint $table) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;$table->id();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;$table->string('name');<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;$table->string('email')->unique();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;$table->string('password');<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;$table->timestamps();<br>
+                            &nbsp;&nbsp;});<br>
+                            }
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500"># Menjalankan migrasi</span><br>
+                            php artisan migrate
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500"># Membuat model</span><br>
+                            php artisan make:model User
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// app/Models/User.php</span><br>
+                            namespace App\Models;<br><br>
+                            
+                            use Illuminate\Database\Eloquent\Model;<br><br>
+                            
+                            class User extends Model<br>
+                            {<br>
+                            &nbsp;&nbsp;protected $fillable = ['name', 'email', 'password'];<br>
+                            }
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-blue-800 mb-2">Operasi Database dengan Eloquent:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li><code>User::all()</code> - Mengambil semua data</li>
+                                <li><code>User::find(1)</code> - Mencari berdasarkan ID</li>
+                                <li><code>User::where('active', 1)->get()</code> - Query dengan kondisi</li>
+                                <li><code>$user = new User(); $user->save()</code> - Membuat data baru</li>
+                                <li><code>$user->update()</code> - Memperbarui data</li>
+                                <li><code>$user->delete()</code> - Menghapus data</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Simple CRUD -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Contoh Sederhana CRUD</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut contoh implementasi CRUD (Create, Read, Update, Delete) sederhana dengan Laravel.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// routes/web.php</span><br>
+                            Route::resource('posts', 'PostController');
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500"># Membuat controller resource</span><br>
+                            php artisan make:controller PostController --resource
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// app/Http/Controllers/PostController.php</span><br>
+                            public function index()<br>
+                            {<br>
+                            &nbsp;&nbsp;$posts = Post::all();<br>
+                            &nbsp;&nbsp;return view('posts.index', compact('posts'));<br>
+                            }<br><br>
+                            
+                            public function create()<br>
+                            {<br>
+                            &nbsp;&nbsp;return view('posts.create');<br>
+                            }<br><br>
+                            
+                            public function store(Request $request)<br>
+                            {<br>
+                            &nbsp;&nbsp;Post::create($request->all());<br>
+                            &nbsp;&nbsp;return redirect()->route('posts.index');<br>
+                            }<br><br>
+                            
+                            public function show(Post $post)<br>
+                            {<br>
+                            &nbsp;&nbsp;return view('posts.show', compact('post'));<br>
+                            }<br><br>
+                            
+                            public function edit(Post $post)<br>
+                            {<br>
+                            &nbsp;&nbsp;return view('posts.edit', compact('post'));<br>
+                            }<br><br>
+                            
+                            public function update(Request $request, Post $post)<br>
+                            {<br>
+                            &nbsp;&nbsp;$post->update($request->all());<br>
+                            &nbsp;&nbsp;return redirect()->route('posts.index');<br>
+                            }<br><br>
+                            
+                            public function destroy(Post $post)<br>
+                            {<br>
+                            &nbsp;&nbsp;$post->delete();<br>
+                            &nbsp;&nbsp;return redirect()->route('posts.index');<br>
+                            }
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Route Resource:</h3>
+                            <p class="text-gray-700">
+                                <code>Route::resource()</code> akan membuat 7 route standar untuk operasi CRUD:
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>GET /posts - posts.index</li>
+                                <li>GET /posts/create - posts.create</li>
+                                <li>POST /posts - posts.store</li>
+                                <li>GET /posts/{post} - posts.show</li>
+                                <li>GET /posts/{post}/edit - posts.edit</li>
+                                <li>PUT/PATCH /posts/{post} - posts.update</li>
+                                <li>DELETE /posts/{post} - posts.destroy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12 max-w-4xl mx-auto">
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi/nodejs'>
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke Node.js
+            </a>
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+            <a class='btn-nav flex-1 px-6 py-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg shadow text-center' href='/learn/src/materi/express'>
+                Lanjut ke Express <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                © 2023 Pemrograman Web
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

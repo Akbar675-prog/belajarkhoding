@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar PHP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #6366f1;
+        }
+        
+        .highlight {
+            background-color: #e0e7ff;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .demo-box {
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px dashed #cbd5e1;
+        }
+        
+        .btn-demo {
+            padding: 8px 16px;
+            background-color: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-demo:hover {
+            background-color: #4f46e5;
+        }
+        
+        .btn-nav {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-2px);
+        }
+        
+        .php-icon {
+            color: #777bb4;
+        }
+        
+        .tab-button {
+            padding: 8px 16px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #64748b;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-button.active {
+            color: #6366f1;
+            border-bottom: 2px solid #6366f1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fab fa-php php-icon text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-indigo-100 rounded-full mb-4">
+                <i class="fab fa-php php-icon text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">PHP</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Bahasa backend populer untuk membuat website dinamis. 
+                Pelajari sintaks dasar, variabel, form, dan koneksi database MySQL.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is PHP -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu PHP?</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            PHP (Hypertext Preprocessor) adalah bahasa scripting server-side yang dirancang khusus untuk pengembangan web. PHP dijalankan di server dan menghasilkan HTML yang dikirim ke browser pengguna.
+                        </p>
+                        <p class="text-gray-600">
+                            PHP adalah salah satu bahasa backend paling populer karena:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li><strong>Mudah dipelajari</strong>: Sintaks yang sederhana untuk pemula</li>
+                            <li><strong>Kompatibilitas tinggi</strong>: Bekerja dengan hampir semua server dan database</li>
+                            <li><strong>Komunitas besar</strong>: Banyak dokumentasi dan dukungan</li>
+                            <li><strong>Frameworks populer</strong>: Seperti Laravel, CodeIgniter, Symfony</li>
+                            <li><strong>Open source</strong>: Gratis digunakan dan dikembangkan</li>
+                        </ul>
+                        <p class="text-gray-600">
+                            PHP biasanya digunakan untuk:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Membuat halaman web dinamis</li>
+                            <li>Mengolah data form</li>
+                            <li>Mengakses database</li>
+                            <li>Membuat session dan cookies</li>
+                            <li>Membangun CMS seperti WordPress</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Basic Syntax -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Sintaks Dasar PHP</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Kode PHP diawali dengan <code class="bg-gray-100 px-1 rounded">&lt;?php</code> dan diakhiri dengan <code class="bg-gray-100 px-1 rounded">?&gt;</code>. File PHP harus disimpan dengan ekstensi <code>.php</code>.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">&lt;!DOCTYPE html&gt;</span><br>
+                            &lt;<span class="text-red-500">html</span>&gt;<br>
+                            &lt;<span class="text-red-500">head</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">title</span>&gt;Contoh PHP&lt;/<span class="text-red-500">title</span>&gt;<br>
+                            &lt;/<span class="text-red-500">head</span>&gt;<br>
+                            &lt;<span class="text-red-500">body</span>&gt;<br>
+                            &nbsp;&nbsp;<span class="text-gray-500">&lt;?php</span><br>
+                            &nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Halo, Dunia!"</span>;<br>
+                            &nbsp;&nbsp;<span class="text-gray-500">?&gt;</span><br>
+                            &lt;/<span class="text-red-500">body</span>&gt;<br>
+                            &lt;/<span class="text-red-500">html</span>&gt;
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Fitur dasar PHP:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Kode PHP dapat disisipkan dalam HTML</li>
+                            <li>Setiap perintah diakhiri dengan titik koma (<code>;</code>)</li>
+                            <li>Komentar menggunakan <code>//</code> untuk satu baris atau <code>/* ... */</code> untuk banyak baris</li>
+                            <li>Output ke browser menggunakan <code>echo</code> atau <code>print</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Variables and Data Types -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Variabel dan Tipe Data</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Variabel dalam PHP diawali dengan tanda dollar (<code>$</code>) dan tidak perlu dideklarasikan tipe datanya (loosely typed).
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">&lt;?php</span><br>
+                            <span class="text-gray-500">// Deklarasi variabel</span><br>
+                            <span class="text-blue-500">$nama</span> = <span class="text-yellow-600">"Budi Santoso"</span>; <span class="text-gray-500">// String</span><br>
+                            <span class="text-blue-500">$umur</span> = <span class="text-purple-500">25</span>; <span class="text-gray-500">// Integer</span><br>
+                            <span class="text-blue-500">$tinggi</span> = <span class="text-purple-500">1.75</span>; <span class="text-gray-500">// Float</span><br>
+                            <span class="text-blue-500">$isMahasiswa</span> = <span class="text-purple-500">true</span>; <span class="text-gray-500">// Boolean</span><br>
+                            <span class="text-blue-500">$hobi</span> = [<span class="text-yellow-600">"Membaca"</span>, <span class="text-yellow-600">"Bersepeda"</span>, <span class="text-yellow-600">"Memasak"</span>]; <span class="text-gray-500">// Array</span><br><br>
+                            
+                            <span class="text-gray-500">// Menggabungkan string</span><br>
+                            <span class="text-blue-500">echo</span> <span class="text-yellow-600">"Nama: "</span> . <span class="text-blue-500">$nama</span> . <span class="text-yellow-600">", Umur: "</span> . <span class="text-blue-500">$umur</span>;<br>
+                            <span class="text-gray-500">?&gt;</span>
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Tipe data utama dalam PHP:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li><code>String</code>: Teks (contoh: "Hello")</li>
+                            <li><code>Integer</code>: Bilangan bulat (contoh: 42)</li>
+                            <li><code>Float</code>: Bilangan desimal (contoh: 3.14)</li>
+                            <li><code>Boolean</code>: True atau false</li>
+                            <li><code>Array</code>: Kumpulan nilai</li>
+                            <li><code>Object</code>: Instance dari class</li>
+                            <li><code>NULL</code>: Variabel tanpa nilai</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Control Structures -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Struktur Kontrol</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-indigo-600">1. Kondisi (if, else, switch)</h3>
+                            <div class="code-block">
+                                <span class="text-gray-500">&lt;?php</span><br>
+                                <span class="text-blue-500">$nilai</span> = <span class="text-purple-500">85</span>;<br><br>
+                                
+                                <span class="text-gray-500">// If-else</span><br>
+                                <span class="text-blue-500">if</span> (<span class="text-blue-500">$nilai</span> >= <span class="text-purple-500">80</span>) {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Nilai A"</span>;<br>
+                                } <span class="text-blue-500">elseif</span> (<span class="text-blue-500">$nilai</span> >= <span class="text-purple-500">70</span>) {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Nilai B"</span>;<br>
+                                } <span class="text-blue-500">else</span> {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Nilai C"</span>;<br>
+                                }<br><br>
+                                
+                                <span class="text-gray-500">// Switch-case</span><br>
+                                <span class="text-blue-500">switch</span> (<span class="text-blue-500">$nilai</span>) {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">case</span> <span class="text-purple-500">100</span>:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Sempurna!"</span>;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">break</span>;<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">case</span> <span class="text-purple-500">90</span>:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Bagus!"</span>;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">break</span>;<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">default</span>:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Lumayan"</span>;<br>
+                                }<br>
+                                <span class="text-gray-500">?&gt;</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-indigo-600">2. Perulangan (loop)</h3>
+                            <div class="code-block">
+                                <span class="text-gray-500">&lt;?php</span><br>
+                                <span class="text-gray-500">// For loop</span><br>
+                                <span class="text-blue-500">for</span> (<span class="text-blue-500">$i</span> = <span class="text-purple-500">1</span>; <span class="text-blue-500">$i</span> <= <span class="text-purple-500">5</span>; <span class="text-blue-500">$i</span>++) {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Nomor: "</span> . <span class="text-blue-500">$i</span> . <span class="text-yellow-600">"&lt;br&gt;"</span>;<br>
+                                }<br><br>
+                                
+                                <span class="text-gray-500">// While loop</span><br>
+                                <span class="text-blue-500">$x</span> = <span class="text-purple-500">1</span>;<br>
+                                <span class="text-blue-500">while</span> (<span class="text-blue-500">$x</span> <= <span class="text-purple-500">5</span>) {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Nomor: "</span> . <span class="text-blue-500">$x</span> . <span class="text-yellow-600">"&lt;br&gt;"</span>;<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">$x</span>++;<br>
+                                }<br><br>
+                                
+                                <span class="text-gray-500">// Foreach (untuk array)</span><br>
+                                <span class="text-blue-500">$buah</span> = [<span class="text-yellow-600">"Apel"</span>, <span class="text-yellow-600">"Jeruk"</span>, <span class="text-yellow-600">"Mangga"</span>];<br>
+                                <span class="text-blue-500">foreach</span> (<span class="text-blue-500">$buah</span> <span class="text-blue-500">as</span> <span class="text-blue-500">$b</span>) {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Buah: "</span> . <span class="text-blue-500">$b</span> . <span class="text-yellow-600">"&lt;br&gt;"</span>;<br>
+                                }<br>
+                                <span class="text-gray-500">?&gt;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Forms -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Form HTML dengan PHP</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            PHP dapat menerima data dari form HTML menggunakan variabel superglobal <code>$_GET</code> atau <code>$_POST</code>.
+                        </p>
+                        
+                        <div class="demo-box">
+                            <h3 class="text-lg font-medium mb-2">Contoh Form Login</h3>
+                            <form action="demo.php" method="post" class="space-y-4">
+                                <div>
+                                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username:</label>
+                                    <input type="text" id="username" name="username" class="border rounded px-3 py-2 w-full">
+                                </div>
+                                <div>
+                                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password:</label>
+                                    <input type="password" id="password" name="password" class="border rounded px-3 py-2 w-full">
+                                </div>
+                                <button type="submit" class="btn-demo">Login</button>
+                            </form>
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">&lt;!-- form.html --&gt;</span><br>
+                            &lt;<span class="text-red-500">form</span> <span class="text-green-600">action</span>=<span class="text-yellow-600">"proses.php"</span> <span class="text-green-600">method</span>=<span class="text-yellow-600">"post"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">input</span> <span class="text-green-600">type</span>=<span class="text-yellow-600">"text"</span> <span class="text-green-600">name</span>=<span class="text-yellow-600">"username"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">input</span> <span class="text-green-600">type</span>=<span class="text-yellow-600">"password"</span> <span class="text-green-600">name</span>=<span class="text-yellow-600">"password"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">button</span> <span class="text-green-600">type</span>=<span class="text-yellow-600">"submit"</span>&gt;Login&lt;/<span class="text-red-500">button</span>&gt;<br>
+                            &lt;/<span class="text-red-500">form</span>&gt;<br><br>
+                            
+                            <span class="text-gray-500">// proses.php</span><br>
+                            <span class="text-gray-500">&lt;?php</span><br>
+                            <span class="text-blue-500">$username</span> = <span class="text-blue-500">$_POST</span>[<span class="text-yellow-600">'username'</span>];<br>
+                            <span class="text-blue-500">$password</span> = <span class="text-blue-500">$_POST</span>[<span class="text-yellow-600">'password'</span>];<br><br>
+                            
+                            <span class="text-blue-500">if</span> (<span class="text-blue-500">$username</span> == <span class="text-yellow-600">'admin'</span> && <span class="text-blue-500">$password</span> == <span class="text-yellow-600">'12345'</span>) {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Login berhasil!"</span>;<br>
+                            } <span class="text-blue-500">else</span> {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Username/password salah!"</span>;<br>
+                            }<br>
+                            <span class="text-gray-500">?&gt;</span>
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Perbedaan <code>$_GET</code> dan <code>$_POST</code>:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li><strong>GET</strong>: Data dikirim melalui URL (terlihat di address bar), cocok untuk data tidak sensitif</li>
+                            <li><strong>POST</strong>: Data dikirim secara tersembunyi, cocok untuk data sensitif seperti password</li>
+                            <li>Gunakan <code>htmlspecialchars()</code> untuk mencegah XSS (Cross-Site Scripting)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Database Connection -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Koneksi Database MySQL</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            PHP dapat terhubung ke database MySQL menggunakan ekstensi MySQLi (MySQL Improved) atau PDO (PHP Data Objects).
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">&lt;?php</span><br>
+                            <span class="text-gray-500">// Koneksi ke database</span><br>
+                            <span class="text-blue-500">$host</span> = <span class="text-yellow-600">"localhost"</span>; <span class="text-gray-500">// Nama server</span><br>
+                            <span class="text-blue-500">$user</span> = <span class="text-yellow-600">"root"</span>; <span class="text-gray-500">// Username database</span><br>
+                            <span class="text-blue-500">$pass</span> = <span class="text-yellow-600">""</span>; <span class="text-gray-500">// Password database</span><br>
+                            <span class="text-blue-500">$db</span> = <span class="text-yellow-600">"belajar_php"</span>; <span class="text-gray-500">// Nama database</span><br><br>
+                            
+                            <span class="text-gray-500">// Membuat koneksi</span><br>
+                            <span class="text-blue-500">$conn</span> = <span class="text-green-600">mysqli_connect</span>(<span class="text-blue-500">$host</span>, <span class="text-blue-500">$user</span>, <span class="text-blue-500">$pass</span>, <span class="text-blue-500">$db</span>);<br><br>
+                            
+                            <span class="text-gray-500">// Cek koneksi</span><br>
+                            <span class="text-blue-500">if</span> (!<span class="text-blue-500">$conn</span>) {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">die</span>(<span class="text-yellow-600">"Koneksi gagal: "</span> . <span class="text-green-600">mysqli_connect_error</span>());<br>
+                            }<br>
+                            <span class="text-blue-500">echo</span> <span class="text-yellow-600">"Koneksi berhasil!"</span>;<br><br>
+                            
+                            <span class="text-gray-500">// Query SQL</span><br>
+                            <span class="text-blue-500">$sql</span> = <span class="text-yellow-600">"SELECT * FROM users"</span>;<br>
+                            <span class="text-blue-500">$result</span> = <span class="text-green-600">mysqli_query</span>(<span class="text-blue-500">$conn</span>, <span class="text-blue-500">$sql</span>);<br><br>
+                            
+                            <span class="text-gray-500">// Tampilkan hasil</span><br>
+                            <span class="text-blue-500">if</span> (<span class="text-green-600">mysqli_num_rows</span>(<span class="text-blue-500">$result</span>) > <span class="text-purple-500">0</span>) {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">while</span>(<span class="text-blue-500">$row</span> = <span class="text-green-600">mysqli_fetch_assoc</span>(<span class="text-blue-500">$result</span>)) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"ID: "</span> . <span class="text-blue-500">$row</span>[<span class="text-yellow-600">"id"</span>] . <span class="text-yellow-600">", Nama: "</span> . <span class="text-blue-500">$row</span>[<span class="text-yellow-600">"nama"</span>] . <span class="text-yellow-600">"&lt;br&gt;"</span>;<br>
+                            &nbsp;&nbsp;}<br>
+                            } <span class="text-blue-500">else</span> {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">echo</span> <span class="text-yellow-600">"Tidak ada data"</span>;<br>
+                            }<br><br>
+                            
+                            <span class="text-gray-500">// Tutup koneksi</span><br>
+                            <span class="text-green-600">mysqli_close</span>(<span class="text-blue-500">$conn</span>);<br>
+                            <span class="text-gray-500">?&gt;</span>
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Praktik terbaik koneksi database:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Gunakan prepared statements untuk mencegah SQL injection</li>
+                            <li>Simpan informasi koneksi di file terpisah (config.php)</li>
+                            <li>Selalu tutup koneksi setelah digunakan</li>
+                            <li>Gunakan try-catch untuk menangani error</li>
+                            <li>Hash password sebelum disimpan di database</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- XAMPP/Localhost -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">XAMPP dan Localhost</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Untuk menjalankan PHP di komputer lokal, Anda membutuhkan server seperti XAMPP, WAMP, atau LAMP.
+                        </p>
+                        
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-medium mb-2 text-indigo-600">XAMPP</h3>
+                                <p class="text-gray-600 mb-2">
+                                    XAMPP adalah paket server web yang berisi:
+                                </p>
+                                <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                    <li>Apache (web server)</li>
+                                    <li>MySQL/MariaDB (database)</li>
+                                    <li>PHP dan Perl</li>
+                                    <li>phpMyAdmin (untuk mengelola database)</li>
+                                </ul>
+                                <p class="text-gray-600 mt-2">
+                                    <a href="https://www.apachefriends.org/" class="text-indigo-600 hover:underline">Download XAMPP</a>
+                                </p>
+                            </div>
+                            
+                            <div class="flex-1">
+                                <h3 class="text-lg font-medium mb-2 text-indigo-600">Cara Menggunakan</h3>
+                                <ol class="list-decimal pl-5 text-gray-600 space-y-1">
+                                    <li>Install XAMPP</li>
+                                    <li>Jalankan Apache dan MySQL di XAMPP Control Panel</li>
+                                    <li>Simpan file PHP di folder <code>htdocs</code></li>
+                                    <li>Akses via browser: <code>http://localhost/nama-file.php</code></li>
+                                    <li>Untuk phpMyAdmin: <code>http://localhost/phpmyadmin</code></li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-box">
+                            <h3 class="text-lg font-medium mb-2">Struktur Folder XAMPP</h3>
+                            <div class="code-block">
+                                xampp/<br>
+                                ├── htdocs/          <span class="text-gray-500"># Tempat menyimpan file PHP/HTML</span><br>
+                                │   ├── project1/   <span class="text-gray-500"># Folder proyek pertama</span><br>
+                                │   └── index.php   <span class="text-gray-500"># File utama</span><br>
+                                ├── php/            <span class="text-gray-500"># File PHP</span><br>
+                                ├── mysql/          <span class="text-gray-500"># Database MySQL</span><br>
+                                └── ...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Example Project -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Contoh Proyek PHP</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut contoh sederhana aplikasi buku tamu dengan PHP dan MySQL:
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// config.php</span><br>
+                            <span class="text-gray-500">&lt;?php</span><br>
+                            <span class="text-blue-500">$host</span> = <span class="text-yellow-600">"localhost"</span>;<br>
+                            <span class="text-blue-500">$user</span> = <span class="text-yellow-600">"root"</span>;<br>
+                            <span class="text-blue-500">$pass</span> = <span class="text-yellow-600">""</span>;<br>
+                            <span class="text-blue-500">$db</span> = <span class="text-yellow-600">"buku_tamu"</span>;<br><br>
+                            
+                            <span class="text-blue-500">$conn</span> = <span class="text-green-600">mysqli_connect</span>(<span class="text-blue-500">$host</span>, <span class="text-blue-500">$user</span>, <span class="text-blue-500">$pass</span>, <span class="text-blue-500">$db</span>);<br>
+                            <span class="text-blue-500">if</span> (!<span class="text-blue-500">$conn</span>) {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">die</span>(<span class="text-yellow-600">"Koneksi gagal: "</span> . <span class="text-green-600">mysqli_connect_error</span>());<br>
+                            }<br>
+                            <span class="text-gray-500">?&gt;</span>
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// index.php</span><br>
+                            <span class="text-gray-500">&lt;?php</span><br>
+                            <span class="text-blue-500">require</span> <span class="text-yellow-600">'config.php'</span>;<br><br>
+                            
+                            <span class="text-gray-500">// Proses form</span><br>
+                            <span class="text-blue-500">if</span> (<span class="text-blue-500">isset</span>(<span class="text-blue-500">$_POST</span>[<span class="text-yellow-600">'submit'</span>])) {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">$nama</span> = <span class="text-blue-500">$_POST</span>[<span class="text-yellow-600">'nama'</span>];<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">$email</span> = <span class="text-blue-500">$_POST</span>[<span class="text-yellow-600">'email'</span>];<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">$pesan</span> = <span class="text-blue-500">$_POST</span>[<span class="text-yellow-600">'pesan'</span>];<br><br>
+                            
+                            &nbsp;&nbsp;<span class="text-blue-500">$sql</span> = <span class="text-yellow-600">"INSERT INTO tamu (nama, email, pesan) VALUES (?, ?, ?)"</span>;<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">$stmt</span> = <span class="text-green-600">mysqli_prepare</span>(<span class="text-blue-500">$conn</span>, <span class="text-blue-500">$sql</span>);<br>
+                            &nbsp;&nbsp;<span class="text-green-600">mysqli_stmt_bind_param</span>(<span class="text-blue-500">$stmt</span>, <span class="text-yellow-600">"sss"</span>, <span class="text-blue-500">$nama</span>, <span class="text-blue-500">$email</span>, <span class="text-blue-500">$pesan</span>);<br>
+                            &nbsp;&nbsp;<span class="text-green-600">mysqli_stmt_execute</span>(<span class="text-blue-500">$stmt</span>);<br>
+                            }<br><br>
+                            
+                            <span class="text-gray-500">// Ambil data tamu</span><br>
+                            <span class="text-blue-500">$sql</span> = <span class="text-yellow-600">"SELECT * FROM tamu ORDER BY id DESC"</span>;<br>
+                            <span class="text-blue-500">$result</span> = <span class="text-green-600">mysqli_query</span>(<span class="text-blue-500">$conn</span>, <span class="text-blue-500">$sql</span>);<br>
+                            <span class="text-gray-500">?&gt;</span><br><br>
+                            
+                            <span class="text-gray-500">&lt;!DOCTYPE html&gt;</span><br>
+                            &lt;<span class="text-red-500">html</span>&gt;<br>
+                            &lt;<span class="text-red-500">body</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">h1</span>&gt;Buku Tamu&lt;/<span class="text-red-500">h1</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">form</span> <span class="text-green-600">method</span>=<span class="text-yellow-600">"post"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">input</span> <span class="text-green-600">type</span>=<span class="text-yellow-600">"text"</span> <span class="text-green-600">name</span>=<span class="text-yellow-600">"nama"</span> <span class="text-green-600">placeholder</span>=<span class="text-yellow-600">"Nama"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">input</span> <span class="text-green-600">type</span>=<span class="text-yellow-600">"email"</span> <span class="text-green-600">name</span>=<span class="text-yellow-600">"email"</span> <span class="text-green-600">placeholder</span>=<span class="text-yellow-600">"Email"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">textarea</span> <span class="text-green-600">name</span>=<span class="text-yellow-600">"pesan"</span> <span class="text-green-600">placeholder</span>=<span class="text-yellow-600">"Pesan"</span>&gt;&lt;/<span class="text-red-500">textarea</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">button</span> <span class="text-green-600">type</span>=<span class="text-yellow-600">"submit"</span> <span class="text-green-600">name</span>=<span class="text-yellow-600">"submit"</span>&gt;Kirim&lt;/<span class="text-red-500">button</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;/<span class="text-red-500">form</span>&gt;<br><br>
+                            
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">h2</span>&gt;Daftar Tamu&lt;/<span class="text-red-500">h2</span>&gt;<br>
+                            &nbsp;&nbsp;<span class="text-gray-500">&lt;?php while($row = mysqli_fetch_assoc($result)): ?&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">h3</span>&gt;<span class="text-gray-500">&lt;?= $row['nama'] ?&gt;</span>&lt;/<span class="text-red-500">h3</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">p</span>&gt;<span class="text-gray-500">&lt;?= $row['pesan'] ?&gt;</span>&lt;/<span class="text-red-500">p</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">small</span>&gt;<span class="text-gray-500">&lt;?= $row['email'] ?&gt;</span>&lt;/<span class="text-red-500">small</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;<span class="text-gray-500">&lt;?php endwhile; ?&gt;</span><br>
+                            &lt;/<span class="text-red-500">body</span>&gt;<br>
+                            &lt;/<span class="text-red-500">html</span>&gt;
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12 max-w-4xl mx-auto">
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+            <a class='btn-nav flex-1 px-6 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-lg shadow text-center' href='/learn/src/materi/python'>
+                Lanjut ke Python <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                © 2023 Pemrograman Web
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

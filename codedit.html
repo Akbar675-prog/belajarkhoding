@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coder - Pemrograman Web</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+    
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --secondary: #64748b;
+      --dark: #1e293b;
+      --darker: #0f172a;
+      --light: #f8fafc;
+      --border: #334155;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --radius: 0.5rem;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--darker);
+      color: var(--light);
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .code-font {
+      font-family: 'Fira Code', monospace;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--secondary);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+    
+    /* Code editor specific styles */
+    .editor-container {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .editor-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      background-color: var(--dark);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .editor-body {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .gutter {
+      background-color: var(--dark);
+      color: var(--secondary);
+      text-align: right;
+      padding: 0.75rem 0.5rem;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      user-select: none;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      height: 100%;
+    }
+    
+    .code-input {
+      background-color: var(--dark);
+      color: var(--light);
+      border: none;
+      outline: none;
+      padding: 0.75rem;
+      width: 100%;
+      height: 100%;
+      resize: none;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      overflow: auto;
+    }
+    
+    .code-input::selection {
+      background-color: rgba(59, 130, 246, 0.5);
+    }
+    
+    /* Preview iframe */
+    .preview-container {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .preview-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: white;
+    }
+    
+    /* Tabs */
+    .editor-tabs {
+      display: flex;
+      gap: 0.5rem;
+      padding-bottom: 0.5rem;
+      position: sticky;
+      top: 0;
+      background-color: var(--darker);
+      z-index: 10;
+    }
+    
+    .tab {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      background-color: var(--dark);
+      color: var(--secondary);
+      border: 1px solid var(--border);
+    }
+    
+    .tab.active {
+      background-color: var(--primary-dark);
+      color: white;
+      border-color: var(--primary-dark);
+    }
+    
+    /* Status indicators */
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      color: var(--secondary);
+    }
+    
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    
+    .status-dot.ready {
+      background-color: var(--success);
+    }
+    
+    .status-dot.building {
+      background-color: var(--warning);
+    }
+    
+    .status-dot.error {
+      background-color: var(--danger);
+    }
+    
+    /* Custom buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-weight: 500;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .btn-secondary {
+      background-color: var(--dark);
+      color: var(--light);
+      border-color: var(--border);
+    }
+    
+    .btn-secondary:hover {
+      background-color: rgba(30, 41, 59, 0.8);
+    }
+    
+    .btn-toggle {
+      background-color: transparent;
+      color: var(--light);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-toggle.active {
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+    }
+    
+    /* Layout adjustments */
+    .workspace-grid {
+      display: grid;
+      grid-template-rows: 1fr 1fr; /* Ubah menjadi baris (atas-bawah) */
+      gap: 1rem;
+      height: calc(100vh - 3.5rem);
+      padding: 1rem;
+    }
+    
+    .workspace-grid.preview-hidden {
+      grid-template-rows: 1fr; /* Hanya tampilkan editor saat preview disembunyikan */
+    }
+    
+    .editors-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    /* Responsivitas baru untuk preview */
+    @media (max-width: 1024px) {
+      .workspace-grid {
+        grid-template-rows: 1fr 1fr;
+      }
+      
+      .editors-grid {
+        grid-template-rows: minmax(200px, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .workspace-grid {
+        grid-template-rows: 60% 40%; /* Proporsi lebih baik untuk mobile */
+      }
+    }
+    
+    /* File switcher */
+    .file-switcher {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      background-color: var(--dark);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .file-tab {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      background-color: transparent;
+      color: var(--secondary);
+      border: 1px solid transparent;
+    }
+    
+    .file-tab.active {
+      background-color: var(--primary-dark);
+      color: white;
+      border-color: var(--primary-dark);
+    }
+    
+    .file-tab:hover:not(.active) {
+      background-color: rgba(30, 41, 59, 0.8);
+    }
+    
+    /* Hidden state */
+    .hidden {
+      display: none;
+    }
+    
+    /* Line numbers */
+    .line-numbers {
+      counter-reset: line;
+    }
+    
+    .line-numbers span {
+      display: block;
+      counter-increment: line;
+    }
+    
+    .line-numbers span::before {
+      content: counter(line);
+      display: inline-block;
+      width: 2em;
+      margin-right: 0.5em;
+      text-align: right;
+      color: var(--secondary);
+    }
+    
+    /* Highlight current line */
+    .code-input:focus {
+      background-color: #1e293b;
+    }
+    
+    /* Custom scroll for gutters */
+    .gutter::-webkit-scrollbar {
+      width: 5px;
+    }
+    
+    .gutter::-webkit-scrollbar-thumb {
+      background: var(--secondary);
+    }
+    
+    /* Syntax highlighting */
+    .token.comment {
+      color: #64748b;
+    }
+    
+    .token.tag {
+      color: #ef4444;
+    }
+    
+    .token.attr-name {
+      color: #f59e0b;
+    }
+    
+    .token.attr-value {
+      color: #10b981;
+    }
+    
+    .token.selector {
+      color: #8b5cf6;
+    }
+    
+    .token.property {
+      color: #3b82f6;
+    }
+    
+    .token.function {
+      color: #ec4899;
+    }
+    
+    .token.keyword {
+      color: #8b5cf6;
+    }
+    
+    /* Animation for preview toggle */
+    .preview-transition {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="flex flex-col">
+  <!-- Top Navigation Bar -->
+  <header class="bg-slate-800 border-b border-slate-700 px-4 py-2 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a class='text-slate-300 hover:text-white transition-colors' href='/learn/'>
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <div class="flex items-center gap-2">
+        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+        <h1 class="text-lg font-semibold ml-2">Coder</h1>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-2">
+      <div class="status-indicator mr-4">
+        <span id="auto-run-status">Auto</span>
+        <span>•</span>
+        <span id="save-status">Saved</span>
+      </div>
+      
+      <button id="run-btn" class="btn btn-primary">
+        <i class="fas fa-play mr-1"></i>
+        Run
+      </button>
+      <button id="auto-btn" class="btn btn-toggle active">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+      <button id="preview-btn" class="btn btn-toggle active">
+        <i class="fas fa-eye"></i>
+      </button>
+      <button id="reset-btn" class="btn btn-secondary">
+        <i class="fas fa-redo"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 overflow-hidden">
+    <div id="workspace" class="workspace-grid">
+      <!-- Editors Section -->
+      <div class="flex flex-col h-full overflow-hidden">
+        <!-- File Switcher -->
+        <div class="file-switcher">
+          <button class="file-tab active" data-file="html">
+            <i class="fab fa-html5 mr-2"></i>index.html
+          </button>
+          <button class="file-tab" data-file="css">
+            <i class="fab fa-css3-alt mr-2"></i>style.css
+          </button>
+          <button class="file-tab" data-file="js">
+            <i class="fab fa-js-square mr-2"></i>script.js
+          </button>
+        </div>
+        
+        <!-- Editors -->
+        <div class="editors-grid overflow-hidden">
+          <!-- HTML Editor -->
+          <div class="editor-container active" data-editor="html">
+            <div class="editor-header">
+              <div class="flex items-center gap-2">
+                <i class="fab fa-html5 text-orange-500"></i>
+                <span class="font-medium">index.html</span>
+              </div>
+              <span class="text-xs text-slate-400">HTML</span>
+            </div>
+            <div class="editor-body">
+              <pre class="gutter line-numbers" id="gutter-html"></pre>
+              <textarea id="code-html" class="code-input code-font" spellcheck="false"></textarea>
+            </div>
+          </div>
+          
+          <!-- CSS Editor -->
+          <div class="editor-container hidden" data-editor="css">
+            <div class="editor-header">
+              <div class="flex items-center gap-2">
+                <i class="fab fa-css3-alt text-blue-500"></i>
+                <span class="font-medium">style.css</span>
+              </div>
+              <span class="text-xs text-slate-400">CSS</span>
+            </div>
+            <div class="editor-body">
+              <pre class="gutter line-numbers" id="gutter-css"></pre>
+              <textarea id="code-css" class="code-input code-font" spellcheck="false"></textarea>
+            </div>
+          </div>
+          
+          <!-- JS Editor -->
+          <div class="editor-container hidden" data-editor="js">
+            <div class="editor-header">
+              <div class="flex items-center gap-2">
+                <i class="fab fa-js-square text-yellow-400"></i>
+                <span class="font-medium">script.js</span>
+              </div>
+              <span class="text-xs text-slate-400">JavaScript</span>
+            </div>
+            <div class="editor-body">
+              <pre class="gutter line-numbers" id="gutter-js"></pre>
+              <textarea id="code-js" class="code-input code-font" spellcheck="false"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Preview Section -->
+      <div id="preview-pane" class="preview-container preview-transition">
+        <div class="editor-header">
+          <div class="flex items-center gap-2">
+            <i class="fas fa-globe text-blue-400"></i>
+            <span class="font-medium">Live Preview</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="status-dot ready" id="preview-status-dot"></div>
+            <span class="text-xs" id="preview-status-text">Ready</span>
+          </div>
+        </div>
+        <iframe id="preview" class="preview-iframe" title="Live Preview" sandbox="allow-scripts allow-same-origin"></iframe>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ====== DOM Elements ======
+    const elements = {
+      html: document.getElementById('code-html'),
+      css: document.getElementById('code-css'),
+      js: document.getElementById('code-js'),
+      gutters: {
+        html: document.getElementById('gutter-html'),
+        css: document.getElementById('gutter-css'),
+        js: document.getElementById('gutter-js')
+      },
+      preview: document.getElementById('preview'),
+      previewStatusDot: document.getElementById('preview-status-dot'),
+      previewStatusText: document.getElementById('preview-status-text'),
+      saveStatus: document.getElementById('save-status'),
+      autoRunStatus: document.getElementById('auto-run-status'),
+      workspace: document.getElementById('workspace'),
+      previewPane: document.getElementById('preview-pane'),
+      previewBtn: document.getElementById('preview-btn'),
+      runBtn: document.getElementById('run-btn'),
+      autoBtn: document.getElementById('auto-btn'),
+      resetBtn: document.getElementById('reset-btn'),
+      fileTabs: document.querySelectorAll('.file-tab'),
+      editors: document.querySelectorAll('.editor-container')
+    };
+
+    // ====== Default Content ======
+    const DEFAULTS = {
+      html: `<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coder - Pemrograman Web</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1e3a8a, #0f172a);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 1rem;
+    }
+    
+    .container {
+      text-align: center;
+      max-width: 600px;
+      padding: 2rem;
+      border-radius: 1rem;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .text-gradient {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .subtitle {
+      font-size: 1.25rem;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+    }
+    
+    .btn {
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(90deg, #2563eb, #4f46e5);
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .feature {
+      background: rgba(30, 41, 59, 0.6);
+      padding: 1.5rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .feature i {
+      font-size: 2rem;
+      color: #60a5fa;
+      margin-bottom: 1rem;
+    }
+    
+    .feature h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .feature p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+    
+    .footer {
+      margin-top: 3rem;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-gradient">Selamat Datang!</h1>
+    <p class="subtitle">Coder - Pemrograman Web dengan Live Preview</p>
+    <button id="demo-btn" class="btn">
+      <i class="fas fa-magic mr-2"></i>
+      Klik Saya
+    </button>
+    
+    <div class="features">
+      <div class="feature">
+        <i class="fas fa-bolt"></i>
+        <h3>Cepat</h3>
+        <p>Editor yang responsif dan ringan</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-code"></i>
+        <h3>Modern</h3>
+        <p>Dukung fitur web terbaru</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-sync-alt"></i>
+        <h3>Real-time</h3>
+        <p>Preview langsung saat mengetik</p>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>Gunakan editor ini untuk membuat proyek web Anda</p>
+    </div>
+  </div>
+</body>
+</html>`,
+      css: `/* Tambahkan gaya kustom Anda di sini */
+
+.container {
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.text-gradient {
+  position: relative;
+  display: inline-block;
+}
+
+.text-gradient::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 3px;
+}
+
+.feature {
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  background: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .text-gradient {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .features {
+    grid-template-columns: 1fr;
+  }
+}`,
+      js: `// JavaScript untuk demo interaksi
+document.addEventListener('DOMContentLoaded', function() {
+  const demoBtn = document.getElementById('demo-btn');
+  
+  demoBtn.addEventListener('click', function() {
+    // Animasi tombol
+    this.classList.add('animate-pulse');
+    this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+    
+    // Simulasi proses
+    setTimeout(() => {
+      this.classList.remove('animate-pulse');
+      this.innerHTML = '<i class="fas fa-check mr-2"></i> Berhasil!';
+      
+      // Tampilkan notifikasi
+      showNotification('Aksi berhasil dijalankan!');
+    }, 1500);
+  });
+  
+  // Fungsi untuk menampilkan notifikasi
+  function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = \`
+      <div class="fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg flex items-center">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span>\${message}</span>
+      </div>
+    \`;
+    
+    document.body.appendChild(notification);
+    
+    // Hapus notifikasi setelah 3 detik
+    setTimeout(() => {
+      notification.remove();
+      demoBtn.innerHTML = '<i class="fas fa-magic mr-2"></i> Klik Saya';
+    }, 3000);
+  }
+  
+  // Tambahkan efek pada fitur
+  const features = document.querySelectorAll('.feature');
+  features.forEach(feature => {
+    feature.addEventListener('mouseenter', function() {
+      const icon = this.querySelector('i');
+      icon.style.transform = 'scale(1.2)';
+      icon.style.transition = 'transform 0.3s ease';
+    });
+    
+    feature.addEventListener('mouseleave', function() {
+      const icon = this.querySelector('i');
+      icon.style.transform = 'scale(1)';
+    });
+  });
+});`
+    };
+
+    // ====== State Management ======
+    let state = {
+      autoRun: true,
+      previewVisible: true,
+      activeFile: 'html',
+      lastSaved: Date.now(),
+      unsavedChanges: false
+    };
+
+    // ====== Initialize Editor ======
+    function init() {
+      // Load saved content from localStorage or use defaults
+      elements.html.value = localStorage.getItem('htmlCode') || DEFAULTS.html;
+      elements.css.value = localStorage.getItem('cssCode') || DEFAULTS.css;
+      elements.js.value = localStorage.getItem('jsCode') || DEFAULTS.js;
+      
+      // Initialize line numbers
+      updateLineNumbers('html');
+      updateLineNumbers('css');
+      updateLineNumbers('js');
+      
+      // Set up event listeners
+      setupEventListeners();
+      
+      // Run initial preview
+      updatePreview();
+    }
+
+    // ====== Update Line Numbers ======
+    function updateLineNumbers(type) {
+      const editor = elements[type];
+      const gutter = elements.gutters[type];
+      
+      if (!editor || !gutter) return;
+      
+      // Count lines (always at least 1)
+      const lineCount = Math.max(editor.value.split('\n').length, 1);
+      
+      // Generate line numbers HTML
+      let numbersHTML = '';
+      for (let i = 1; i <= lineCount; i++) {
+        numbersHTML += `<span></span>\n`;
+      }
+      
+      gutter.innerHTML = numbersHTML;
+      
+      // Sync scroll positions
+      gutter.scrollTop = editor.scrollTop;
+    }
+
+    // ====== Event Listeners ======
+    function setupEventListeners() {
+      // Editor input events
+      elements.html.addEventListener('input', handleEditorInput.bind(null, 'html'));
+      elements.css.addEventListener('input', handleEditorInput.bind(null, 'css'));
+      elements.js.addEventListener('input', handleEditorInput.bind(null, 'js'));
+      
+      // Editor scroll events
+      elements.html.addEventListener('scroll', handleEditorScroll.bind(null, 'html'));
+      elements.css.addEventListener('scroll', handleEditorScroll.bind(null, 'css'));
+      elements.js.addEventListener('scroll', handleEditorScroll.bind(null, 'js'));
+      
+      // File tabs
+      elements.fileTabs.forEach(tab => {
+        tab.addEventListener('click', () => switchFile(tab.dataset.file));
+      });
+      
+      // Run button
+      elements.runBtn.addEventListener('click', updatePreview);
+      
+      // Auto run toggle
+      elements.autoBtn.addEventListener('click', toggleAutoRun);
+      
+      // Preview toggle
+      elements.previewBtn.addEventListener('click', togglePreview);
+      
+      // Reset button
+      elements.resetBtn.addEventListener('click', resetCode);
+    }
+
+    function handleEditorInput(type) {
+      updateLineNumbers(type);
+      state.unsavedChanges = true;
+      elements.saveStatus.textContent = 'Unsaved';
+      
+      if (state.autoRun) {
+        debounceUpdatePreview();
+      }
+      
+      // Save to localStorage
+      localStorage.setItem(`${type}Code`, elements[type].value);
+    }
+
+    function handleEditorScroll(type) {
+      elements.gutters[type].scrollTop = elements[type].scrollTop;
+    }
+
+    // ====== File Switching ======
+    function switchFile(file) {
+      state.activeFile = file;
+      
+      // Update UI for file tabs
+      elements.fileTabs.forEach(tab => {
+        if (tab.dataset.file === file) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+      
+      // Update UI for editors
+      elements.editors.forEach(editor => {
+        if (editor.dataset.editor === file) {
+          editor.classList.remove('hidden');
+        } else {
+          editor.classList.add('hidden');
+        }
+      });
+    }
+
+    // ====== Preview Functions ======
+    function updatePreview() {
+      // Update status to building
+      elements.previewStatusDot.className = 'status-dot building';
+      elements.previewStatusText.textContent = 'Building...';
+      
+      // Get the current code
+      const htmlCode = elements.html.value;
+      const cssCode = elements.css.value;
+      const jsCode = elements.js.value;
+      
+      // Create a complete HTML document
+      const fullHtml = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>${cssCode}</style>
+        </head>
+        <body>
+          ${htmlCode}
+          <script>${jsCode}<\/script>
+        </body>
+        </html>
+      `;
+      
+      // Write to the iframe
+      const previewDoc = elements.preview.contentDocument || elements.preview.contentWindow.document;
+      previewDoc.open();
+      previewDoc.write(fullHtml);
+      previewDoc.close();
+      
+      // Update status to ready
+      setTimeout(() => {
+        elements.previewStatusDot.className = 'status-dot ready';
+        elements.previewStatusText.textContent = 'Ready';
+        state.lastSaved = Date.now();
+        elements.saveStatus.textContent = 'Saved';
+        state.unsavedChanges = false;
+      }, 300);
+    }
+
+    // Debounce function to prevent too many preview updates
+    let debounceTimer;
+    function debounceUpdatePreview() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(updatePreview, 800);
+    }
+
+    // ====== Toggle Functions ======
+    function toggleAutoRun() {
+      state.autoRun = !state.autoRun;
+      elements.autoBtn.classList.toggle('active', state.autoRun);
+      elements.autoRunStatus.textContent = state.autoRun ? 'Auto' : 'Manual';
+      
+      if (state.autoRun && state.unsavedChanges) {
+        updatePreview();
+      }
+    }
+
+    function togglePreview() {
+      state.previewVisible = !state.previewVisible;
+      elements.previewBtn.classList.toggle('active', state.previewVisible);
+      
+      if (state.previewVisible) {
+        elements.previewPane.classList.remove('hidden');
+        elements.workspace.classList.remove('preview-hidden');
+      } else {
+        elements.previewPane.classList.add('hidden');
+        elements.workspace.classList.add('preview-hidden');
+      }
+    }
+
+    // ====== Reset Code ======
+    function resetCode() {
+      if (confirm('Apakah Anda yakin ingin mengembalikan kode ke keadaan semula? Semua perubahan akan dihapus.')) {
+        elements.html.value = DEFAULTS.html;
+        elements.css.value = DEFAULTS.css;
+        elements.js.value = DEFAULTS.js;
+        
+        localStorage.setItem('htmlCode', DEFAULTS.html);
+        localStorage.setItem('cssCode', DEFAULTS.css);
+        localStorage.setItem('jsCode', DEFAULTS.js);
+        
+        updateLineNumbers('html');
+        updateLineNumbers('css');
+        updateLineNumbers('js');
+        
+        updatePreview();
+      }
+    }
+
+    // ====== Initialize Application ======
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

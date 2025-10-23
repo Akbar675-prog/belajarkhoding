@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Bootstrap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #8b5cf6;
+        }
+        
+        .highlight {
+            background-color: #ede9fe;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .demo-box {
+            padding: 20px;
+            background-color: #ede9fe;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .btn-demo {
+            padding: 8px 16px;
+            background-color: #8b5cf6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-demo:hover {
+            background-color: #7c3aed;
+        }
+        
+        .bootstrap-grid {
+            display: grid;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .bootstrap-col {
+            background-color: #8b5cf6;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fab fa-bootstrap text-purple-500 text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-purple-100 rounded-full mb-4">
+                <i class="fab fa-bootstrap text-purple-500 text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Bootstrap</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Framework CSS populer untuk membuat website responsif dengan cepat. Pelajari grid system, komponen, dan utilitas Bootstrap.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is Bootstrap -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu Bootstrap?</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Bootstrap adalah framework CSS open-source yang menyediakan kumpulan alat untuk membangun antarmuka pengguna (UI) yang responsif dan mobile-first dengan cepat dan mudah.
+                        </p>
+                        <p class="text-gray-600">
+                            Bootstrap dikembangkan oleh Twitter dan dirilis pertama kali pada tahun 2011. Sekarang menjadi salah satu framework front-end paling populer di dunia.
+                        </p>
+                        <p class="text-gray-600">
+                            Keunggulan Bootstrap:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Sistem grid responsif yang powerful</li>
+                            <li>Koleksi komponen UI siap pakai</li>
+                            <li>Utilitas CSS yang lengkap</li>
+                            <li>Konsistensi tampilan antar browser</li>
+                            <li>Dokumentasi yang sangat baik</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- How to use Bootstrap -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Cara Menggunakan Bootstrap</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-500">1. Menggunakan CDN (Cara Paling Cepat)</h3>
+                            <p class="text-gray-600 mb-2">Tambahkan link CSS dan JS Bootstrap ke HTML Anda:</p>
+                            <div class="code-block">
+                                <span class="text-gray-500">&lt;!-- CSS Bootstrap --&gt;</span><br>
+                                &lt;<span class="text-red-500">link</span> <span class="text-green-600">href</span>=<span class="text-yellow-600">"https://cdn.jsdelivr.net/npm/<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d5b7babaa1a6a1a7b4a595e0fbe6fbe5">[email&#160;protected]</a>/dist/css/bootstrap.min.css"</span> <span class="text-green-600">rel</span>=<span class="text-yellow-600">"stylesheet"</span>&gt;<br><br>
+                                
+                                <span class="text-gray-500">&lt;!-- JS Bootstrap (dengan Popper) --&gt;</span><br>
+                                &lt;<span class="text-red-500">script</span> <span class="text-green-600">src</span>=<span class="text-yellow-600">"https://cdn.jsdelivr.net/npm/<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="492b26263d3a3d3b2839097c677a6779">[email&#160;protected]</a>/dist/js/bootstrap.bundle.min.js"</span>&gt;&lt;/<span class="text-red-500">script</span>&gt;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-500">2. Instalasi via npm (Untuk Proyek Modern)</h3>
+                            <div class="code-block">
+                                npm install <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="80e2efeff4f3f4f2e1f0c0b5aeb3aeb0">[email&#160;protected]</a>
+                            </div>
+                            <p class="text-gray-600 mt-2">Kemudian impor di file JavaScript Anda:</p>
+                            <div class="code-block">
+                                <span class="text-blue-500">import</span> <span class="text-yellow-600">'bootstrap'</span>;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-500">3. Unduh Secara Manual</h3>
+                            <p class="text-gray-600 mb-2">Unduh file Bootstrap dari <a href="https://getbootstrap.com/" class="text-purple-500 hover:underline">situs resmi</a> dan tautkan file CSS dan JS lokal ke proyek Anda.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Grid System -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Sistem Grid Bootstrap</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Sistem grid Bootstrap menggunakan serangkaian container, row, dan column untuk mengatur dan menyelaraskan konten. Sistem ini dibangun dengan flexbox dan sepenuhnya responsif.
+                        </p>
+                        
+                        <h3 class="text-lg font-medium mt-4 text-purple-500">Struktur Dasar Grid</h3>
+                        <div class="code-block">
+                            <span class="text-gray-500">&lt;!-- Container --&gt;</span><br>
+                            &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"container"</span>&gt;<br>
+                            &nbsp;&nbsp;<span class="text-gray-500">&lt;!-- Row --&gt;</span><br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"row"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;!-- Columns --&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"col"</span>&gt;Kolom 1&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"col"</span>&gt;Kolom 2&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"col"</span>&gt;Kolom 3&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &lt;/<span class="text-red-500">div</span>&gt;
+                        </div>
+                        
+                        <div class="demo-box">
+                            <h3 class="text-lg font-medium mb-2">Contoh Grid Bootstrap</h3>
+                            <div class="bootstrap-grid">
+                                <div class="grid grid-cols-3 gap-4">
+                                    <div class="bootstrap-col">Kolom 1</div>
+                                    <div class="bootstrap-col">Kolom 2</div>
+                                    <div class="bootstrap-col">Kolom 3</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-sm mt-2">Grid ini akan menyesuaikan secara otomatis di berbagai ukuran layar.</p>
+                        </div>
+                        
+                        <h3 class="text-lg font-medium mt-4 text-purple-500">Grid Responsif</h3>
+                        <p class="text-gray-600 mb-2">Anda bisa menentukan lebar kolom untuk breakpoint yang berbeda:</p>
+                        <div class="code-block">
+                            &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"row"</span>&gt;<br>
+                            &nbsp;&nbsp;<span class="text-gray-500">&lt;!-- 12 kolom di mobile, 6 di tablet, 4 di desktop --&gt;</span><br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"col-12 col-md-6 col-lg-4"</span>&gt;Kolom 1&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"col-12 col-md-6 col-lg-4"</span>&gt;Kolom 2&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"col-12 col-md-6 col-lg-4"</span>&gt;Kolom 3&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &lt;/<span class="text-red-500">div</span>&gt;
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Bootstrap Components -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Komponen Bootstrap</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-500">1. Tombol (Buttons)</h3>
+                            <div class="demo-box">
+                                <div class="flex flex-wrap gap-2">
+                                    <button class="btn-demo">Tombol Default</button>
+                                    <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Primary</button>
+                                    <button class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded">Success</button>
+                                    <button class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded">Danger</button>
+                                    <button class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded">Warning</button>
+                                </div>
+                            </div>
+                            <div class="code-block mt-2">
+                                <span class="text-gray-500">&lt;!-- Contoh kode tombol Bootstrap --&gt;</span><br>
+                                &lt;<span class="text-red-500">button</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"btn btn-primary"</span>&gt;Primary&lt;/<span class="text-red-500">button</span>&gt;<br>
+                                &lt;<span class="text-red-500">button</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"btn btn-success"</span>&gt;Success&lt;/<span class="text-red-500">button</span>&gt;<br>
+                                &lt;<span class="text-red-500">button</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"btn btn-danger"</span>&gt;Danger&lt;/<span class="text-red-500">button</span>&gt;<br>
+                                &lt;<span class="text-red-500">button</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"btn btn-warning"</span>&gt;Warning&lt;/<span class="text-red-500">button</span>&gt;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-500">2. Navbar</h3>
+                            <div class="demo-box">
+                                <div class="bg-purple-600 text-white p-4 rounded">
+                                    <div class="flex justify-between items-center">
+                                        <div class="font-bold">Brand</div>
+                                        <div class="hidden md:flex space-x-4">
+                                            <a href="#" class="hover:underline">Home</a>
+                                            <a href="#" class="hover:underline">Features</a>
+                                            <a href="#" class="hover:underline">Pricing</a>
+                                            <a href="#" class="hover:underline">About</a>
+                                        </div>
+                                        <button class="md:hidden">
+                                            <i class="fas fa-bars"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="code-block mt-2">
+                                <span class="text-gray-500">&lt;!-- Contoh kode navbar Bootstrap --&gt;</span><br>
+                                &lt;<span class="text-red-500">nav</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"navbar navbar-expand-lg navbar-dark bg-primary"</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"container-fluid"</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">a</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"navbar-brand"</span> <span class="text-green-600">href</span>=<span class="text-yellow-600">"#"</span>&gt;Brand&lt;/<span class="text-red-500">a</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;!-- Menu items --&gt;</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"collapse navbar-collapse"</span> <span class="text-green-600">id</span>=<span class="text-yellow-600">"navbarNav"</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">ul</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"navbar-nav"</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">li</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"nav-item"</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">a</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"nav-link active"</span> <span class="text-green-600">href</span>=<span class="text-yellow-600">"#"</span>&gt;Home&lt;/<span class="text-red-500">a</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="text-red-500">li</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;!-- Item lainnya --&gt;</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="text-red-500">ul</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &lt;/<span class="text-red-500">nav</span>&gt;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-500">3. Card</h3>
+                            <div class="demo-box">
+                                <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+                                    <div class="h-48 bg-purple-500"></div>
+                                    <div class="px-6 py-4">
+                                        <div class="font-bold text-xl mb-2">Judul Card</div>
+                                        <p class="text-gray-700 text-base">
+                                            Ini adalah contoh card Bootstrap dengan gambar, judul, teks, dan tombol.
+                                        </p>
+                                    </div>
+                                    <div class="px-6 pt-4 pb-2">
+                                        <button class="btn-demo">Baca Selengkapnya</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="code-block mt-2">
+                                <span class="text-gray-500">&lt;!-- Contoh kode card Bootstrap --&gt;</span><br>
+                                &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"card"</span> <span class="text-green-600">style</span>=<span class="text-yellow-600">"width: 18rem;"</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">img</span> <span class="text-green-600">src</span>=<span class="text-yellow-600">"..."</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"card-img-top"</span> <span class="text-green-600">alt</span>=<span class="text-yellow-600">"..."</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"card-body"</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">h5</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"card-title"</span>&gt;Judul Card&lt;/<span class="text-red-500">h5</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">p</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"card-text"</span>&gt;Deskripsi card.&lt;/<span class="text-red-500">p</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">a</span> <span class="text-green-600">href</span>=<span class="text-yellow-600">"#"</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"btn btn-primary"</span>&gt;Baca Selengkapnya&lt;/<span class="text-red-500">a</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &lt;/<span class="text-red-500">div</span>&gt;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Bootstrap Utilities -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Utilitas Bootstrap</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Bootstrap menyediakan banyak kelas utilitas untuk styling cepat tanpa menulis CSS kustom.
+                        </p>
+                        
+                        <h3 class="text-lg font-medium mt-4 text-purple-500">1. Margin dan Padding</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Kelas</th>
+                                        <th class="py-3 px-4 text-left">Contoh</th>
+                                        <th class="py-3 px-4 text-left">Penjelasan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">m-*, p-*</td>
+                                        <td class="py-3 px-4 font-mono text-sm">m-3, p-2</td>
+                                        <td class="py-3 px-4">Margin/Padding di semua sisi (0-5)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">mx-*, px-*</td>
+                                        <td class="py-3 px-4 font-mono text-sm">mx-auto, px-4</td>
+                                        <td class="py-3 px-4">Margin/Padding horizontal</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">my-*, py-*</td>
+                                        <td class="py-3 px-4 font-mono text-sm">my-2, py-3</td>
+                                        <td class="py-3 px-4">Margin/Padding vertikal</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">mt-*, pt-*</td>
+                                        <td class="py-3 px-4 font-mono text-sm">mt-5, pt-0</td>
+                                        <td class="py-3 px-4">Margin/Padding top</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h3 class="text-lg font-medium mt-4 text-purple-500">2. Warna dan Background</h3>
+                        <div class="demo-box">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded bg-primary text-white">primary</span>
+                                <span class="px-3 py-1 rounded bg-secondary text-white">secondary</span>
+                                <span class="px-3 py-1 rounded bg-success text-white">success</span>
+                                <span class="px-3 py-1 rounded bg-danger text-white">danger</span>
+                                <span class="px-3 py-1 rounded bg-warning text-dark">warning</span>
+                                <span class="px-3 py-1 rounded bg-info text-dark">info</span>
+                                <span class="px-3 py-1 rounded bg-light text-dark">light</span>
+                                <span class="px-3 py-1 rounded bg-dark text-white">dark</span>
+                            </div>
+                        </div>
+                        <div class="code-block">
+                            <span class="text-gray-500">&lt;!-- Contoh penggunaan warna --&gt;</span><br>
+                            &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"bg-primary text-white p-3"</span>&gt;primary&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"bg-success text-white p-3"</span>&gt;success&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"bg-danger text-white p-3"</span>&gt;danger&lt;/<span class="text-red-500">div</span>&gt;
+                        </div>
+                        
+                        <h3 class="text-lg font-medium mt-4 text-purple-500">3. Text Utilities</h3>
+                        <div class="demo-box">
+                            <p class="text-start">Rata kiri (text-start)</p>
+                            <p class="text-center">Rata tengah (text-center)</p>
+                            <p class="text-end">Rata kanan (text-end)</p>
+                            <p class="fw-bold">Tebal (fw-bold)</p>
+                            <p class="fst-italic">Miring (fst-italic)</p>
+                            <p class="text-decoration-underline">Garis bawah (text-decoration-underline)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Example Code -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Contoh Kode Bootstrap Sederhana</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut contoh halaman HTML sederhana menggunakan Bootstrap:
+                        </p>
+                        <div class="code-block">
+                            <span class="text-gray-500">&lt;!DOCTYPE html&gt;</span><br>
+                            &lt;<span class="text-red-500">html</span> <span class="text-green-600">lang</span>=<span class="text-yellow-600">"en"</span>&gt;<br>
+                            &lt;<span class="text-red-500">head</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">meta</span> <span class="text-green-600">charset</span>=<span class="text-yellow-600">"UTF-8"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">meta</span> <span class="text-green-600">name</span>=<span class="text-yellow-600">"viewport"</span> <span class="text-green-600">content</span>=<span class="text-yellow-600">"width=device-width, initial-scale=1"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">title</span>&gt;Contoh Bootstrap&lt;/<span class="text-red-500">title</span>&gt;<br>
+                            &nbsp;&nbsp;<span class="text-gray-500">&lt;!-- CSS Bootstrap --&gt;</span><br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">link</span> <span class="text-green-600">href</span>=<span class="text-yellow-600">"https://cdn.jsdelivr.net/npm/<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="791b16160d0a0d0b1809394c574a5749">[email&#160;protected]</a>/dist/css/bootstrap.min.css"</span> <span class="text-green-600">rel</span>=<span class="text-yellow-600">"stylesheet"</span>&gt;<br>
+                            &lt;/<span class="text-red-500">head</span>&gt;<br>
+                            &lt;<span class="text-red-500">body</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"container my-5"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">h1</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"text-center mb-4"</span>&gt;Selamat Datang&lt;/<span class="text-red-500">h1</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"row"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"col-md-6"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"card"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"card-body"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">h5</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"card-title"</span>&gt;Judul Card&lt;/<span class="text-red-500">h5</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">p</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"card-text"</span>&gt;Ini adalah contoh card Bootstrap.&lt;/<span class="text-red-500">p</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">a</span> <span class="text-green-600">href</span>=<span class="text-yellow-600">"#"</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"btn btn-primary"</span>&gt;Tombol&lt;/<span class="text-red-500">a</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;!-- Kolom lainnya --&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            <span class="text-gray-500">&lt;!-- JS Bootstrap --&gt;</span><br>
+                            &lt;<span class="text-red-500">script</span> <span class="text-green-600">src</span>=<span class="text-yellow-600">"https://cdn.jsdelivr.net/npm/<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f6d60607b7c7b7d6e7f4f3a213c213f">[email&#160;protected]</a>/dist/js/bootstrap.bundle.min.js"</span>&gt;&lt;/<span class="text-red-500">script</span>&gt;<br>
+                            &lt;/<span class="text-red-500">body</span>&gt;<br>
+                            &lt;/<span class="text-red-500">html</span>&gt;
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Salin kode di atas ke file HTML dan buka di browser untuk melihat hasilnya.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-between gap-4 mt-12 max-w-4xl mx-auto">
+            <a class='btn flex-1 px-6 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg shadow text-center' href='/learn/src/materi/javascript'>
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke JavaScript
+            </a>
+            <a class='btn flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+            <a class='btn flex-1 px-6 py-3 bg-purple-50 hover:bg-purple-100 text-purple-600 rounded-lg shadow text-center' href='/learn/src/materi/tailwind'>
+                Lanjut ke Tailwind <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                © 2025 Pemrograman Web
+            </p>
+        </div>
+    </footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar HTML Dasar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .highlight {
+            background-color: #dbeafe;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fab fa-html5 text-orange-500 text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-orange-100 rounded-full mb-4">
+                <i class="fab fa-html5 text-orange-500 text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">HTML</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Struktur dasar dari semua halaman web. Pelajari elemen, tag, atribut, dan cara membangun halaman.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is HTML -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu HTML</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            HTML (HyperText Markup Language) adalah bahasa markup standar untuk membuat halaman web. HTML mendeskripsikan struktur halaman web menggunakan elemen-elemen yang ditandai dengan tag.
+                        </p>
+                        <p class="text-gray-600">
+                            HTML bukanlah bahasa pemrograman, melainkan bahasa markup yang digunakan untuk memberi struktur pada konten web.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Basic Structure -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Struktur Dasar Dokumen HTML</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Setiap dokumen HTML memiliki struktur dasar yang terdiri dari beberapa bagian penting:
+                        </p>
+                        <div class="code-block">
+                            <span class="text-blue-500">&lt;!DOCTYPE html&gt;</span> <span class="text-gray-500">// Deklarasi tipe dokumen</span><br>
+                            &lt;<span class="text-red-500">html</span> <span class="text-green-600">lang</span>=<span class="text-yellow-600">"id"</span>&gt; <span class="text-gray-500">// Elemen root dengan atribut bahasa</span><br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">head</span>&gt; <span class="text-gray-500">// Informasi meta tentang dokumen</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">title</span>&gt;Judul Halaman&lt;/<span class="text-red-500">title</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">meta</span> <span class="text-green-600">charset</span>=<span class="text-yellow-600">"UTF-8"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;/<span class="text-red-500">head</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">body</span>&gt; <span class="text-gray-500">// Konten yang ditampilkan di browser</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;!-- Konten halaman di sini --&gt;</span><br>
+                            &nbsp;&nbsp;&lt;/<span class="text-red-500">body</span>&gt;<br>
+                            &lt;/<span class="text-red-500">html</span>&gt;
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Common Tags -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Tag-Tag HTML Umum</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-orange-500">1. Tag Dasar</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="py-3 px-4 text-left">Tag</th>
+                                            <th class="py-3 px-4 text-left">Fungsi</th>
+                                            <th class="py-3 px-4 text-left">Contoh</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="py-3 px-4 font-mono">&lt;html&gt;</td>
+                                            <td class="py-3 px-4">Elemen root dokumen HTML</td>
+                                            <td class="py-3 px-4 font-mono text-sm">&lt;html&gt;...&lt;/html&gt;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 px-4 font-mono">&lt;head&gt;</td>
+                                            <td class="py-3 px-4">Berisi metadata dokumen</td>
+                                            <td class="py-3 px-4 font-mono text-sm">&lt;head&gt;...&lt;/head&gt;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 px-4 font-mono">&lt;body&gt;</td>
+                                            <td class="py-3 px-4">Berisi konten halaman</td>
+                                            <td class="py-3 px-4 font-mono text-sm">&lt;body&gt;...&lt;/body&gt;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-orange-500">2. Tag Konten</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="py-3 px-4 text-left">Tag</th>
+                                            <th class="py-3 px-4 text-left">Fungsi</th>
+                                            <th class="py-3 px-4 text-left">Contoh</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="py-3 px-4 font-mono">&lt;h1&gt; - &lt;h6&gt;</td>
+                                            <td class="py-3 px-4">Heading level 1-6</td>
+                                            <td class="py-3 px-4 font-mono text-sm">&lt;h1&gt;Judul&lt;/h1&gt;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 px-4 font-mono">&lt;p&gt;</td>
+                                            <td class="py-3 px-4">Paragraf teks</td>
+                                            <td class="py-3 px-4 font-mono text-sm">&lt;p&gt;Paragraf...&lt;/p&gt;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 px-4 font-mono">&lt;a&gt;</td>
+                                            <td class="py-3 px-4">Link/Anchor</td>
+                                            <td class="py-3 px-4 font-mono text-sm">&lt;a href="..."&gt;Link&lt;/a&gt;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 px-4 font-mono">&lt;img&gt;</td>
+                                            <td class="py-3 px-4">Gambar</td>
+                                            <td class="py-3 px-4 font-mono text-sm">&lt;img src="..." alt="..."&gt;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 px-4 font-mono">&lt;div&gt;</td>
+                                            <td class="py-3 px-4">Pembungkus blok</td>
+                                            <td class="py-3 px-4 font-mono text-sm">&lt;div&gt;...&lt;/div&gt;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 px-4 font-mono">&lt;span&gt;</td>
+                                            <td class="py-3 px-4">Pembungkus inline</td>
+                                            <td class="py-3 px-4 font-mono text-sm">&lt;span&gt;...&lt;/span&gt;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Common Attributes -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Atribut Umum HTML</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Atribut memberikan informasi tambahan tentang elemen HTML dan biasanya muncul dalam tag pembuka.
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Atribut</th>
+                                        <th class="py-3 px-4 text-left">Fungsi</th>
+                                        <th class="py-3 px-4 text-left">Contoh</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">id</td>
+                                        <td class="py-3 px-4">Pengidentifikasi unik untuk elemen</td>
+                                        <td class="py-3 px-4 font-mono text-sm">&lt;div id="header"&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">class</td>
+                                        <td class="py-3 px-4">Nama kelas untuk styling/seleksi</td>
+                                        <td class="py-3 px-4 font-mono text-sm">&lt;p class="intro"&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">href</td>
+                                        <td class="py-3 px-4">URL tujuan untuk link</td>
+                                        <td class="py-3 px-4 font-mono text-sm">&lt;a href="..."&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">src</td>
+                                        <td class="py-3 px-4">Sumber untuk gambar/script</td>
+                                        <td class="py-3 px-4 font-mono text-sm">&lt;img src="..."&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">alt</td>
+                                        <td class="py-3 px-4">Teks alternatif untuk gambar</td>
+                                        <td class="py-3 px-4 font-mono text-sm">&lt;img alt="..."&gt;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Example Code -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Contoh Kode HTML Sederhana</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut contoh lengkap halaman HTML sederhana yang bisa Anda salin dan coba:
+                        </p>
+                        <div class="code-block">
+                            <span class="text-blue-500">&lt;!DOCTYPE html&gt;</span><br>
+                            &lt;<span class="text-red-500">html</span> <span class="text-green-600">lang</span>=<span class="text-yellow-600">"id"</span>&gt;<br>
+                            &lt;<span class="text-red-500">head</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">title</span>&gt;Halaman Pertamaku&lt;/<span class="text-red-500">title</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">meta</span> <span class="text-green-600">charset</span>=<span class="text-yellow-600">"UTF-8"</span>&gt;<br>
+                            &lt;/<span class="text-red-500">head</span>&gt;<br>
+                            &lt;<span class="text-red-500">body</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">h1</span>&gt;Selamat Datang!&lt;/<span class="text-red-500">h1</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">p</span>&gt;Ini adalah halaman HTML pertamaku.&lt;/<span class="text-red-500">p</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">img</span> <span class="text-green-600">src</span>=<span class="text-yellow-600">"gambar.jpg"</span> <span class="text-green-600">alt</span>=<span class="text-yellow-600">"Deskripsi gambar"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">a</span> <span class="text-green-600">href</span>=<span class="text-yellow-600">"https://contoh.com"</span>&gt;Kunjungi Contoh.com&lt;/<span class="text-red-500">a</span>&gt;<br>
+                            &lt;/<span class="text-red-500">body</span>&gt;<br>
+                            &lt;/<span class="text-red-500">html</span>&gt;
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Salin kode di atas ke file dengan ekstensi .html dan buka di browser untuk melihat hasilnya.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-between gap-4 mt-12 max-w-4xl mx-auto">
+            <a class='btn flex-1 px-6 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg shadow text-center' href='./Home.html'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+            <a class='btn flex-1 px-6 py-3 bg-orange-50 hover:bg-orange-100 text-orange-600 rounded-lg shadow text-center' href='materi/css'>
+                Lanjut ke CSS <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                © 2025 Pemrograman Web
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

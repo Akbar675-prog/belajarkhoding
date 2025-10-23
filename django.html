@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .highlight {
+            background-color: #dbeafe;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .django-icon {
+            color: #092e20;
+        }
+        
+        .btn-nav {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-2px);
+        }
+        
+        .tab-button {
+            padding: 8px 16px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #64748b;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-button.active {
+            color: #3b82f6;
+            border-bottom: 2px solid #3b82f6;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fab fa-python django-icon text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-blue-100 rounded-full mb-4">
+                <i class="fab fa-python django-icon text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Django</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Framework backend berbasis Python yang kuat dan lengkap. 
+                Pelajari struktur proyek Django, routing (URLconf), views, dan template.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is Django -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu Django?</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Django adalah framework web Python tingkat tinggi yang mendorong pengembangan cepat dan desain bersih. 
+                            Django mengikuti filosofi "batteries included" dengan menyediakan hampir semua yang dibutuhkan 
+                            untuk membangun aplikasi web modern.
+                        </p>
+                        <p class="text-gray-600">
+                            Keunggulan Django dibanding framework lainnya:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li><strong>Admin otomatis</strong>: Antarmuka admin yang bisa dikustomisasi</li>
+                            <li><strong>ORM kuat</strong>: Bekerja dengan database tanpa menulis SQL</li>
+                            <li><strong>Sistem template</strong>: Template engine yang fleksibel</li>
+                            <li><strong>Keamanan</strong>: Perlindungan bawaan terhadap banyak serangan web</li>
+                            <li><strong>Skalabilitas</strong>: Digunakan oleh situs besar seperti Instagram</li>
+                            <li><strong>Dokumentasi lengkap</strong>: Salah satu dokumentasi terbaik di dunia open source</li>
+                        </ul>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-blue-800 mb-2">Kapan menggunakan Django?</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>Aplikasi web dengan database kompleks</li>
+                                <li>Sistem manajemen konten (CMS)</li>
+                                <li>Aplikasi e-commerce</li>
+                                <li>Situs berita atau portal</li>
+                                <li>API backend</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Installation -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Instalasi Django</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Sebelum menginstal Django, pastikan Python sudah terinstal di sistem Anda. 
+                            Django kompatibel dengan Python 3.6 atau yang lebih baru.
+                        </p>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <h3 class="font-medium text-blue-800 mb-2">Langkah-langkah instalasi:</h3>
+                            <ol class="list-decimal pl-5 text-gray-700 space-y-1">
+                                <li>Pastikan Python sudah terinstal:
+                                    <div class="code-block mt-2">
+                                        python --version
+                                    </div>
+                                </li>
+                                <li>Buat virtual environment (disarankan):
+                                    <div class="code-block mt-2">
+                                        python -m venv env
+                                    </div>
+                                </li>
+                                <li>Aktifkan virtual environment:
+                                    <div class="code-block mt-2">
+                                        <span class="text-gray-500"># Windows</span><br>
+                                        env\Scripts\activate<br><br>
+                                        
+                                        <span class="text-gray-500"># Mac/Linux</span><br>
+                                        source env/bin/activate
+                                    </div>
+                                </li>
+                                <li>Instal Django menggunakan pip:
+                                    <div class="code-block mt-2">
+                                        pip install django
+                                    </div>
+                                </li>
+                                <li>Verifikasi instalasi:
+                                    <div class="code-block mt-2">
+                                        django-admin --version
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Persyaratan Sistem:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>Python ≥ 3.6</li>
+                                <li>Pip (biasanya sudah termasuk dengan Python)</li>
+                                <li>Text editor atau IDE</li>
+                                <li>Terminal/command prompt</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Creating Project -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Membuat Proyek Django</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Setelah Django terinstal, Anda bisa membuat proyek baru dengan perintah berikut:
+                        </p>
+                        
+                        <div class="code-block">
+                            django-admin startproject namaprojek
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Perintah ini akan membuat struktur folder dasar untuk proyek Django Anda.
+                        </p>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-green-800 mb-2">Menjalankan Server Pengembangan:</h3>
+                            <p class="text-gray-700 mb-2">
+                                Masuk ke folder proyek dan jalankan server pengembangan:
+                            </p>
+                            <div class="code-block">
+                                <span class="text-gray-500"># Masuk ke folder proyek</span><br>
+                                cd namaprojek<br><br>
+                                
+                                <span class="text-gray-500"># Jalankan server</span><br>
+                                python manage.py runserver
+                            </div>
+                            <p class="text-gray-700 mt-2">
+                                Server akan berjalan di <a href="http://127.0.0.1:8000" class="text-blue-600 hover:underline">http://127.0.0.1:8000</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project Structure -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Struktur Folder Django</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut struktur folder yang dibuat oleh perintah <code>startproject</code>:
+                        </p>
+                        
+                        <div class="code-block">
+                            namaprojek/<br>
+                            ├── manage.py          <span class="text-gray-500"># Utilitas command-line</span><br>
+                            ├── namaprojek/<br>
+                            │   ├── __init__.py   <span class="text-gray-500"># File kosong (Python package)</span><br>
+                            │   ├── settings.py   <span class="text-gray-500"># Konfigurasi proyek</span><br>
+                            │   ├── urls.py       <span class="text-gray-500"># URL routing utama</span><br>
+                            │   └── wsgi.py       <span class="text-gray-500"># WSGI config untuk deployment</span>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-blue-800 mb-2">Penjelasan File:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li><strong>manage.py</strong>: Utilitas untuk berinteraksi dengan proyek</li>
+                                <li><strong>settings.py</strong>: Konfigurasi database, aplikasi, middleware, dll</li>
+                                <li><strong>urls.py</strong>: Deklarasi URL untuk proyek</li>
+                                <li><strong>wsgi.py</strong>: Titik masuk untuk server WSGI</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Creating Apps -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Membuat Aplikasi Django</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Django menggunakan konsep "apps" - komponen modular yang bisa digunakan kembali. 
+                            Setiap proyek bisa terdiri dari beberapa aplikasi.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500"># Membuat aplikasi baru</span><br>
+                            python manage.py startapp namaapp
+                        </div>
+                        
+                        <p class="text-gray-600 mt-4">
+                            Struktur folder aplikasi baru:
+                        </p>
+                        
+                        <div class="code-block">
+                            namaapp/<br>
+                            ├── migrations/       <span class="text-gray-500"># File migrasi database</span><br>
+                            ├── __init__.py<br>
+                            ├── admin.py          <span class="text-gray-500"># Konfigurasi admin</span><br>
+                            ├── apps.py           <span class="text-gray-500"># Konfigurasi aplikasi</span><br>
+                            ├── models.py         <span class="text-gray-500"># Model database</span><br>
+                            ├── tests.py          <span class="text-gray-500"># Test cases</span><br>
+                            └── views.py          <span class="text-gray-500"># Logika tampilan</span>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Mendaftarkan Aplikasi:</h3>
+                            <p class="text-gray-700">
+                                Setelah membuat aplikasi, Anda perlu mendaftarkannya di <code>settings.py</code>:
+                            </p>
+                            <div class="code-block">
+                                <span class="text-gray-500"># namaprojek/settings.py</span><br>
+                                INSTALLED_APPS = [<br>
+                                &nbsp;&nbsp;...<br>
+                                &nbsp;&nbsp;'namaapp.apps.NamaappConfig',<br>
+                                &nbsp;&nbsp;...<br>
+                                ]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Routing and Views -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Routing dan Views</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Django menggunakan sistem URL routing yang disebut URLconf. 
+                            Setiap aplikasi bisa memiliki file urls.py sendiri.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500"># namaapp/views.py</span><br>
+                            from django.http import HttpResponse<br><br>
+                            
+                            def index(request):<br>
+                            &nbsp;&nbsp;return HttpResponse("Halo, Django!")<br><br>
+                            
+                            def about(request):<br>
+                            &nbsp;&nbsp;return HttpResponse("Tentang Kami")
+                        </div>
+                        
+                        <div class="code-block mt-4">
+                            <span class="text-gray-500"># namaapp/urls.py</span><br>
+                            from django.urls import path<br>
+                            from . import views<br><br>
+                            
+                            urlpatterns = [<br>
+                            &nbsp;&nbsp;path('', views.index, name='index'),<br>
+                            &nbsp;&nbsp;path('about/', views.about, name='about'),<br>
+                            ]
+                        </div>
+                        
+                        <div class="code-block mt-4">
+                            <span class="text-gray-500"># namaprojek/urls.py</span><br>
+                            from django.contrib import admin<br>
+                            from django.urls import include, path<br><br>
+                            
+                            urlpatterns = [<br>
+                            &nbsp;&nbsp;path('admin/', admin.site.urls),<br>
+                            &nbsp;&nbsp;path('', include('namaapp.urls')),<br>
+                            ]
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-green-800 mb-2">Parameter URL:</h3>
+                            <p class="text-gray-700">
+                                Anda bisa menangkap parameter dari URL:
+                            </p>
+                            <div class="code-block">
+                                <span class="text-gray-500"># urls.py</span><br>
+                                path('produk/&lt;int:produk_id&gt;/', views.produk_detail, name='produk_detail')<br><br>
+                                
+                                <span class="text-gray-500"># views.py</span><br>
+                                def produk_detail(request, produk_id):<br>
+                                &nbsp;&nbsp;return HttpResponse(f"Detail produk {produk_id}")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Templates -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Template Django</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Django memiliki sistem template yang powerful untuk memisahkan tampilan dari logika bisnis.
+                        </p>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <h3 class="font-medium text-blue-800 mb-2">Langkah menggunakan template:</h3>
+                            <ol class="list-decimal pl-5 text-gray-700 space-y-1">
+                                <li>Buat folder <code>templates</code> di dalam aplikasi Anda</li>
+                                <li>Buat file template HTML (contoh: <code>index.html</code>)</li>
+                                <li>Konfigurasi template di <code>settings.py</code></li>
+                                <li>Render template dari view</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500"># namaapp/views.py</span><br>
+                            from django.shortcuts import render<br><br>
+                            
+                            def index(request):<br>
+                            &nbsp;&nbsp;context = {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;'judul': 'Halaman Utama',<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;'daftar_produk': ['Laptop', 'Smartphone', 'Tablet']<br>
+                            &nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;return render(request, 'index.html', context)
+                        </div>
+                        
+                        <div class="code-block mt-4">
+                            <span class="text-gray-500"># namaapp/templates/index.html</span><br>
+                            &lt;!DOCTYPE html&gt;<br>
+                            &lt;html&gt;<br>
+                            &lt;head&gt;<br>
+                            &nbsp;&nbsp;&lt;title&gt;{{ judul }}&lt;/title&gt;<br>
+                            &lt;/head&gt;<br>
+                            &lt;body&gt;<br>
+                            &nbsp;&nbsp;&lt;h1&gt;{{ judul }}&lt;/h1&gt;<br>
+                            &nbsp;&nbsp;&lt;ul&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;{% for produk in daftar_produk %}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;{{ produk }}&lt;/li&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;{% endfor %}<br>
+                            &nbsp;&nbsp;&lt;/ul&gt;<br>
+                            &lt;/body&gt;<br>
+                            &lt;/html&gt;
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-yellow-800 mb-2">Sintaks Template:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li><code>{{ variable }}</code> - Menampilkan nilai variabel</li>
+                                <li><code>{% tag %}</code> - Logika template (for, if, block, etc)</li>
+                                <li><code>{# comment #}</code> - Komentar</li>
+                                <li><code>{% extends "base.html" %}</code> - Template inheritance</li>
+                                <li><code>{% include "partial.html" %}</code> - Include template lain</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Database and Models -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Database dan Model</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Django menyertakan ORM (Object-Relational Mapper) yang memungkinkan Anda bekerja dengan database 
+                            menggunakan kode Python, tanpa harus menulis SQL secara langsung.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500"># namaapp/models.py</span><br>
+                            from django.db import models<br><br>
+                            
+                            class Produk(models.Model):<br>
+                            &nbsp;&nbsp;nama = models.CharField(max_length=100)<br>
+                            &nbsp;&nbsp;deskripsi = models.TextField(blank=True)<br>
+                            &nbsp;&nbsp;harga = models.DecimalField(max_digits=10, decimal_places=2)<br>
+                            &nbsp;&nbsp;stok = models.IntegerField(default=0)<br>
+                            &nbsp;&nbsp;tanggal_dibuat = models.DateTimeField(auto_now_add=True)<br><br>
+                            
+                            &nbsp;&nbsp;def __str__(self):<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;return self.nama
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-blue-800 mb-2">Migrasi Database:</h3>
+                            <p class="text-gray-700">
+                                Setelah membuat model, Anda perlu membuat dan menjalankan migrasi:
+                            </p>
+                            <div class="code-block">
+                                <span class="text-gray-500"># Buat migrasi</span><br>
+                                python manage.py makemigrations<br><br>
+                                
+                                <span class="text-gray-500"># Jalankan migrasi</span><br>
+                                python manage.py migrate
+                            </div>
+                        </div>
+                        
+                        <div class="code-block mt-4">
+                            <span class="text-gray-500"># Menggunakan model di views.py</span><br>
+                            from .models import Produk<br><br>
+                            
+                            def daftar_produk(request):<br>
+                            &nbsp;&nbsp;produk = Produk.objects.all()<br>
+                            &nbsp;&nbsp;return render(request, 'produk/list.html', {'produk': produk})<br><br>
+                            
+                            def tambah_produk(request):<br>
+                            &nbsp;&nbsp;if request.method == 'POST':<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Produk.objects.create(<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nama=request.POST['nama'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;harga=request.POST['harga']<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;return redirect('daftar_produk')<br>
+                            &nbsp;&nbsp;return render(request, 'produk/tambah.html')
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="font-medium text-green-800 mb-2">Admin Django:</h3>
+                            <p class="text-gray-700">
+                                Django menyediakan antarmuka admin otomatis. Untuk menggunakannya:
+                            </p>
+                            <ol class="list-decimal pl-5 text-gray-700 space-y-1">
+                                <li>Buat superuser:
+                                    <div class="code-block mt-2">
+                                        python manage.py createsuperuser
+                                    </div>
+                                </li>
+                                <li>Daftarkan model di admin.py:
+                                    <div class="code-block mt-2">
+                                        from .models import Produk<br>
+                                        admin.site.register(Produk)
+                                    </div>
+                                </li>
+                                <li>Akses admin di <a href="http://127.0.0.1:8000/admin" class="text-blue-600 hover:underline">/admin</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12 max-w-4xl mx-auto">
+            <a href="flask.html" class="btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center">
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke Flask/Python
+            </a>
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+            <a href="database.html" class="btn-nav flex-1 px-6 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg shadow text-center">
+                Lanjut ke Database <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                © 2023 Pemrograman Web
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar React.js</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #61dafb;
+        }
+        
+        .highlight {
+            background-color: #e0f2fe;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .demo-box {
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px dashed #cbd5e1;
+        }
+        
+        .btn-demo {
+            padding: 8px 16px;
+            background-color: #61dafb;
+            color: #1e293b;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-demo:hover {
+            background-color: #38bdf8;
+        }
+        
+        .btn-nav {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-2px);
+        }
+        
+        .react-icon {
+            color: #61dafb;
+            animation: spin 10s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .tab-button {
+            padding: 8px 16px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #64748b;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-button.active {
+            color: #0ea5e9;
+            border-bottom: 2px solid #0ea5e9;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fab fa-react react-icon text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-blue-100 rounded-full mb-4">
+                <i class="fab fa-react react-icon text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">React.js</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Library JavaScript untuk membangun antarmuka pengguna (UI) interaktif. 
+                Pelajari komponen, props, state, dan JSX.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is React -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu React.js?</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            React.js adalah library JavaScript open-source yang dikembangkan oleh Facebook untuk membangun antarmuka pengguna (UI) yang interaktif dan efisien.
+                        </p>
+                        <p class="text-gray-600">
+                            React menggunakan konsep komponen yang dapat digunakan kembali, membuat pengembangan UI menjadi lebih modular dan mudah dikelola.
+                        </p>
+                        <p class="text-gray-600">
+                            Keunggulan React.js:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li><strong>Komponen</strong>: Membangun UI dengan komponen yang dapat digunakan kembali</li>
+                            <li><strong>Virtual DOM</strong>: Meningkatkan performa dengan meminimalkan manipulasi DOM langsung</li>
+                            <li><strong>JSX</strong>: Sintaks seperti HTML yang memudahkan penulisan komponen</li>
+                            <li><strong>Unidirectional Data Flow</strong>: Aliran data satu arah yang mudah dipahami</li>
+                            <li><strong>Ekosistem Kaya</strong>: Banyak library pendukung seperti React Router, Redux, dll</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Installation -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Memulai dengan React</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-600">1. Menggunakan CDN (Untuk Belajar)</h3>
+                            <p class="text-gray-600 mb-2">Tambahkan script React ke HTML Anda:</p>
+                            <div class="code-block">
+                                <span class="text-gray-500">&lt;!-- Load React --&gt;</span><br>
+                                &lt;<span class="text-red-500">script</span> <span class="text-green-600">src</span>=<span class="text-yellow-600">"https://unpkg.com/react@18/umd/react.development.js"</span>&gt;&lt;/<span class="text-red-500">script</span>&gt;<br>
+                                &lt;<span class="text-red-500">script</span> <span class="text-green-600">src</span>=<span class="text-yellow-600">"https://unpkg.com/react-dom@18/umd/react-dom.development.js"</span>&gt;&lt;/<span class="text-red-500">script</span>&gt;<br>
+                                &lt;<span class="text-red-500">script</span> <span class="text-green-600">src</span>=<span class="text-yellow-600">"https://unpkg.com/@babel/standalone/babel.min.js"</span>&gt;&lt;/<span class="text-red-500">script</span>&gt;
+                            </div>
+                            <p class="text-gray-600 text-sm mt-2">Catatan: CDN hanya untuk pembelajaran, tidak direkomendasikan untuk produksi.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-600">2. Create React App (Direkomendasikan)</h3>
+                            <p class="text-gray-600 mb-2">Buat proyek React baru dengan perintah:</p>
+                            <div class="code-block">
+                                npx create-react-app nama-aplikasi<br>
+                                cd nama-aplikasi<br>
+                                npm start
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-600">3. Menggunakan Vite (Alternatif Cepat)</h3>
+                            <p class="text-gray-600 mb-2">Vite adalah build tool modern yang lebih cepat:</p>
+                            <div class="code-block">
+                                npm create vite@latest nama-aplikasi --template react<br>
+                                cd nama-aplikasi<br>
+                                npm install<br>
+                                npm run dev
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Components -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Komponen React</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Komponen adalah blok bangunan dasar dalam React. Ada dua jenis komponen:
+                        </p>
+                        
+                        <div class="flex border-b mb-4">
+                            <button class="tab-button active" onclick="switchTab('function-component')">Function Component</button>
+                            <button class="tab-button" onclick="switchTab('class-component')">Class Component</button>
+                        </div>
+                        
+                        <div id="function-component" class="tab-content">
+                            <p class="text-gray-600 mb-2">
+                                Function component adalah cara modern menulis komponen React menggunakan fungsi JavaScript:
+                            </p>
+                            <div class="code-block">
+                                <span class="text-blue-500">import</span> React <span class="text-blue-500">from</span> <span class="text-yellow-600">'react'</span>;<br><br>
+                                <span class="text-blue-500">function</span> <span class="text-green-600">Salam</span>() {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-gray-500">&lt;h1&gt;Halo Dunia!&lt;/h1&gt;</span>;<br>
+                                }<br><br>
+                                <span class="text-blue-500">export</span> <span class="text-blue-500">default</span> Salam;
+                            </div>
+                        </div>
+                        
+                        <div id="class-component" class="tab-content hidden">
+                            <p class="text-gray-600 mb-2">
+                                Class component adalah cara lama yang menggunakan kelas JavaScript (masih digunakan tetapi kurang populer sekarang):
+                            </p>
+                            <div class="code-block">
+                                <span class="text-blue-500">import</span> React <span class="text-blue-500">from</span> <span class="text-yellow-600">'react'</span>;<br><br>
+                                <span class="text-blue-500">class</span> <span class="text-green-600">Salam</span> <span class="text-blue-500">extends</span> React.Component {<br>
+                                &nbsp;&nbsp;<span class="text-green-600">render</span>() {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-gray-500">&lt;h1&gt;Halo Dunia!&lt;/h1&gt;</span>;<br>
+                                &nbsp;&nbsp;}<br>
+                                }<br><br>
+                                <span class="text-blue-500">export</span> <span class="text-blue-500">default</span> Salam;
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mt-4">
+                            Function component lebih sederhana dan direkomendasikan untuk pemula. Dengan React Hooks, function component bisa memiliki state dan lifecycle seperti class component.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- JSX -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">JSX</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            JSX adalah sintaks seperti HTML yang digunakan dalam React untuk mendeskripsikan tampilan UI. JSX bukan HTML atau string, melainkan sintaks khusus yang dikompilasi menjadi JavaScript.
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-blue-500">const</span> element = <span class="text-gray-500">&lt;h1 className="judul"&gt;Halo, dunia!&lt;/h1&gt;</span>;
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Contoh di atas akan dikompilasi menjadi:
+                        </p>
+                        
+                        <div class="code-block">
+                            <span class="text-blue-500">const</span> element = React.createElement(<br>
+                            &nbsp;&nbsp;<span class="text-yellow-600">'h1'</span>,<br>
+                            &nbsp;&nbsp;{ <span class="text-green-600">className</span>: <span class="text-yellow-600">'judul'</span> },<br>
+                            &nbsp;&nbsp;<span class="text-yellow-600">'Halo, dunia!'</span><br>
+                            );
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Aturan penting JSX:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Gunakan <code>className</code> bukan <code>class</code></li>
+                            <li>Gunakan <code>htmlFor</code> bukan <code>for</code></li>
+                            <li>Nama komponen harus diawali huruf kapital</li>
+                            <li>Hanya boleh mengembalikan satu elemen root</li>
+                            <li>Gunakan <code>{ }</code> untuk menyisipkan ekspresi JavaScript</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Props and State -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Props dan State</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-600">Props</h3>
+                            <p class="text-gray-600 mb-2">
+                                Props (properties) adalah cara untuk mengirim data dari komponen parent ke komponen child. Props bersifat read-only dan tidak bisa diubah oleh komponen yang menerimanya.
+                            </p>
+                            <div class="code-block">
+                                <span class="text-blue-500">function</span> <span class="text-green-600">Salam</span>(<span class="text-gray-500">{ nama }</span>) {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-gray-500">&lt;h1&gt;Halo, {nama}!&lt;/h1&gt;</span>;<br>
+                                }<br><br>
+                                <span class="text-blue-500">function</span> <span class="text-green-600">App</span>() {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-gray-500">&lt;Salam nama="Budi" /&gt;</span>;<br>
+                                }
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-600">State</h3>
+                            <p class="text-gray-600 mb-2">
+                                State adalah data yang dimiliki dan dikelola oleh komponen itu sendiri. State bisa berubah dan ketika berubah, komponen akan dirender ulang.
+                            </p>
+                            <div class="code-block">
+                                <span class="text-blue-500">import</span> { useState } <span class="text-blue-500">from</span> <span class="text-yellow-600">'react'</span>;<br><br>
+                                <span class="text-blue-500">function</span> <span class="text-green-600">Counter</span>() {<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">const</span> [count, setCount] = <span class="text-green-600">useState</span>(<span class="text-purple-500">0</span>);<br><br>
+                                &nbsp;&nbsp;<span class="text-blue-500">return</span> (<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;div&gt;</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;p&gt;Count: {count}&lt;/p&gt;</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;button onClick={() =&gt; setCount(count + 1)}&gt;</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tambah<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;/button&gt;</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;/div&gt;</span><br>
+                                &nbsp;&nbsp;);<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Event Handlers -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Event Handler</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            React memiliki sistem event yang disebut SyntheticEvent, yang merupakan wrapper di sekitar event browser asli. Berikut beberapa event handler umum:
+                        </p>
+                        
+                        <div class="demo-box">
+                            <div id="event-demo" class="space-y-4">
+                                <button class="btn-demo" onclick="alert('Tombol diklik!')">onClick Demo</button>
+                                
+                                <div class="mt-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">onChange Demo:</label>
+                                    <input type="text" class="border rounded px-3 py-2 w-full" 
+                                           placeholder="Ketik sesuatu..." 
+                                           onchange="document.getElementById('change-output').textContent = this.value">
+                                    <p class="mt-2 text-sm">Anda mengetik: <span id="change-output" class="font-medium"></span></p>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">onSubmit Demo:</label>
+                                    <form class="border rounded p-4" onsubmit="event.preventDefault(); alert('Form submitted!')">
+                                        <input type="text" class="border rounded px-3 py-2 w-full mb-2" placeholder="Nama">
+                                        <button type="submit" class="btn-demo">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// Contoh event handler dalam React</span><br>
+                            &lt;<span class="text-red-500">button</span> <span class="text-green-600">onClick</span>={<span class="text-blue-500">()</span> => <span class="text-green-600">alert</span>(<span class="text-yellow-600">'Diklik!'</span>)}&gt;<br>
+                            &nbsp;&nbsp;Klik Saya<br>
+                            &lt;/<span class="text-red-500">button</span>&gt;<br><br>
+                            
+                            &lt;<span class="text-red-500">input</span> <span class="text-green-600">type</span>=<span class="text-yellow-600">"text"</span> <span class="text-green-600">onChange</span>={<span class="text-blue-500">(e)</span> => <span class="text-green-600">console</span>.<span class="text-green-600">log</span>(e.target.value)} /&gt;<br><br>
+                            
+                            &lt;<span class="text-red-500">form</span> <span class="text-green-600">onSubmit</span>={<span class="text-blue-500">(e)</span> => {<br>
+                            &nbsp;&nbsp;e.<span class="text-green-600">preventDefault</span>();<br>
+                            &nbsp;&nbsp;<span class="text-green-600">alert</span>(<span class="text-yellow-600">'Form submitted!'</span>);<br>
+                            }}&gt;<br>
+                            &nbsp;&nbsp;<span class="text-gray-500">&lt;!-- form fields --&gt;</span><br>
+                            &lt;/<span class="text-red-500">form</span>&gt;
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Counter Example -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Contoh: Counter Sederhana</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut contoh lengkap komponen counter menggunakan React dengan useState:
+                        </p>
+                        
+                        <div class="demo-box">
+                            <div id="counter-demo" class="text-center">
+                                <h3 class="text-xl font-medium mb-4">Counter: <span id="counter-value">0</span></h3>
+                                <div class="flex justify-center gap-4">
+                                    <button class="btn-demo" onclick="updateCounter(-1)">-1</button>
+                                    <button class="btn-demo" onclick="updateCounter(1)">+1</button>
+                                    <button class="btn-demo bg-red-100 text-red-800" onclick="resetCounter()">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-blue-500">import</span> { useState } <span class="text-blue-500">from</span> <span class="text-yellow-600">'react'</span>;<br><br>
+                            <span class="text-blue-500">function</span> <span class="text-green-600">Counter</span>() {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">const</span> [count, setCount] = <span class="text-green-600">useState</span>(<span class="text-purple-500">0</span>);<br><br>
+                            &nbsp;&nbsp;<span class="text-blue-500">const</span> <span class="text-green-600">tambah</span> = () => <span class="text-green-600">setCount</span>(count + <span class="text-purple-500">1</span>);<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">const</span> <span class="text-green-600">kurang</span> = () => <span class="text-green-600">setCount</span>(count - <span class="text-purple-500">1</span>);<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">const</span> <span class="text-green-600">reset</span> = () => <span class="text-green-600">setCount</span>(<span class="text-purple-500">0</span>);<br><br>
+                            &nbsp;&nbsp;<span class="text-blue-500">return</span> (<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;div className="text-center"&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;h3 className="text-xl font-medium mb-4"&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counter: {count}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;/h3&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;div className="flex justify-center gap-4"&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;button className="btn-demo" onClick={kurang}&gt;</span>-1<span class="text-gray-500">&lt;/button&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;button className="btn-demo" onClick={tambah}&gt;</span>+1<span class="text-gray-500">&lt;/button&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;button className="btn-demo bg-red-100 text-red-800" onClick={reset}&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reset<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;/button&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;/div&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;/div&gt;</span><br>
+                            &nbsp;&nbsp;);<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Project Structure -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Struktur Folder Proyek React</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut struktur folder umum proyek React yang dibuat dengan Create React App:
+                        </p>
+                        
+                        <div class="code-block">
+                            nama-proyek/<br>
+                            ├── node_modules/       <span class="text-gray-500"># Dependensi yang diinstall</span><br>
+                            ├── public/             <span class="text-gray-500"># File statis (HTML, gambar, dll)</span><br>
+                            │   ├── index.html     <span class="text-gray-500"># Template HTML utama</span><br>
+                            │   └── ...<br>
+                            ├── src/               <span class="text-gray-500"># Kode sumber aplikasi</span><br>
+                            │   ├── App.js        <span class="text-gray-500"># Komponen utama</span><br>
+                            │   ├── index.js      <span class="text-gray-500"># Entry point JavaScript</span><br>
+                            │   ├── components/   <span class="text-gray-500"># Komponen-komponen</span><br>
+                            │   ├── pages/        <span class="text-gray-500"># Halaman-halaman</span><br>
+                            │   ├── assets/       <span class="text-gray-500"># Gambar, font, dll</span><br>
+                            │   └── ...<br>
+                            ├── package.json      <span class="text-gray-500"># Konfigurasi proyek dan dependensi</span><br>
+                            └── ...
+                        </div>
+                        
+                        <p class="text-gray-600">
+                            Tips struktur folder:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Kelompokkan komponen berdasarkan fitur, bukan jenis file</li>
+                            <li>Gunakan folder <code>components</code> untuk komponen yang digunakan kembali</li>
+                            <li>Gunakan folder <code>pages</code> untuk komponen yang mewakili halaman</li>
+                            <li>Simpan style terkait dengan komponennya (CSS Modules atau styled-components)</li>
+                            <li>Gunakan konvensi penamaan yang konsisten</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12 max-w-4xl mx-auto">
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi/tailwind'>
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke Tailwind
+            </a>
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                © 2023 Pemrograman Web
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // Update active tab button
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+        }
+        
+        // Counter demo functionality
+        let counter = 0;
+        
+        function updateCounter(value) {
+            counter += value;
+            document.getElementById('counter-value').textContent = counter;
+        }
+        
+        function resetCounter() {
+            counter = 0;
+            document.getElementById('counter-value').textContent = counter;
+        }
+    </script>
+</body>
+</html>

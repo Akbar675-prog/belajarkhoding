@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Aplikasi - Pemrograman Web</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#22d3ee',
+                        dark: '#1e293b',
+                        light: '#f8fafc',
+                        accent: '#10b981',
+                        purple: '#8b5cf6',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                        'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .highlight-box:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        
+        .admin-card {
+            border-left: 4px solid #10b981;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-contact {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-contact:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="font-sans bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-3" href="#">
+                <i class="fas fa-code me-2"></i>Pemrograman Web
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class='nav-link text-dark fw-medium px-3' href='/learn/'>Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium px-3" href="materi/index.html">Materi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class='nav-link text-primary fw-medium px-3' href='/learn/src/'>Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class='nav-link text-dark fw-medium px-3' href='/learn/src/kontak'>Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow-1 py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Page Header -->
+                    <div class="text-center mb-5">
+                        <h1 class="display-4 fw-bold text-dark mb-3">Tentang Aplikasi</h1>
+                        <p class="lead text-muted">Informasi lengkap tentang aplikasi Pemrograman Web</p>
+                    </div>
+                    
+                    <!-- App Info Card -->
+                    <div class="card border-0 shadow-sm mb-5 info-section">
+                        <div class="card-body p-4 p-md-5">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 text-center mb-4 mb-md-0">
+                                    <div class="bg-primary bg-opacity-10 p-4 rounded-circle d-inline-block">
+                                        <i class="fas fa-code text-primary" style="font-size: 3rem;"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h2 class="fw-bold mb-3">Pemrograman Web</h2>
+                                    <p class="lead text-muted mb-4">
+                                        Aplikasi ini dirancang untuk membantu pengguna belajar pemrograman web dasar (HTML, CSS, JavaScript) secara interaktif, terstruktur, dan mudah dipahami.
+                                    </p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <a class='btn btn-outline-primary rounded-pill px-4' href='/learn/'>
+                                            <i class="fas fa-home me-2"></i>Kembali ke Beranda
+                                        </a>
+                                        <a class='btn btn-primary rounded-pill px-4' href='/learn/src/kontak'>
+                                            <i class="fas fa-envelope me-2"></i>Kontak Developer
+                                        </a>
+                                        <a href="download.html" class="btn btn-primary rounded-pill px-4">
+                                            <i class="fas fa-globe me-2"></i>Website
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tujuan Aplikasi -->
+                    <div class="mb-5">
+                        <h2 class="fw-bold mb-4 text-center">
+                            <i class="fas fa-bullseye text-accent me-2"></i>Tujuan Aplikasi
+                        </h2>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm h-100 highlight-box">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="bg-accent bg-opacity-10 p-3 rounded-circle me-3">
+                                                <i class="fas fa-graduation-cap text-accent"></i>
+                                            </div>
+                                            <h3 class="h5 fw-bold mb-0">Pemahaman Dasar</h3>
+                                        </div>
+                                        <p class="text-muted mb-0">
+                                            Membantu pelajar dan pemula memahami dasar-dasar pemrograman web dengan pendekatan yang mudah dipahami.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm h-100 highlight-box">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="bg-purple bg-opacity-10 p-3 rounded-circle me-3">
+                                                <i class="fas fa-book-open text-purple"></i>
+                                            </div>
+                                            <h3 class="h5 fw-bold mb-0">Materi Berkualitas</h3>
+                                        </div>
+                                        <p class="text-muted mb-0">
+                                            Menyediakan materi dan contoh yang jelas, aplikatif, dan terstruktur untuk memudahkan proses belajar.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm h-100 highlight-box">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="bg-secondary bg-opacity-10 p-3 rounded-circle me-3">
+                                                <i class="fas fa-laptop-code text-secondary"></i>
+                                            </div>
+                                            <h3 class="h5 fw-bold mb-0">Praktik Langsung</h3>
+                                        </div>
+                                        <p class="text-muted mb-0">
+                                            Memberikan pengalaman belajar langsung melalui praktik coding dan kuis interaktif untuk menguji pemahaman.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Fitur Unggulan -->
+                    <div class="mb-5">
+                        <h2 class="fw-bold mb-4 text-center">
+                            <i class="fas fa-star text-primary me-2"></i>Fitur Unggulan
+                        </h2>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-start">
+                                            <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                                <i class="fas fa-book text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="h5 fw-bold mb-2">Materi Lengkap</h3>
+                                                <p class="text-muted mb-0">
+                                                    Materi semua bahasa web dasar (HTML, CSS, JavaScript) yang disusun secara terstruktur dari dasar hingga menengah.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-start">
+                                            <div class="bg-purple bg-opacity-10 p-3 rounded-circle me-3">
+                                                <i class="fas fa-pen-fancy text-purple"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="h5 fw-bold mb-2">Latihan & Quiz</h3>
+                                                <p class="text-muted mb-0">
+                                                    Latihan langsung dengan editor kode dan quiz untuk menguji pemahaman Anda tentang materi yang telah dipelajari.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-start">
+                                            <div class="bg-secondary bg-opacity-10 p-3 rounded-circle me-3">
+                                                <i class="fas fa-mobile-alt text-secondary"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="h5 fw-bold mb-2">Responsif</h3>
+                                                <p class="text-muted mb-0">
+                                                    Tampilan modern dan responsif yang nyaman digunakan baik di desktop maupun perangkat mobile.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Platform & Developer -->
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body p-4">
+                                    <h2 class="fw-bold mb-3">
+                                        <i class="fas fa-laptop text-primary me-2"></i>Platform
+                                    </h2>
+                                    <p class="text-muted mb-4">
+                                        Aplikasi ini dibuat untuk digunakan di berbagai browser modern baik di desktop maupun perangkat mobile, sehingga bisa diakses kapan saja dan di mana saja.
+                                    </p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-3">
+                                            <i class="fas fa-desktop fa-2x text-primary"></i>
+                                        </div>
+                                        <div class="me-3">
+                                            <i class="fas fa-laptop fa-2x text-primary"></i>
+                                        </div>
+                                        <div class="me-3">
+                                            <i class="fas fa-tablet-alt fa-2x text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-mobile-alt fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="pengembang">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body p-4">
+                                    <h2 class="fw-bold mb-3">
+                                        <i class="fas fa-user-tie text-accent me-2"></i>Pengembang
+                                    </h2>
+                                    <p class="text-muted mb-4">
+                                        Aplikasi ini dikembangkan oleh tim developer yang berdedikasi untuk membantu proses belajar pemrograman web menjadi lebih mudah dan menyenangkan.
+                                    </p>
+                                    
+                                    <!-- Admin 1 -->
+                                    <div class="card admin-card mb-3">
+                                        <div class="card-body p-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="bg-accent bg-opacity-10 p-2 rounded-circle me-3">
+                                                        <i class="fas fa-user-tie text-accent"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="h6 fw-bold mb-0">@valldev</h4>
+                                                        <p class="text-muted small mb-0">Lead Developer & Educator</p>
+                                                    </div>
+                                                </div>
+                                                <a class='btn btn-sm btn-accent rounded-pill px-3 btn-contact' href='https://wa.me/6289531606677'>
+                                                    <i class="fas fa-envelope me-1"></i>Hubungi Nauval
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Admin 2 -->
+                                    <div class="card admin-card mb-3">
+                                        <div class="card-body p-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="bg-purple bg-opacity-10 p-2 rounded-circle me-3">
+                                                        <i class="fas fa-user-cog text-purple"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="h6 fw-bold mb-0">@fabiodesigner</h4>
+                                                        <p class="text-muted small mb-0">Pemberi desain logo untuk aplikasi kami</p>
+                                                    </div>
+                                                </div>
+                                                <a class='btn btn-sm btn-purple rounded-pill px-3 btn-contact' href='https://wa.me/628123456789'>
+                                                    <i class="fas fa-envelope me-1"></i>Hubungi Fabio
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Admin 3 -->
+                                    <div class="card admin-card mb-3">
+                                        <div class="card-body p-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="bg-primary bg-opacity-10 p-2 rounded-circle me-3">
+                                                        <i class="fas fa-code text-primary"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="h6 fw-bold mb-0">@bulekhaspalemvang</h4>
+                                                        <p class="text-muted small mb-0">Logo designer</p>
+                                                    </div>
+                                                </div>
+                                                <a class='btn btn-sm btn-primary rounded-pill px-3 btn-contact' href='https://wa.me/628881272234'>
+                                                    <i class="fas fa-envelope me-1"></i>Hubungi Hosea
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Admin 4 -->
+                                    <div class="card admin-card mb-3">
+                                        <div class="card-body p-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="bg-secondary bg-opacity-10 p-2 rounded-circle me-3">
+                                                        <i class="fas fa-database text-secondary"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="h6 fw-bold mb-0">@ocitdesigner</h4>
+                                                        <p class="text-muted small mb-0">Backend Developer</p>
+                                                    </div>
+                                                </div>
+                                                <a class='btn btn-sm btn-secondary rounded-pill px-3 btn-contact' href='https://wa.me/6285974819795'>
+                                                    <i class="fas fa-envelope me-1"></i>Hubungi
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">© 2025 Pemrograman Web | Dibuat oleh nauval</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Tambahkan efek hover pada kartu admin
+        document.addEventListener('DOMContentLoaded', function() {
+            const adminCards = document.querySelectorAll('.admin-card');
+            
+            adminCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

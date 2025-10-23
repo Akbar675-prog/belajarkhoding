@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemrograman Web - Belajar Web Development</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#22d3ee',
+                        dark: '#1e293b',
+                        light: '#f8fafc',
+                        accent: '#10b981',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                        'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-reverse': 'float-reverse 5s ease-in-out infinite',
+                        'pulse-slow': 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'float-reverse': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom CSS for animations and transitions */
+        .feature-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .btn-feature {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-feature::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .btn-feature:hover::after {
+            left: 100%;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero-title {
+            background: linear-gradient(90deg, #2563eb, #22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 8s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .shape-blob {
+            background: #2563eb;
+            height: 200px;
+            width: 200px;
+            border-radius: 30% 50% 20% 40%;
+            opacity: 0.1;
+            position: absolute;
+            z-index: -1;
+            filter: blur(40px);
+            animation: transform 20s ease-in-out infinite both alternate;
+        }
+        
+        .shape-blob.one {
+            left: 10%;
+            top: 10%;
+            transform: rotate(180deg);
+        }
+        
+        .shape-blob.two {
+            right: 10%;
+            top: 20%;
+            transform: rotate(90deg);
+        }
+        
+        .shape-blob.three {
+            left: 30%;
+            bottom: 10%;
+            transform: rotate(45deg);
+        }
+        
+        @keyframes transform {
+            0%, 100% { border-radius: 30% 50% 20% 40%; }
+            25% { border-radius: 50% 30% 40% 20%; }
+            50% { border-radius: 40% 20% 50% 30%; }
+            75% { border-radius: 20% 40% 30% 50%; }
+        }
+        
+        .floating-icon {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-icon-reverse {
+            animation: float-reverse 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 overflow-x-hidden">
+    <!-- Floating Background Shapes -->
+    <div class="shape-blob one"></div>
+    <div class="shape-blob two"></div>
+    <div class="shape-blob three"></div>
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a class="flex items-center text-2xl font-bold text-primary" href="#">
+                    <i class="fas fa-code mr-2"></i>
+                    <span class="hover:text-primary-dark transition-colors">Pemrograman Web</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="nav-link text-dark font-medium hover:text-primary transition-colors">Beranda</a>
+                    <a href="#materi" class="nav-link text-dark font-medium hover:text-primary transition-colors">Materi</a>
+                    <a href="#kontak" class="nav-link text-dark font-medium hover:text-primary transition-colors">Kontak</a>
+                    <a href="#info" class="nav-link text-dark font-medium hover:text-primary transition-colors">Tentang</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-primary focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
+                <a href="#" class="block py-2 text-dark font-medium hover:text-primary transition-colors">Beranda</a>
+                <a href="#materi" class="block py-2 text-dark font-medium hover:text-primary transition-colors">Materi</a>
+                <a href="#kontak" class="block py-2 text-dark font-medium hover:text-primary transition-colors">Kontak</a>
+                <a href="#info" class="block py-2 text-dark font-medium hover:text-primary transition-colors">Tentang</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="py-16 md:py-24 relative overflow-hidden">
+            <div class="container mx-auto px-4 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <h1 class="hero-title text-4xl md:text-6xl font-bold mb-6">Pemrograman Web</h1>
+                    <p class="text-xl md:text-2xl text-gray-600 mb-8">Aplikasi belajar web development dasar</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#info" class="btn-feature bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-full shadow-md transition-all duration-300 transform hover:scale-105">
+                            Info Aplikasi
+                        </a>
+                        <a href="#materi" class="btn-feature border border-primary text-primary hover:bg-primary hover:text-white font-medium py-3 px-6 rounded-full shadow-md transition-all duration-300 transform hover:scale-105">
+                            Lihat Materi
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-16 md:mt-24 relative">
+                    <div class="floating-icon absolute -left-10 top-10 text-primary opacity-20 text-6xl">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <div class="floating-icon-reverse absolute -right-10 top-20 text-secondary opacity-20 text-6xl">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <div class="floating-icon absolute left-1/4 bottom-10 text-accent opacity-20 text-6xl">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    
+                    <div class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-100 transform transition-all duration-500 hover:shadow-xl">
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <div class="bg-gray-100 px-4 py-2 rounded-full flex items-center">
+                                <i class="fab fa-html5 text-orange-500 mr-2"></i>
+                                <span>HTML</span>
+                            </div>
+                            <div class="bg-gray-100 px-4 py-2 rounded-full flex items-center">
+                                <i class="fab fa-css3-alt text-blue-500 mr-2"></i>
+                                <span>CSS</span>
+                            </div>
+                            <div class="bg-gray-100 px-4 py-2 rounded-full flex items-center">
+                                <i class="fab fa-js text-yellow-500 mr-2"></i>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="bg-gray-100 px-4 py-2 rounded-full flex items-center">
+                                <i class="fab fa-react text-blue-400 mr-2"></i>
+                                <span>React</span>
+                            </div>
+                            <div class="bg-gray-100 px-4 py-2 rounded-full flex items-center">
+                                <i class="fab fa-node-js text-green-500 mr-2"></i>
+                                <span>Node.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Fitur Belajar</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Temukan semua yang Anda butuhkan untuk memulai perjalanan web development Anda</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Info Aplikasi -->
+                    <div id="info" class="feature-card bg-white rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-info-circle text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark">Info Aplikasi</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Pelajari lebih lanjut tentang aplikasi ini dan cara menggunakannya untuk memaksimalkan pengalaman belajar Anda.</p>
+                        <a class='btn-feature inline-block border border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-5 rounded-full transition-all duration-300' href='./info.html'>
+                            Buka <i class="fas fa-arrow-right ml-2 transition-all duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Materi -->
+                    <div id="materi" class="feature-card bg-white rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-book text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark">Materi Belajar</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Koleksi lengkap materi pembelajaran dasar tentang HTML, CSS, JavaScript dan teknologi web modern.</p>
+                        <a class='btn-feature inline-block border border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-5 rounded-full transition-all duration-300' href='./materi.html'>
+                            Buka <i class="fas fa-arrow-right ml-2 transition-all duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Coder -->
+                    <div id="coder" class="feature-card bg-white rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-code text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark">Coder - Pemrograman Web</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Kode editor HTML, CSS, JavaScript.</p>
+                        <a class='btn-feature inline-block border border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-5 rounded-full transition-all duration-300' href='./codedit.html'>
+                            Buka <i class="fas fa-arrow-right ml-2 transition-all duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Blog -->
+                    <div class="feature-card bg-white rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-comments text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark">Blogsite</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Temukan artikel menarik, tips & trik, dan berita terbaru seputar dunia web development di blog kami.</p>
+                        <a class='btn-feature inline-block border border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-5 rounded-full transition-all duration-300' href='blog.html'>
+                            Mulai Membaca <i class="fas fa-arrow-right ml-2 transition-all duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Quiz -->
+                    <div id="quiz" class="feature-card bg-white rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-question-circle text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark">Quiz</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Uji pemahaman Anda dengan berbagai kuis interaktif yang dirancang untuk mengasah kemampuan coding Anda.</p>
+                        <a class='btn-feature inline-block border border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-5 rounded-full transition-all duration-300' href='./kuis.html'>
+                            Buka <i class="fas fa-arrow-right ml-2 transition-all duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Tools -->
+                    <div id="tools" class="feature-card bg-white rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-tools text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark">DevTools</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Kumpulan alat bantu praktis untuk developer, termasuk generator kode, validator, dan alat debugging.</p>
+                        <a class='btn-feature inline-block border border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-5 rounded-full transition-all duration-300' href='./devtools.html'>
+                            Buka <i class="fas fa-arrow-right ml-2 transition-all duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Kontak -->
+                    <div id="kontak" class="feature-card bg-white rounded-xl p-6 shadow-md hover:shadow-lg border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark">Kontak</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Punya pertanyaan atau masukan? Hubungi tim kami dan dapatkan bantuan yang Anda butuhkan.</p>
+                        <a class='btn-feature inline-block border border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-5 rounded-full transition-all duration-300' href='kontak.html'>
+                            Buka <i class="fas fa-arrow-right ml-2 transition-all duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Siap memulai perjalanan coding Anda?</h2>
+                <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">Bergabunglah dengan ribuan pelajar lainnya yang telah sukses belajar pemrograman web.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="https://discord.gg/xbj9KcVuza" class="inline-block bg-white text-primary hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+                        Join Komunitas Discord <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#materi" class="inline-block border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+                        Lihat Materi
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-code mr-2"></i> Pemrograman Web
+                    </h3>
+                    <p class="text-gray-400">Platform belajar web development terbaik untuk pemula.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Navigasi</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="#materi" class="text-gray-400 hover:text-white transition-colors">Materi</a></li>
+                        <li><a href="#kontak" class="text-gray-400 hover:text-white transition-colors">Kontak</a></li>
+                        <li><a href="#info" class="text-gray-400 hover:text-white transition-colors">Tentang</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Sumber Belajar</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">HTML</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">CSS</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">JavaScript</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Framework</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Kontak</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-2"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d2b3f252329283b3a282f0d2a202c2421632e2220">Akbarnauval2809@gmail.com</a>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-phone mr-2"></i> +62 895-3160-6677
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-map-marker-alt mr-2"></i> Bogor, Jawa Barat, Indonesia
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 Pemrograman Web. All rights reserved. Dibuat oleh nauval untuk kalian belajar.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            featureCards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (cardPosition < screenPosition) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar JavaScript Dasar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #f59e0b;
+        }
+        
+        .highlight {
+            background-color: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .demo-box {
+            padding: 20px;
+            background-color: #fef3c7;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .btn-demo {
+            padding: 8px 16px;
+            background-color: #f59e0b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-demo:hover {
+            background-color: #d97706;
+        }
+        
+        #demo-output {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+        }
+        
+        #color-box {
+            width: 100px;
+            height: 100px;
+            background-color: #f59e0b;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fab fa-js text-yellow-500 text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-yellow-100 rounded-full mb-4">
+                <i class="fab fa-js text-yellow-500 text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">JavaScript</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Bahasa pemrograman untuk membuat website interaktif. Pelajari variabel, fungsi, event, dan manipulasi DOM.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is JavaScript -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu JavaScript?</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            JavaScript adalah bahasa pemrograman yang digunakan untuk membuat halaman web menjadi interaktif. Dengan JavaScript, Anda dapat membuat konten yang dinamis, mengontrol multimedia, menganimasikan gambar, dan banyak hal lainnya.
+                        </p>
+                        <p class="text-gray-600">
+                            JavaScript adalah salah satu dari tiga teknologi inti dalam pengembangan web, bersama dengan HTML (struktur) dan CSS (tampilan).
+                        </p>
+                        <div class="code-block">
+                            <span class="text-gray-500">// Contoh kode JavaScript sederhana</span><br>
+                            <span class="text-blue-500">console</span>.<span class="text-green-600">log</span>(<span class="text-yellow-600">'Halo, Dunia!'</span>);
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Adding JavaScript to HTML -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Cara Menambahkan JavaScript ke HTML</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-yellow-500">1. Inline JavaScript</h3>
+                            <p class="text-gray-600 mb-2">JavaScript langsung ditulis dalam atribut event HTML:</p>
+                            <div class="code-block">
+                                &lt;<span class="text-red-500">button</span> <span class="text-green-600">onclick</span>=<span class="text-yellow-600">"alert('Tombol diklik!')"</span>&gt;
+                                Klik Saya
+                                &lt;/<span class="text-red-500">button</span>&gt;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-yellow-500">2. Internal JavaScript</h3>
+                            <p class="text-gray-600 mb-2">JavaScript ditulis dalam tag <code>&lt;script&gt;</code> di HTML:</p>
+                            <div class="code-block">
+                                &lt;<span class="text-red-500">script</span>&gt;<br>
+                                &nbsp;&nbsp;<span class="text-blue-500">function</span> <span class="text-green-600">tampilkanPesan</span>() {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">alert</span>(<span class="text-yellow-600">'Halo dari JavaScript!'</span>);<br>
+                                &nbsp;&nbsp;}<br>
+                                &lt;/<span class="text-red-500">script</span>&gt;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-yellow-500">3. External JavaScript</h3>
+                            <p class="text-gray-600 mb-2">JavaScript ditulis dalam file terpisah (.js) dan dihubungkan dengan tag <code>&lt;script&gt;</code>:</p>
+                            <div class="code-block">
+                                &lt;<span class="text-red-500">script</span> <span class="text-green-600">src</span>=<span class="text-yellow-600">"script.js"</span>&gt;&lt;/<span class="text-red-500">script</span>&gt;
+                            </div>
+                            <p class="text-gray-600 text-sm mt-2">Isi file script.js:</p>
+                            <div class="code-block">
+                                <span class="text-blue-500">console</span>.<span class="text-green-600">log</span>(<span class="text-yellow-600">'File JavaScript eksternal dimuat!'</span>);
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Variables -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Variabel dalam JavaScript</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Variabel digunakan untuk menyimpan data. JavaScript memiliki 3 cara mendeklarasikan variabel:
+                        </p>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Keyword</th>
+                                        <th class="py-3 px-4 text-left">Contoh</th>
+                                        <th class="py-3 px-4 text-left">Penjelasan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">var</td>
+                                        <td class="py-3 px-4 font-mono text-sm">var nama = "Budi";</td>
+                                        <td class="py-3 px-4">Variabel dengan scope function (sudah jarang digunakan)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">let</td>
+                                        <td class="py-3 px-4 font-mono text-sm">let umur = 20;</td>
+                                        <td class="py-3 px-4">Variabel dengan scope block, nilainya bisa diubah</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">const</td>
+                                        <td class="py-3 px-4 font-mono text-sm">const PI = 3.14;</td>
+                                        <td class="py-3 px-4">Variabel dengan scope block, nilainya tetap (tidak bisa diubah)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="demo-box">
+                            <h3 class="text-lg font-medium mb-2">Coba Variabel</h3>
+                            <button onclick="demoVariables()" class="btn-demo">Jalankan Kode</button>
+                            <div id="var-output" class="mt-2 p-2 bg-white rounded"></div>
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-blue-500">let</span> <span class="text-green-600">nama</span> = <span class="text-yellow-600">'Budi'</span>;<br>
+                            <span class="text-blue-500">let</span> <span class="text-green-600">umur</span> = <span class="text-yellow-600">20</span>;<br>
+                            <span class="text-blue-500">const</span> <span class="text-green-600">PI</span> = <span class="text-yellow-600">3.14</span>;<br><br>
+                            
+                            <span class="text-blue-500">console</span>.<span class="text-green-600">log</span>(<span class="text-yellow-600">`Halo, nama saya ${nama}, umur ${umur}`</span>);
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Functions -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Fungsi dalam JavaScript</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Fungsi adalah blok kode yang dirancang untuk melakukan tugas tertentu. Fungsi dijalankan ketika "dipanggil".
+                        </p>
+                        
+                        <h3 class="text-lg font-medium mt-4 text-yellow-500">1. Function Declaration</h3>
+                        <div class="code-block">
+                            <span class="text-blue-500">function</span> <span class="text-green-600">sapa</span>(<span class="text-green-600">nama</span>) {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">return</span> <span class="text-yellow-600">`Halo, ${nama}!`</span>;<br>
+                            }<br><br>
+                            
+                            <span class="text-blue-500">console</span>.<span class="text-green-600">log</span>(<span class="text-green-600">sapa</span>(<span class="text-yellow-600">'Ani'</span>)); <span class="text-gray-500">// Output: Halo, Ani!</span>
+                        </div>
+                        
+                        <h3 class="text-lg font-medium mt-4 text-yellow-500">2. Function Expression</h3>
+                        <div class="code-block">
+                            <span class="text-blue-500">const</span> <span class="text-green-600">tambah</span> = <span class="text-blue-500">function</span>(<span class="text-green-600">a, b</span>) {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">return</span> a + b;<br>
+                            };<br><br>
+                            
+                            <span class="text-blue-500">console</span>.<span class="text-green-600">log</span>(<span class="text-green-600">tambah</span>(<span class="text-yellow-600">5, 3</span>)); <span class="text-gray-500">// Output: 8</span>
+                        </div>
+                        
+                        <div class="demo-box">
+                            <h3 class="text-lg font-medium mb-2">Coba Fungsi</h3>
+                            <div class="flex gap-2">
+                                <input type="number" id="num1" placeholder="Angka 1" class="p-2 border rounded">
+                                <input type="number" id="num2" placeholder="Angka 2" class="p-2 border rounded">
+                                <button onclick="demoFunction()" class="btn-demo">Hitung</button>
+                            </div>
+                            <div id="func-output" class="mt-2 p-2 bg-white rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Events -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Event dalam JavaScript</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Event adalah tindakan atau kejadian yang terjadi pada halaman web, seperti klik mouse, input keyboard, dll. JavaScript dapat "mendengarkan" event ini dan meresponsnya.
+                        </p>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Event</th>
+                                        <th class="py-3 px-4 text-left">Penjelasan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">onclick</td>
+                                        <td class="py-3 px-4">Ketika elemen diklik</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">onmouseover</td>
+                                        <td class="py-3 px-4">Ketika mouse berada di atas elemen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">onmouseout</td>
+                                        <td class="py-3 px-4">Ketika mouse meninggalkan elemen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">onkeydown</td>
+                                        <td class="py-3 px-4">Ketika tombol keyboard ditekan</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">onload</td>
+                                        <td class="py-3 px-4">Ketika halaman selesai dimuat</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="demo-box">
+                            <h3 class="text-lg font-medium mb-2">Coba Event</h3>
+                            <button onclick="demoClick()" class="btn-demo">Klik Saya</button>
+                            <div 
+                                onmouseover="demoMouseOver(this)" 
+                                onmouseout="demoMouseOut(this)" 
+                                class="mt-4 p-4 bg-yellow-100 rounded cursor-pointer">
+                                Arahkan mouse ke sini
+                            </div>
+                            <div id="event-output" class="mt-2 p-2 bg-white rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- DOM Manipulation -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Manipulasi DOM</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            DOM (Document Object Model) adalah representasi dari halaman web yang dapat dimanipulasi dengan JavaScript. Dengan DOM, kita bisa mengubah konten, struktur, dan style halaman web.
+                        </p>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Method</th>
+                                        <th class="py-3 px-4 text-left">Penjelasan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">getElementById()</td>
+                                        <td class="py-3 px-4">Memilih elemen berdasarkan ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">querySelector()</td>
+                                        <td class="py-3 px-4">Memilih elemen pertama yang cocok dengan selector CSS</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">innerHTML</td>
+                                        <td class="py-3 px-4">Mengubah konten HTML dalam elemen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">style.property</td>
+                                        <td class="py-3 px-4">Mengubah style CSS elemen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">addEventListener()</td>
+                                        <td class="py-3 px-4">Menambahkan event handler ke elemen</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="demo-box">
+                            <h3 class="text-lg font-medium mb-2">Coba Manipulasi DOM</h3>
+                            <div class="flex gap-2 mb-4">
+                                <button onclick="changeText()" class="btn-demo">Ubah Teks</button>
+                                <button onclick="changeColor()" class="btn-demo">Ubah Warna</button>
+                                <button onclick="resetDemo()" class="btn-demo">Reset</button>
+                            </div>
+                            <div id="dom-demo" class="p-4 bg-white rounded">
+                                <p id="demo-text">Ini adalah contoh teks yang akan diubah.</p>
+                                <div id="color-box"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-gray-500">// Mengubah teks dalam elemen</span><br>
+                            <span class="text-blue-500">document</span>.<span class="text-green-600">getElementById</span>(<span class="text-yellow-600">'demo-text'</span>).<span class="text-green-600">innerHTML</span> = <span class="text-yellow-600">'Teks baru!'</span>;<br><br>
+                            
+                            <span class="text-gray-500">// Mengubah warna background</span><br>
+                            <span class="text-blue-500">document</span>.<span class="text-green-600">getElementById</span>(<span class="text-yellow-600">'color-box'</span>).<span class="text-green-600">style</span>.<span class="text-green-600">backgroundColor</span> = <span class="text-yellow-600">'blue'</span>;
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Example Code -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Contoh Kode JavaScript Sederhana</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut contoh file JavaScript sederhana yang bisa Anda salin dan coba:
+                        </p>
+                        <div class="code-block">
+                            <span class="text-gray-500">// script.js - Contoh file JavaScript eksternal</span><br><br>
+                            
+                            <span class="text-gray-500">// Deklarasi variabel</span><br>
+                            <span class="text-blue-500">const</span> <span class="text-green-600">nama</span> = <span class="text-yellow-600">'Budi'</span>;<br>
+                            <span class="text-blue-500">let</span> <span class="text-green-600">umur</span> = <span class="text-yellow-600">20</span>;<br><br>
+                            
+                            <span class="text-gray-500">// Fungsi untuk menampilkan pesan</span><br>
+                            <span class="text-blue-500">function</span> <span class="text-green-600">tampilkanPesan</span>() {<br>
+                            &nbsp;&nbsp;<span class="text-blue-500">alert</span>(<span class="text-yellow-600">`Halo ${nama}, kamu ${umur} tahun!`</span>);<br>
+                            }<br><br>
+                            
+                            <span class="text-gray-500">// Event listener untuk tombol</span><br>
+                            <span class="text-blue-500">document</span>.<span class="text-green-600">getElementById</span>(<span class="text-yellow-600">'tombol-saya'</span>).<span class="text-green-600">addEventListener</span>(<span class="text-yellow-600">'click'</span>, <span class="text-green-600">tampilkanPesan</span>);<br><br>
+                            
+                            <span class="text-gray-500">// Mengubah style elemen</span><br>
+                            <span class="text-blue-500">document</span>.<span class="text-green-600">querySelector</span>(<span class="text-yellow-600">'.kotak'</span>).<span class="text-green-600">style</span>.<span class="text-green-600">backgroundColor</span> = <span class="text-yellow-600">'#f59e0b'</span>;
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Salin kode di atas ke file dengan ekstensi .js dan hubungkan ke HTML Anda untuk melihat hasilnya.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-between gap-4 mt-12 max-w-4xl mx-auto">
+            <a class='btn flex-1 px-6 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg shadow text-center' href='/learn/src/materi/css'>
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke CSS
+            </a>
+            <a class='btn flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+            <a class='btn flex-1 px-6 py-3 bg-purple-50 hover:bg-purple-100 text-purple-600 rounded-lg shadow text-center' href='/learn/src/materi/bootstrap'>
+                Lanjut ke Bootstrap <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                © 2025 Pemrograman Web
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Demo Variables
+        function demoVariables() {
+            let nama = 'Ani';
+            let umur = 22;
+            const PI = 3.14;
+            
+            document.getElementById('var-output').innerHTML = `
+                <p>Nama: ${nama}</p>
+                <p>Umur: ${umur}</p>
+                <p>Nilai PI: ${PI}</p>
+                <p class="text-sm mt-2">Lihat hasil di console juga!</p>
+            `;
+            
+            console.log(`Halo, nama saya ${nama}, umur ${umur}`);
+        }
+        
+        // Demo Function
+        function demoFunction() {
+            const num1 = parseFloat(document.getElementById('num1').value) || 0;
+            const num2 = parseFloat(document.getElementById('num2').value) || 0;
+            
+            const hasil = num1 + num2;
+            
+            document.getElementById('func-output').innerHTML = `
+                <p>Hasil ${num1} + ${num2} = ${hasil}</p>
+            `;
+        }
+        
+        // Demo Events
+        function demoClick() {
+            document.getElementById('event-output').innerHTML = `
+                <p>Tombol diklik!</p>
+            `;
+        }
+        
+        function demoMouseOver(element) {
+            element.style.backgroundColor = '#fcd34d';
+            document.getElementById('event-output').innerHTML += `
+                <p>Mouse berada di atas elemen</p>
+            `;
+        }
+        
+        function demoMouseOut(element) {
+            element.style.backgroundColor = '#fef3c7';
+            document.getElementById('event-output').innerHTML += `
+                <p>Mouse meninggalkan elemen</p>
+            `;
+        }
+        
+        // Demo DOM Manipulation
+        function changeText() {
+            document.getElementById('demo-text').textContent = 'Teks telah diubah menggunakan JavaScript!';
+        }
+        
+        function changeColor() {
+            const colors = ['#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ec4899'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.getElementById('color-box').style.backgroundColor = randomColor;
+        }
+        
+        function resetDemo() {
+            document.getElementById('demo-text').textContent = 'Ini adalah contoh teks yang akan diubah.';
+            document.getElementById('color-box').style.backgroundColor = '#f59e0b';
+        }
+    </script>
+</body>
+</html>

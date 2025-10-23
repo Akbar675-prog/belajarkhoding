@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Tailwind CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #7c3aed;
+        }
+        
+        .highlight {
+            background-color: #ede9fe;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .demo-box {
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px dashed #cbd5e1;
+        }
+        
+        .btn-demo {
+            padding: 8px 16px;
+            background-color: #7c3aed;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-demo:hover {
+            background-color: #6d28d9;
+        }
+        
+        .btn-nav {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-paint-brush text-purple-600 text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-purple-100 rounded-full mb-4">
+                <i class="fas fa-paint-brush text-purple-600 text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Tailwind CSS</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Framework CSS berbasis utility-first untuk membuat desain cepat dan konsisten langsung di HTML. 
+                Pelajari class, layout, dan customisasi Tailwind.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is Tailwind -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu Tailwind CSS?</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Tailwind CSS adalah framework CSS utility-first yang memungkinkan Anda membangun desain kustom langsung di markup HTML Anda, tanpa harus menulis CSS kustom.
+                        </p>
+                        <p class="text-gray-600">
+                            Berbeda dengan framework seperti Bootstrap yang menyediakan komponen siap pakai, Tailwind memberikan kelas utilitas tingkat rendah yang dapat Anda gabungkan untuk membuat desain yang unik.
+                        </p>
+                        <p class="text-gray-600">
+                            Keunggulan Tailwind CSS:
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Utility-first: Ribuan kelas utilitas untuk styling cepat</li>
+                            <li>Responsif: Prefix seperti <code class="bg-gray-100 px-1 rounded">md:</code>, <code class="bg-gray-100 px-1 rounded">lg:</code> untuk desain responsif</li>
+                            <li>Customizable: Mudah dikonfigurasi melalui file konfigurasi</li>
+                            <li>Produktif: Mempercepat proses development UI</li>
+                            <li>Ringan: Hanya menghasilkan CSS yang Anda gunakan</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Installation -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Instalasi Tailwind CSS</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-600">1. Menggunakan CDN (Cara Paling Cepat)</h3>
+                            <p class="text-gray-600 mb-2">Tambahkan script Tailwind ke HTML Anda:</p>
+                            <div class="code-block">
+                                <span class="text-gray-500">&lt;!-- CSS Tailwind via CDN --&gt;</span><br>
+                                &lt;<span class="text-red-500">script</span> <span class="text-green-600">src</span>=<span class="text-yellow-600">"https://cdn.tailwindcss.com"</span>&gt;&lt;/<span class="text-red-500">script</span>&gt;
+                            </div>
+                            <p class="text-gray-600 text-sm mt-2">Catatan: CDN tidak direkomendasikan untuk produksi karena ukuran file besar dan tidak ada customisasi.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-600">2. Instalasi via npm (Direkomendasikan)</h3>
+                            <div class="code-block">
+                                npm install -D tailwindcss<br>
+                                npx tailwindcss init
+                            </div>
+                            <p class="text-gray-600 mt-2">Kemudian buat file CSS utama Anda dan tambahkan:</p>
+                            <div class="code-block">
+                                <span class="text-blue-500">@tailwind</span> base;<br>
+                                <span class="text-blue-500">@tailwind</span> components;<br>
+                                <span class="text-blue-500">@tailwind</span> utilities;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-600">3. Menggunakan CLI</h3>
+                            <p class="text-gray-600 mb-2">Tailwind menyediakan CLI untuk build CSS:</p>
+                            <div class="code-block">
+                                npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Utility Classes -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Utility Class Tailwind</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-600">1. Spacing (Padding & Margin)</h3>
+                            <p class="text-gray-600 mb-2">Tailwind menggunakan sistem spacing yang konsisten:</p>
+                            <div class="demo-box">
+                                <div class="p-4 bg-purple-100 mb-4">Padding semua sisi (p-4)</div>
+                                <div class="px-4 py-2 bg-purple-100 mb-4">Padding horizontal & vertikal (px-4 py-2)</div>
+                                <div class="ml-8 pl-4 border-l-2 border-purple-300">Margin kiri 8 unit (ml-8)</div>
+                            </div>
+                            <div class="code-block">
+                                <span class="text-gray-500">&lt;!-- Contoh spacing --&gt;</span><br>
+                                &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"p-4"</span>&gt;Padding semua sisi&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"px-4 py-2"</span>&gt;Padding x & y&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"ml-8"</span>&gt;Margin kiri&lt;/<span class="text-red-500">div</span>&gt;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-600">2. Warna</h3>
+                            <p class="text-gray-600 mb-2">Tailwind menyediakan palet warna yang luas:</p>
+                            <div class="demo-box">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <div class="w-12 h-12 rounded bg-purple-500"></div>
+                                    <div class="w-12 h-12 rounded bg-purple-600"></div>
+                                    <div class="w-12 h-12 rounded bg-purple-700"></div>
+                                    <div class="w-12 h-12 rounded bg-blue-500"></div>
+                                    <div class="w-12 h-12 rounded bg-green-500"></div>
+                                    <div class="w-12 h-12 rounded bg-red-500"></div>
+                                    <div class="w-12 h-12 rounded bg-yellow-500"></div>
+                                    <div class="w-12 h-12 rounded bg-gray-500"></div>
+                                </div>
+                                <button class="btn-demo">Tombol Ungu</button>
+                                <span class="ml-4 px-3 py-1 rounded bg-green-100 text-green-800">Sukses</span>
+                                <span class="ml-4 px-3 py-1 rounded bg-red-100 text-red-800">Error</span>
+                            </div>
+                            <div class="code-block">
+                                <span class="text-gray-500">&lt;!-- Contoh warna --&gt;</span><br>
+                                &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"bg-purple-500"</span>&gt;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &lt;<span class="text-red-500">button</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"bg-purple-600 text-white"</span>&gt;Tombol&lt;/<span class="text-red-500">button</span>&gt;<br>
+                                &lt;<span class="text-red-500">span</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"bg-green-100 text-green-800"</span>&gt;Sukses&lt;/<span class="text-red-500">span</span>&gt;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-600">3. Typography</h3>
+                            <p class="text-gray-600 mb-2">Tailwind menyediakan utility untuk styling teks:</p>
+                            <div class="demo-box">
+                                <h1 class="text-4xl font-bold mb-2">Heading Besar</h1>
+                                <h2 class="text-2xl font-semibold text-purple-600 mb-2">Subheading</h2>
+                                <p class="text-gray-600 leading-relaxed">Ini adalah paragraf dengan line-height yang nyaman dibaca. Tailwind membuat styling teks menjadi sangat mudah.</p>
+                                <p class="mt-4 text-sm text-gray-500">Teks kecil untuk keterangan</p>
+                            </div>
+                            <div class="code-block">
+                                <span class="text-gray-500">&lt;!-- Contoh typography --&gt;</span><br>
+                                &lt;<span class="text-red-500">h1</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"text-4xl font-bold"</span>&gt;Heading&lt;/<span class="text-red-500">h1</span>&gt;<br>
+                                &lt;<span class="text-red-500">h2</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"text-2xl font-semibold text-purple-600"</span>&gt;Subheading&lt;/<span class="text-red-500">h2</span>&gt;<br>
+                                &lt;<span class="text-red-500">p</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"text-gray-600 leading-relaxed"</span>&gt;Paragraf&lt;/<span class="text-red-500">p</span>&gt;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Layout with Flex and Grid -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Layout dengan Flex dan Grid</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-600">1. Flexbox</h3>
+                            <p class="text-gray-600 mb-2">Tailwind menyediakan utility lengkap untuk flexbox:</p>
+                            <div class="demo-box">
+                                <div class="flex flex-wrap justify-between items-center p-4 bg-gray-50 rounded">
+                                    <div class="w-16 h-16 bg-purple-500 rounded flex items-center justify-center text-white font-bold">1</div>
+                                    <div class="w-16 h-16 bg-purple-500 rounded flex items-center justify-center text-white font-bold">2</div>
+                                    <div class="w-16 h-16 bg-purple-500 rounded flex items-center justify-center text-white font-bold">3</div>
+                                </div>
+                            </div>
+                            <div class="code-block">
+                                <span class="text-gray-500">&lt;!-- Contoh flexbox --&gt;</span><br>
+                                &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"flex flex-wrap justify-between items-center"</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">div</span>&gt;Item 1&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">div</span>&gt;Item 2&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">div</span>&gt;Item 3&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &lt;/<span class="text-red-500">div</span>&gt;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-purple-600">2. CSS Grid</h3>
+                            <p class="text-gray-600 mb-2">Tailwind juga mendukung CSS Grid:</p>
+                            <div class="demo-box">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="p-4 bg-purple-100 rounded">Kolom 1</div>
+                                    <div class="p-4 bg-purple-100 rounded">Kolom 2</div>
+                                    <div class="p-4 bg-purple-100 rounded">Kolom 3</div>
+                                </div>
+                            </div>
+                            <div class="code-block">
+                                <span class="text-gray-500">&lt;!-- Contoh grid --&gt;</span><br>
+                                &lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"grid grid-cols-1 md:grid-cols-3 gap-4"</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">div</span>&gt;Kolom 1&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">div</span>&gt;Kolom 2&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">div</span>&gt;Kolom 3&lt;/<span class="text-red-500">div</span>&gt;<br>
+                                &lt;/<span class="text-red-500">div</span>&gt;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Customization -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Customisasi Tema</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Anda dapat dengan mudah menyesuaikan Tailwind dengan proyek Anda melalui file <code class="bg-gray-100 px-1 rounded">tailwind.config.js</code>.
+                        </p>
+                        
+                        <h3 class="text-lg font-medium mt-4 text-purple-600">Contoh Konfigurasi Dasar</h3>
+                        <div class="code-block">
+                            <span class="text-gray-500">// tailwind.config.js</span><br>
+                            <span class="text-blue-500">module</span>.<span class="text-blue-500">exports</span> = {<br>
+                            &nbsp;&nbsp;<span class="text-green-600">theme</span>: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-600">extend</span>: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-600">colors</span>: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-600">primary</span>: <span class="text-yellow-600">'#7c3aed'</span>,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-600">secondary</span>: <span class="text-yellow-600">'#f43f5e'</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-600">fontFamily</span>: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-600">sans</span>: [<span class="text-yellow-600">'Inter'</span>, <span class="text-yellow-600">'sans-serif'</span>]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;},<br>
+                            &nbsp;&nbsp;<span class="text-green-600">plugins</span>: []<br>
+                            }
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Setelah mengubah konfigurasi, jalankan build process untuk menerapkan perubahan.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Example Code -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Contoh Kode Tailwind</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut contoh halaman HTML sederhana menggunakan Tailwind CSS:
+                        </p>
+                        <div class="code-block">
+                            <span class="text-gray-500">&lt;!DOCTYPE html&gt;</span><br>
+                            &lt;<span class="text-red-500">html</span> <span class="text-green-600">lang</span>=<span class="text-yellow-600">"en"</span>&gt;<br>
+                            &lt;<span class="text-red-500">head</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">meta</span> <span class="text-green-600">charset</span>=<span class="text-yellow-600">"UTF-8"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">meta</span> <span class="text-green-600">name</span>=<span class="text-yellow-600">"viewport"</span> <span class="text-green-600">content</span>=<span class="text-yellow-600">"width=device-width, initial-scale=1.0"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">title</span>&gt;Contoh Tailwind&lt;/<span class="text-red-500">title</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">script</span> <span class="text-green-600">src</span>=<span class="text-yellow-600">"https://cdn.tailwindcss.com"</span>&gt;&lt;/<span class="text-red-500">script</span>&gt;<br>
+                            &lt;/<span class="text-red-500">head</span>&gt;<br>
+                            &lt;<span class="text-red-500">body</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"bg-gray-50"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"container mx-auto px-4 py-8"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">h1</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"text-3xl font-bold text-center text-purple-600 mb-6"</span>&gt;Selamat Datang&lt;/<span class="text-red-500">h1</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"grid grid-cols-1 md:grid-cols-2 gap-6"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">div</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"bg-white p-6 rounded-lg shadow"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">h2</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"text-xl font-semibold mb-3"</span>&gt;Card Pertama&lt;/<span class="text-red-500">h2</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">p</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"text-gray-600"</span>&gt;Ini adalah contoh card dengan Tailwind CSS.&lt;/<span class="text-red-500">p</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="text-red-500">button</span> <span class="text-green-600">class</span>=<span class="text-yellow-600">"mt-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"</span>&gt;Tombol&lt;/<span class="text-red-500">button</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;!-- Card lainnya --&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;/<span class="text-red-500">div</span>&gt;<br>
+                            &lt;/<span class="text-red-500">body</span>&gt;<br>
+                            &lt;/<span class="text-red-500">html</span>&gt;
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Tips -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Tips Menggunakan Tailwind</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                            <li>Gunakan ekstensi VS Code seperti "Tailwind CSS IntelliSense" untuk autocomplete class</li>
+                            <li>Pelajari utility class dasar terlebih dahulu (padding, margin, warna, typography)</li>
+                            <li>Gunakan prefix responsif (sm:, md:, lg:, xl:, 2xl:) untuk desain yang adaptif</li>
+                            <li>Customisasi tema melalui tailwind.config.js untuk konsistensi desain</li>
+                            <li>Gunakan @apply di CSS untuk membuat komponen yang sering digunakan</li>
+                            <li>Jangan ragu menggabungkan beberapa utility class untuk efek yang diinginkan</li>
+                            <li>Gunakan dokumentasi Tailwind sebagai referensi utama</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-12 max-w-4xl mx-auto">
+            <a class='btn-nav flex-1 px-6 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg shadow text-center' href='/learn/src/materi/bootstrap'>
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke Bootstrap
+            </a>
+            <a class='btn-nav flex-1 px-6 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-lg shadow text-center' href='/learn/src/materi'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+            <a class='btn flex-1 px-6 py-3 bg-purple-50 hover:bg-purple-100 text-purple-600 rounded-lg shadow text-center' href='/learn/src/materi/react'>
+                Lanjut ke React.js <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                © 2023 Pemrograman Web
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

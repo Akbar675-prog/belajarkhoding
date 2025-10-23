@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar CSS Dasar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f5f9;
+            color: #334155;
+            border-radius: 6px;
+            padding: 12px;
+            overflow-x: auto;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .highlight {
+            background-color: #dbeafe;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .box-model-demo {
+            width: 200px;
+            height: 100px;
+            margin: 20px;
+            padding: 20px;
+            border: 10px solid #93c5fd;
+            background-color: #bfdbfe;
+            position: relative;
+        }
+        
+        .box-model-label {
+            position: absolute;
+            font-size: 12px;
+            background: white;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .flex-demo {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            background-color: #e0f2fe;
+            border-radius: 6px;
+        }
+        
+        .flex-item {
+            background-color: #38bdf8;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .grid-demo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 10px;
+            background-color: #ede9fe;
+            border-radius: 6px;
+        }
+        
+        .grid-item {
+            background-color: #8b5cf6;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fab fa-css3-alt text-blue-500 text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">Pemrograman Web</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-blue-100 rounded-full mb-4">
+                <i class="fab fa-css3-alt text-blue-500 text-4xl"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">CSS</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Gaya visual untuk website Anda. Pelajari selektor, box model, flexbox, dan grid.
+            </p>
+        </div>
+        
+        <!-- Content Sections -->
+        <div class="max-w-4xl mx-auto space-y-8">
+            <!-- What is CSS -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Apa itu CSS?</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            CSS (Cascading Style Sheets) adalah bahasa stylesheet yang digunakan untuk mengatur tampilan dokumen HTML. CSS mengontrol warna, tata letak, font, dan aspek visual lainnya dari halaman web.
+                        </p>
+                        <p class="text-gray-600">
+                            Dengan CSS, Anda dapat memisahkan konten (HTML) dari presentasi (styling), membuat kode lebih mudah dikelola dan halaman web lebih konsisten.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Adding CSS to HTML -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Cara Menambahkan CSS ke HTML</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-500">1. Inline CSS</h3>
+                            <p class="text-gray-600 mb-2">CSS langsung ditulis dalam atribut <code>style</code> elemen HTML:</p>
+                            <div class="code-block">
+                                &lt;<span class="text-red-500">h1</span> <span class="text-green-600">style</span>=<span class="text-yellow-600">"color: blue; font-size: 24px;"</span>&gt;Judul&lt;/<span class="text-red-500">h1</span>&gt;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-500">2. Internal CSS</h3>
+                            <p class="text-gray-600 mb-2">CSS ditulis dalam tag <code>&lt;style&gt;</code> di bagian <code>&lt;head&gt;</code>:</p>
+                            <div class="code-block">
+                                &lt;<span class="text-red-500">head</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">style</span>&gt;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-500">h1</span> {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-600">color</span>: <span class="text-yellow-600">blue</span>;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-600">font-size</span>: <span class="text-yellow-600">24px</span>;<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                &nbsp;&nbsp;&lt;/<span class="text-red-500">style</span>&gt;<br>
+                                &lt;/<span class="text-red-500">head</span>&gt;
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-2 text-blue-500">3. External CSS</h3>
+                            <p class="text-gray-600 mb-2">CSS ditulis dalam file terpisah (.css) dan dihubungkan dengan tag <code>&lt;link&gt;</code>:</p>
+                            <div class="code-block">
+                                &lt;<span class="text-red-500">head</span>&gt;<br>
+                                &nbsp;&nbsp;&lt;<span class="text-red-500">link</span> <span class="text-green-600">rel</span>=<span class="text-yellow-600">"stylesheet"</span> <span class="text-green-600">href</span>=<span class="text-yellow-600">"styles.css"</span>&gt;<br>
+                                &lt;/<span class="text-red-500">head</span>&gt;
+                            </div>
+                            <p class="text-gray-600 text-sm mt-2">Isi file styles.css:</p>
+                            <div class="code-block">
+                                <span class="text-blue-500">h1</span> {<br>
+                                &nbsp;&nbsp;<span class="text-green-600">color</span>: <span class="text-yellow-600">blue</span>;<br>
+                                &nbsp;&nbsp;<span class="text-green-600">font-size</span>: <span class="text-yellow-600">24px</span>;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CSS Selectors -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Selektor CSS Dasar</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Selektor digunakan untuk memilih elemen HTML yang ingin diberi style. Berikut beberapa selektor dasar:
+                        </p>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Selektor</th>
+                                        <th class="py-3 px-4 text-left">Contoh</th>
+                                        <th class="py-3 px-4 text-left">Deskripsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">Elemen</td>
+                                        <td class="py-3 px-4 font-mono text-sm">p { ... }</td>
+                                        <td class="py-3 px-4">Memilih semua elemen &lt;p&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">Class</td>
+                                        <td class="py-3 px-4 font-mono text-sm">.intro { ... }</td>
+                                        <td class="py-3 px-4">Memilih elemen dengan class="intro"</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">ID</td>
+                                        <td class="py-3 px-4 font-mono text-sm">#header { ... }</td>
+                                        <td class="py-3 px-4">Memilih elemen dengan id="header"</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">Universal</td>
+                                        <td class="py-3 px-4 font-mono text-sm">* { ... }</td>
+                                        <td class="py-3 px-4">Memilih semua elemen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">Grouping</td>
+                                        <td class="py-3 px-4 font-mono text-sm">h1, h2, h3 { ... }</td>
+                                        <td class="py-3 px-4">Memilih beberapa elemen sekaligus</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Box Model -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Box Model CSS</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Setiap elemen HTML adalah sebuah kotak (box) yang terdiri dari: content, padding, border, dan margin.
+                        </p>
+                        
+                        <div class="flex flex-col items-center my-6">
+                            <div class="box-model-demo">
+                                <span class="box-model-label" style="top: -20px; left: 50%; transform: translateX(-50%);">Margin</span>
+                                <span class="box-model-label" style="top: 50%; left: -40px; transform: translateY(-50%);">Border</span>
+                                <span class="box-model-label" style="top: 50%; right: -50px; transform: translateY(-50%);">Padding</span>
+                                <span class="box-model-label" style="bottom: -20px; left: 50%; transform: translateX(-50%);">Content</span>
+                            </div>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Properti</th>
+                                        <th class="py-3 px-4 text-left">Contoh</th>
+                                        <th class="py-3 px-4 text-left">Fungsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">margin</td>
+                                        <td class="py-3 px-4 font-mono text-sm">margin: 10px;</td>
+                                        <td class="py-3 px-4">Jarak di luar border elemen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">border</td>
+                                        <td class="py-3 px-4 font-mono text-sm">border: 1px solid black;</td>
+                                        <td class="py-3 px-4">Garis tepi elemen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">padding</td>
+                                        <td class="py-3 px-4 font-mono text-sm">padding: 15px;</td>
+                                        <td class="py-3 px-4">Jarak antara border dan content</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">width/height</td>
+                                        <td class="py-3 px-4 font-mono text-sm">width: 200px;</td>
+                                        <td class="py-3 px-4">Ukuran content elemen</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Flexbox -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Flexbox</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Flexbox adalah model layout CSS untuk mendesain tata letak yang fleksibel dan responsif.
+                        </p>
+                        
+                        <h3 class="text-lg font-medium mt-4 text-blue-500">Contoh Flexbox</h3>
+                        <div class="flex-demo">
+                            <div class="flex-item">Item 1</div>
+                            <div class="flex-item">Item 2</div>
+                            <div class="flex-item">Item 3</div>
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-blue-500">.container</span> {<br>
+                            &nbsp;&nbsp;<span class="text-green-600">display</span>: <span class="text-yellow-600">flex</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">gap</span>: <span class="text-yellow-600">10px</span>;<br>
+                            }<br><br>
+                            <span class="text-blue-500">.item</span> {<br>
+                            &nbsp;&nbsp;<span class="text-green-600">flex</span>: <span class="text-yellow-600">1</span>;<br>
+                            }
+                        </div>
+                        
+                        <div class="overflow-x-auto mt-4">
+                            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Properti</th>
+                                        <th class="py-3 px-4 text-left">Fungsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">display: flex</td>
+                                        <td class="py-3 px-4">Mengaktifkan flexbox</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">flex-direction</td>
+                                        <td class="py-3 px-4">Mengatur arah item (row/column)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">justify-content</td>
+                                        <td class="py-3 px-4">Mengatur penjajaran horizontal</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">align-items</td>
+                                        <td class="py-3 px-4">Mengatur penjajaran vertikal</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">flex</td>
+                                        <td class="py-3 px-4">Mengatur ukuran relatif item</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CSS Grid -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">CSS Grid</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            CSS Grid adalah sistem layout dua dimensi untuk membuat tata letak yang kompleks dengan mudah.
+                        </p>
+                        
+                        <h3 class="text-lg font-medium mt-4 text-blue-500">Contoh Grid</h3>
+                        <div class="grid-demo">
+                            <div class="grid-item">1</div>
+                            <div class="grid-item">2</div>
+                            <div class="grid-item">3</div>
+                            <div class="grid-item">4</div>
+                            <div class="grid-item">5</div>
+                            <div class="grid-item">6</div>
+                        </div>
+                        
+                        <div class="code-block">
+                            <span class="text-blue-500">.container</span> {<br>
+                            &nbsp;&nbsp;<span class="text-green-600">display</span>: <span class="text-yellow-600">grid</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">grid-template-columns</span>: <span class="text-yellow-600">repeat(3, 1fr)</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">gap</span>: <span class="text-yellow-600">10px</span>;<br>
+                            }
+                        </div>
+                        
+                        <div class="overflow-x-auto mt-4">
+                            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">Properti</th>
+                                        <th class="py-3 px-4 text-left">Fungsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">display: grid</td>
+                                        <td class="py-3 px-4">Mengaktifkan grid</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">grid-template-columns</td>
+                                        <td class="py-3 px-4">Mendefinisikan kolom grid</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">grid-template-rows</td>
+                                        <td class="py-3 px-4">Mendefinisikan baris grid</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">gap</td>
+                                        <td class="py-3 px-4">Jarak antar item grid</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono">grid-column/grid-row</td>
+                                        <td class="py-3 px-4">Penempatan item di grid</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Example Code -->
+            <section class="card bg-white shadow-md">
+                <div class="p-6">
+                    <h2 class="text-2xl font-semibold mb-4">
+                        <span class="highlight px-2">Contoh Kode CSS Sederhana</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-600">
+                            Berikut contoh file CSS sederhana yang bisa Anda salin dan coba:
+                        </p>
+                        <div class="code-block">
+                            <span class="text-gray-500">/* Reset default margin dan padding */</span><br>
+                            <span class="text-blue-500">*</span> {<br>
+                            &nbsp;&nbsp;<span class="text-green-600">margin</span>: <span class="text-yellow-600">0</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">padding</span>: <span class="text-yellow-600">0</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">box-sizing</span>: <span class="text-yellow-600">border-box</span>;<br>
+                            }<br><br>
+                            
+                            <span class="text-gray-500">/* Style untuk body */</span><br>
+                            <span class="text-blue-500">body</span> {<br>
+                            &nbsp;&nbsp;<span class="text-green-600">font-family</span>: <span class="text-yellow-600">'Inter', sans-serif</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">background-color</span>: <span class="text-yellow-600">#f8fafc</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">color</span>: <span class="text-yellow-600">#1e293b</span>;<br>
+                            }<br><br>
+                            
+                            <span class="text-gray-500">/* Style untuk header */</span><br>
+                            <span class="text-blue-500">.header</span> {<br>
+                            &nbsp;&nbsp;<span class="text-green-600">background-color</span>: <span class="text-yellow-600">white</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">padding</span>: <span class="text-yellow-600">1rem</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">box-shadow</span>: <span class="text-yellow-600">0 2px 4px rgba(0,0,0,0.1)</span>;<br>
+                            }<br><br>
+                            
+                            <span class="text-gray-500">/* Style untuk tombol */</span><br>
+                            <span class="text-blue-500">.btn</span> {<br>
+                            &nbsp;&nbsp;<span class="text-green-600">display</span>: <span class="text-yellow-600">inline-block</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">padding</span>: <span class="text-yellow-600">0.5rem 1rem</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">background-color</span>: <span class="text-yellow-600">#3b82f6</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">color</span>: <span class="text-yellow-600">white</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">border-radius</span>: <span class="text-yellow-600">0.25rem</span>;<br>
+                            &nbsp;&nbsp;<span class="text-green-600">text-decoration</span>: <span class="text-yellow-600">none</span>;<br>
+                            }
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Salin kode di atas ke file dengan ekstensi .css dan hubungkan ke HTML Anda untuk melihat hasilnya.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col sm:flex-row justify-between gap-4 mt-12 max-w-4xl mx-auto">
+            <a class='btn flex-1 px-6 py-3 bg-orange-50 hover:bg-orange-100 text-orange-600 rounded-lg shadow text-center' href='/learn/src/materi/html'>
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke HTML
+            </a>
+            <a class='btn flex-1 px-6 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg shadow text-center' href='./Home.html'>
+                <i class="fas fa-home mr-2"></i> Kembali ke Beranda Materi
+            </a>
+            <a class='btn flex-1 px-6 py-3 bg-yellow-50 hover:bg-yellow-100 text-yellow-600 rounded-lg shadow text-center' href='./Home.html'>
+                Lanjut ke JavaScript <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 text-gray-600 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                &copy; 2025 | Belajar pemrograman Web
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
